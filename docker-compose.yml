@@ -1,0 +1,38 @@
+version: "3.9"
+services:
+  dao-ui:
+    build:
+      context: ./dao-ui
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    environment:
+      - REACT_APP_API_URL=http://172.17.0.2:3001 # آدرس backend (با توجه به آدرس IP)
+    stdin_open: true
+    tty: true
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+    environment:
+      - MONGODB_URI=mongodb://errick:Qaz@1088706@db:27017/dao-vc # آدرس MongoDB
+      - PORT=3001
+    stdin_open: true
+    tty: true
+
+  db:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - db_data:/data/db # برای پایداری داده‌ها
+    restart: always
+volumes:
+  db_data:

@@ -1,0 +1,43 @@
+{
+    "name": "Rayan DAO VC",
+    "version": "0.1.0",
+    "private": true,
+    "description": "A project using Yarn Workspaces for Rayan DAO and Tokenize Framework DAO-VC Project.",
+    "author": "Erfan Shamohammadi Heydari",
+    "license": "MIT",
+    "workspaces": [
+        "dao-ui",
+        "osx"
+    ],
+    "devDependencies": {
+        "husky": "^8.0.0",
+        "lint-staged": "^15.0.0",
+        "prettier": "^3.0.0",
+        "typescript": "^5.0.0"
+    },
+    "dependencies": {
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-router-dom": "^6.0.0",
+        "@rainbow-me/rainbowkit": "^1.0.0",
+        "@tanstack/react-query": "^4.0.0",
+        "@wagmi/core": "^1.0.0",
+        "ethers": "^6.0.0",
+        "i18next": "^23.0.0",
+        "react-i18next": "^13.0.0"
+    },
+    "lint-staged": {
+        "*.{js,jsx,ts,tsx}": "eslint --fix"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "scripts": {
+        "start": "yarn workspace dao-ui start",
+        "build": "yarn workspace dao-ui build",
+        "dev:osx": "yarn workspace osx dev",
+        "lint": "yarn workspace dao-ui lint",
+        "format": "yarn workspace dao-ui format",
+        "prepare": "husky install"
+    },
+  }

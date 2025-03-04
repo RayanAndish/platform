@@ -1,0 +1,54 @@
+.
+├── eslint.config.mjs
+├── nest-cli.json
+├── package.json
+├── package-lock.json
+├── README.md
+├── src
+│   ├── app.controller.spec.ts
+│   ├── app.controller.ts
+│   ├── app.e2e-spec.ts
+│   ├── app.module.ts
+│   ├── app.service.ts
+│   ├── auth
+│   │   ├── auth.controller.ts
+│   │   ├── auth.gaurd.ts
+│   │   ├── auth.module.ts
+│   │   ├── auth.service.ts
+│   │   └── decorators
+│   │       └── public.decorator.ts
+│   ├── common
+│   │   ├── guards
+│   │   ├── interceptors
+│   │   ├── interfaces
+│   │   └── pipes
+│   ├── config
+│   ├── dao
+│   │   ├── dao.controller.ts
+│   │   ├── dao.madule.ts
+│   │   ├── dao.service.ts
+│   │   ├── dto
+│   │   │   └── createproposal.dto.ts
+│   │   └── schemas
+│   │       └── dao.schema.ts
+│   ├── main.ts
+│   ├── project
+│   │   └── project.module.ts
+│   └── user
+│       ├── dto
+│       │   └── create-user.dto.ts
+│       ├── schemas
+│       │   └── user.schema.ts
+│       ├── user.controller.ts
+│       ├── user.module.ts
+│       ├── user.service.spec.ts
+│       └── user.service.ts
+├── test
+│   ├── app.e2e-spec.ts
+│   └── jest-e2e.json
+├── tree.txt
+├── tsconfig.build.json
+├── tsconfig.json
+└── yarn.lock
+
+18 directories, 34 files

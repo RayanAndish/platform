@@ -1,0 +1,420 @@
+.
+├── audits
+│   ├── Code4rena_AragonOSx_2023-12-12.pdf
+│   ├── Halborn_AragonOSx_2023-02-24.pdf
+│   ├── Halborn_AragonOSx_2023-06-13.pdf
+│   └── Halborn_AragonOSx_v1_4_Smart_Contract_Security_Assessment_Report_2025_01_03.pdf
+├── CONTRIBUTION_GUIDE.md
+├── DEPLOYMENT_CHECKLIST.md
+├── dummy_daos.json
+├── funding.json
+├── images
+│   └── dao-plugin.svg
+├── LICENSE
+├── package.json
+├── packages
+│   ├── artifacts
+│   │   ├── CHANGELOG.md
+│   │   ├── package.json
+│   │   ├── prepare-abi.sh
+│   │   ├── README.md
+│   │   ├── src
+│   │   │   ├── addresses.json
+│   │   │   └── index.ts
+│   │   └── tsconfig.json
+│   ├── contracts
+│   │   ├── CHANGELOG.md
+│   │   ├── deploy
+│   │   │   ├── env
+│   │   │   │   └── 00-env-check.ts
+│   │   │   ├── helpers.ts
+│   │   │   ├── management-dao-metadata.json
+│   │   │   ├── new
+│   │   │   │   ├── 00_management-dao
+│   │   │   │   │   ├── 00_management-dao.ts
+│   │   │   │   │   ├── 01_management-dao-permissions.ts
+│   │   │   │   │   ├── 02_management-dao_conclude.ts
+│   │   │   │   │   ├── 20_set-dao-permission.ts
+│   │   │   │   │   └── 99_verify_step.ts
+│   │   │   │   ├── 10_framework
+│   │   │   │   │   ├── 00_ens_registry.ts
+│   │   │   │   │   ├── 01_ens_subdomains.ts
+│   │   │   │   │   ├── 02_ens_subdomain_registrars.ts
+│   │   │   │   │   ├── 09_ens_conclude.ts
+│   │   │   │   │   ├── 10_dao-registry.ts
+│   │   │   │   │   ├── 11_dao-registry_conclude.ts
+│   │   │   │   │   ├── 20_plugin-repo-registry.ts
+│   │   │   │   │   ├── 21_plugin-repo-registry_conclude.ts
+│   │   │   │   │   ├── 30_repo-factory.ts
+│   │   │   │   │   ├── 31_repo-factory_conclude.ts
+│   │   │   │   │   ├── 40_plugin_setup_processor.ts
+│   │   │   │   │   ├── 41_plugin-setup-processor_conclude.ts
+│   │   │   │   │   ├── 50_dao-factory.ts
+│   │   │   │   │   ├── 51_dao-factory-conclude.ts
+│   │   │   │   │   ├── 52_global_executor.ts
+│   │   │   │   │   └── 99_verifiy_step.ts
+│   │   │   │   ├── 20_permissions
+│   │   │   │   │   ├── 00_ens-permissions.ts
+│   │   │   │   │   ├── 10_dao-registry-permissions.ts
+│   │   │   │   │   ├── 20_plugin-registrty-permissions.ts
+│   │   │   │   │   └── 99_verify.ts
+│   │   │   │   └── 40_finalize-management-dao
+│   │   │   │       ├── 00_grant-permissions.ts
+│   │   │   │       ├── 20_register-management-dao-on-dao-registry.ts
+│   │   │   │       ├── 40_revoke-permissions.ts
+│   │   │   │       └── 99_verify_step.ts
+│   │   │   ├── update
+│   │   │   │   ├── to_v1.3.0
+│   │   │   │   │   ├── 10_DAOFactory.ts
+│   │   │   │   │   ├── 11_DAOFactory_conclude.ts
+│   │   │   │   │   ├── 20_PluginRepoFactory.ts
+│   │   │   │   │   ├── 21_PluginRepoFactory_conclude.ts
+│   │   │   │   │   └── 90_ManagingDAO.ts
+│   │   │   │   └── to_v1.4.0
+│   │   │   │       ├── 10_DAOFactory.ts
+│   │   │   │       ├── 11_DAOFactory_conclude.ts
+│   │   │   │       ├── 20_PluginRepoFactory.ts
+│   │   │   │       ├── 21_PluginRepoFactory_conclude.ts
+│   │   │   │       ├── 31_DAORegistry.ts
+│   │   │   │       ├── 41_PluginRepoRegistry.ts
+│   │   │   │       └── 90_ManagingDAO.ts
+│   │   │   └── verification
+│   │   │       └── 99_conclude
+│   │   │           ├── 00_save-contract-addresses.ts
+│   │   │           └── 10_verify-contracts.ts
+│   │   ├── deployed_contracts_detailed.json
+│   │   ├── docs
+│   │   │   ├── antora.yml
+│   │   │   ├── config.js
+│   │   │   ├── framework-lifecycle
+│   │   │   │   ├── 01-systems.md
+│   │   │   │   ├── 02-semver.md
+│   │   │   │   ├── 03-osx-components
+│   │   │   │   │   ├── 00-abstract-contract.md
+│   │   │   │   │   ├── 01-factory-contract.md
+│   │   │   │   │   ├── 02-upgradeable-contract.md
+│   │   │   │   │   ├── 03-non-upgradeable-contract.md
+│   │   │   │   │   ├── 04-registry-contract.md
+│   │   │   │   │   ├── 05-plugin-setup-processor.md
+│   │   │   │   │   ├── 06-plugin-build.md
+│   │   │   │   │   └── 07-plugin-setup.md
+│   │   │   │   ├── 04-sub-processes
+│   │   │   │   │   ├── 01-protocol-version.md
+│   │   │   │   │   ├── 02-contract-initialization.md
+│   │   │   │   │   ├── 03-testing.md
+│   │   │   │   │   ├── 04-documentation.md
+│   │   │   │   │   ├── 05-deployment.md
+│   │   │   │   │   └── 06-aragon-update.md
+│   │   │   │   └── index.md
+│   │   │   └── modules
+│   │   │       ├── api
+│   │   │       │   ├── nav.adoc
+│   │   │       │   └── pages
+│   │   │       │       ├── core.adoc
+│   │   │       │       └── framework.adoc
+│   │   │       └── ROOT
+│   │   │           ├── images
+│   │   │           │   ├── aragon-os-framework-overview.drawio.svg
+│   │   │           │   ├── aragon-os-infrastructure-core-overview.drawio.svg
+│   │   │           │   ├── dao-plugin.drawio.svg
+│   │   │           │   ├── plugin-installation.drawio.svg
+│   │   │           │   ├── plugin-repo-overview.drawio.svg
+│   │   │           │   ├── plugin-uninstallation.drawio.svg
+│   │   │           │   ├── plugin-update.drawio.svg
+│   │   │           │   ├── plugin-version.drawio.svg
+│   │   │           │   └── what_is_a_plugin.png
+│   │   │           ├── nav.adoc
+│   │   │           └── pages
+│   │   │               ├── core
+│   │   │               │   ├── actions.adoc
+│   │   │               │   ├── dao.adoc
+│   │   │               │   ├── index.adoc
+│   │   │               │   ├── permissions.adoc
+│   │   │               │   └── plugins.adoc
+│   │   │               ├── framework
+│   │   │               │   ├── dao-factory-registry.adoc
+│   │   │               │   ├── ens-registrar.adoc
+│   │   │               │   ├── index.adoc
+│   │   │               │   ├── plugin-repos.adoc
+│   │   │               │   ├── plugin-setup-processor.adoc
+│   │   │               │   └── repo-factory-registry.adoc
+│   │   │               ├── guide-develop-plugin
+│   │   │               │   ├── design-your-plugin.adoc
+│   │   │               │   ├── follow-best-practices.adoc
+│   │   │               │   ├── index.adoc
+│   │   │               │   ├── publishing-plugin.adoc
+│   │   │               │   ├── upgrade-plugin.adoc
+│   │   │               │   ├── write-plugin-contract.adoc
+│   │   │               │   ├── write-plugin-setup-contract.adoc
+│   │   │               │   └── write-upgradeable-plugin.adoc
+│   │   │               ├── guide-set-up-dao
+│   │   │               │   ├── custom-permission-condition.adoc
+│   │   │               │   ├── execute-actions.adoc
+│   │   │               │   ├── index.adoc
+│   │   │               │   ├── keep-dao-safe.adoc
+│   │   │               │   ├── manage-dao-plugins.adoc
+│   │   │               │   └── upgrade-dao.adoc
+│   │   │               └── index.adoc
+│   │   ├── hardhat.config.ts
+│   │   ├── hardhat-zksync.config.ts
+│   │   ├── networks.ts
+│   │   ├── package.json
+│   │   ├── README.md
+│   │   ├── Releases.md
+│   │   ├── scripts
+│   │   │   ├── generate-typechain-osx.ts
+│   │   │   ├── generate-typechain-osx-versions.ts
+│   │   │   ├── gen-nav.js
+│   │   │   ├── osx-versions-aliases.ts
+│   │   │   └── prepare-docs.sh
+│   │   ├── src
+│   │   │   ├── core
+│   │   │   │   ├── dao
+│   │   │   │   │   ├── DAO.sol
+│   │   │   │   │   └── IEIP4824.sol
+│   │   │   │   ├── permission
+│   │   │   │   │   └── PermissionManager.sol
+│   │   │   │   ├── README.adoc
+│   │   │   │   └── utils
+│   │   │   │       └── CallbackHandler.sol
+│   │   │   ├── framework
+│   │   │   │   ├── dao
+│   │   │   │   │   ├── DAOFactory.sol
+│   │   │   │   │   └── DAORegistry.sol
+│   │   │   │   ├── plugin
+│   │   │   │   │   ├── repo
+│   │   │   │   │   │   ├── IPluginRepo.sol
+│   │   │   │   │   │   ├── placeholder
+│   │   │   │   │   │   │   ├── placeholder-build-metadata.json
+│   │   │   │   │   │   │   └── PlaceholderSetup.sol
+│   │   │   │   │   │   ├── PluginRepoFactory.sol
+│   │   │   │   │   │   ├── PluginRepoRegistry.sol
+│   │   │   │   │   │   └── PluginRepo.sol
+│   │   │   │   │   └── setup
+│   │   │   │   │       ├── PluginSetupProcessorHelpers.sol
+│   │   │   │   │       └── PluginSetupProcessor.sol
+│   │   │   │   ├── README.adoc
+│   │   │   │   └── utils
+│   │   │   │       ├── ens
+│   │   │   │       │   ├── ENSMigration.sol
+│   │   │   │       │   └── ENSSubdomainRegistrar.sol
+│   │   │   │       ├── InterfaceBasedRegistry.sol
+│   │   │   │       └── RegistryUtils.sol
+│   │   │   ├── package.json
+│   │   │   ├── README.md
+│   │   │   └── test
+│   │   │       ├── dao
+│   │   │       │   ├── ActionExecute.sol
+│   │   │       │   ├── CallbackHandlerHelperMock.sol
+│   │   │       │   └── GasConsumerHelper.sol
+│   │   │       ├── Migration.sol
+│   │   │       ├── permission
+│   │   │       │   ├── PermissionConditionMock.sol
+│   │   │       │   └── PermissionManagerTest.sol
+│   │   │       ├── plugin
+│   │   │       │   ├── Cloneable
+│   │   │       │   │   ├── PluginCloneableMock.sol
+│   │   │       │   │   └── PluginCloneableSetupMock.sol
+│   │   │       │   ├── Constructable
+│   │   │       │   │   └── PluginMock.sol
+│   │   │       │   ├── PluginMockData.sol
+│   │   │       │   └── UUPSUpgradeable
+│   │   │       │       ├── PluginUUPSUpgradeableMock.sol
+│   │   │       │       └── PluginUUPSUpgradeableSetupMock.sol
+│   │   │       ├── ProtocolVersionMock.sol
+│   │   │       ├── token
+│   │   │       │   ├── ERC1155Mock.sol
+│   │   │       │   ├── ERC20Mock.sol
+│   │   │       │   └── ERC721Mock.sol
+│   │   │       └── utils
+│   │   │           ├── InterfaceBasedRegistryMock.sol
+│   │   │           └── RegistryUtilsTest.sol
+│   │   ├── test
+│   │   │   ├── chai-setup.ts
+│   │   │   ├── core
+│   │   │   │   ├── dao
+│   │   │   │   │   ├── callback-handler.ts
+│   │   │   │   │   └── dao.ts
+│   │   │   │   └── permission
+│   │   │   │       └── permission-manager.ts
+│   │   │   ├── deploy
+│   │   │   │   ├── default-env.ts
+│   │   │   │   ├── managing-dao.ts
+│   │   │   │   └── update-1.4.0.ts
+│   │   │   ├── framework
+│   │   │   │   ├── dao
+│   │   │   │   │   ├── dao-factory.ts
+│   │   │   │   │   └── dao-registry.ts
+│   │   │   │   ├── plugin
+│   │   │   │   │   ├── plugin-repo-factory.ts
+│   │   │   │   │   ├── plugin-repo-registry.ts
+│   │   │   │   │   ├── plugin-repo.ts
+│   │   │   │   │   ├── plugin-setup-processor.ts
+│   │   │   │   │   └── plugin-setup.ts
+│   │   │   │   └── utils
+│   │   │   │       ├── ens
+│   │   │   │       │   └── ens-subdomain-registry.ts
+│   │   │   │       ├── interface-based-registry.ts
+│   │   │   │       └── registry-utils.ts
+│   │   │   ├── protocol-version.ts
+│   │   │   ├── test-utils
+│   │   │   │   ├── dao.ts
+│   │   │   │   ├── ens.ts
+│   │   │   │   ├── fixture.ts
+│   │   │   │   ├── matcher.ts
+│   │   │   │   ├── plugin-setup-processor.ts
+│   │   │   │   ├── protocol-version.ts
+│   │   │   │   ├── proxy.ts
+│   │   │   │   ├── psp
+│   │   │   │   │   ├── atomic-helpers.ts
+│   │   │   │   │   ├── create-params.ts
+│   │   │   │   │   ├── hash-helpers.ts
+│   │   │   │   │   ├── mock-helpers.ts
+│   │   │   │   │   ├── types.ts
+│   │   │   │   │   └── wrappers.ts
+│   │   │   │   ├── repo.ts
+│   │   │   │   ├── skip-functions.ts
+│   │   │   │   ├── uups-upgradeable.ts
+│   │   │   │   └── wrapper
+│   │   │   │       ├── hardhat.ts
+│   │   │   │       ├── index.ts
+│   │   │   │       └── zksync.ts
+│   │   │   └── upgrade
+│   │   │       └── dao.ts
+│   │   ├── tsconfig.json
+│   │   ├── types
+│   │   │   └── hardhat.d.ts
+│   │   └── utils
+│   │       ├── ens.ts
+│   │       ├── environment.ts
+│   │       ├── etherscan.ts
+│   │       ├── psp.ts
+│   │       ├── storage.ts
+│   │       ├── zksync-rich-accounts.ts
+│   │       └── zksync.ts
+│   ├── contracts-ethers
+│   │   ├── CHANGELOG.md
+│   │   ├── npm
+│   │   │   ├── events
+│   │   │   │   ├── DAORegistry.ts
+│   │   │   │   ├── DAO.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── PluginRepoRegistry.ts
+│   │   │   │   ├── PluginRepo.ts
+│   │   │   │   └── PluginSetupProcessor.ts
+│   │   │   ├── index.ts
+│   │   │   └── structs
+│   │   │       ├── DAOFactory.ts
+│   │   │       ├── DAO.ts
+│   │   │       ├── index.ts
+│   │   │       ├── PluginRepo.ts
+│   │   │       └── PluginSetupProcessor.ts
+│   │   ├── package.json
+│   │   ├── README.md
+│   │   ├── rollup.config.ts
+│   │   └── tsconfig.json
+│   └── subgraph
+│       ├── abis
+│       │   └── DAO_v1_0_0.json
+│       ├── CHANGELOG.md
+│       ├── codegen.yml
+│       ├── docker
+│       │   ├── docker-compose.yml
+│       │   ├── hardhat
+│       │   │   ├── hardhat.config.js
+│       │   │   └── package.json
+│       │   └── hardhat.Dockerfile
+│       ├── docs
+│       │   └── Subgraph-ERD.jpg
+│       ├── manifest
+│       │   ├── data
+│       │   │   ├── arbitrumGoerli.json
+│       │   │   ├── arbitrum.json
+│       │   │   ├── arbitrumSepolia.json
+│       │   │   ├── baseGoerli.json
+│       │   │   ├── baseMainnet.json
+│       │   │   ├── baseSepolia.json
+│       │   │   ├── goerli.json
+│       │   │   ├── localhost.json
+│       │   │   ├── mainnet.json
+│       │   │   ├── mumbai.json
+│       │   │   ├── polygon.json
+│       │   │   └── sepolia.json
+│       │   └── subgraph.placeholder.yaml
+│       ├── package.json
+│       ├── README.md
+│       ├── schema.graphql
+│       ├── scripts
+│       │   ├── build-manifest.sh
+│       │   ├── build-subgraph.sh
+│       │   ├── deploy-subgraph.sh
+│       │   ├── docs
+│       │   │   ├── generate-introspection-partial-json.sh
+│       │   │   └── generate-markdown.js
+│       │   ├── tests
+│       │   │   ├── fetch-introspection-query.js
+│       │   │   └── generate-introspection-json.sh
+│       │   └── updateLocalManifest.js
+│       ├── src
+│       │   ├── dao
+│       │   │   ├── dao_v1_0_0.ts
+│       │   │   ├── dao_v1_3_0.ts
+│       │   │   ├── ids.ts
+│       │   │   └── utils.ts
+│       │   ├── examples
+│       │   │   ├── 01-query-examples
+│       │   │   │   ├── 01-dao-query.ts
+│       │   │   │   ├── 02-balances-query.ts
+│       │   │   │   └── index.ts
+│       │   │   └── index.ts
+│       │   ├── plugin
+│       │   │   ├── pluginRepo.ts
+│       │   │   ├── pluginSetupProcessor.ts
+│       │   │   └── utils.ts
+│       │   ├── registries
+│       │   │   ├── daoRegistry.ts
+│       │   │   └── pluginRepoRegistry.ts
+│       │   └── utils
+│       │       ├── bytes.ts
+│       │       ├── constants.ts
+│       │       ├── erc165.ts
+│       │       ├── ids.ts
+│       │       ├── proposals.ts
+│       │       └── tokens
+│       │           ├── common.ts
+│       │           ├── erc1155.ts
+│       │           ├── erc20.ts
+│       │           ├── erc721.ts
+│       │           └── eth.ts
+│       ├── tests
+│       │   ├── constants.ts
+│       │   ├── dao
+│       │   │   ├── dao_v1_0_0.test.ts
+│       │   │   ├── dao_v1_3_0.test.ts
+│       │   │   └── utils.ts
+│       │   ├── helpers
+│       │   │   └── method-classes.ts
+│       │   ├── permission-manager
+│       │   │   ├── permission-manager.test.ts
+│       │   │   └── utils.ts
+│       │   ├── plugin
+│       │   │   ├── pluginRepo.test.ts
+│       │   │   ├── pluginSetupProcessor.test.ts
+│       │   │   └── utils.ts
+│       │   ├── registry
+│       │   │   ├── daoRegistry.test.ts
+│       │   │   ├── pluginRepoRegistry.test.ts
+│       │   │   └── utils.ts
+│       │   ├── schema-extender.ts
+│       │   ├── utils
+│       │   │   └── utils.test.ts
+│       │   └── utils.ts
+│       ├── tsconfig.json
+│       └── types
+│           └── ASM.d.ts
+├── README.md
+├── tree.txt
+├── UPDATE_CHECKLIST.md
+└── yarn.lock
+
+102 directories, 316 files

@@ -1,0 +1,85 @@
+.
+├── package.json
+├── public
+│   ├── favicon.ico
+│   ├── images
+│   │   ├── p1.png
+│   │   ├── p2.png
+│   │   ├── p3.png
+│   │   └── p4.png
+│   ├── index.html
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   └── robots.txt
+├── README.md
+├── src
+│   ├── App.css
+│   ├── App.test.js
+│   ├── App.tsx
+│   ├── components
+│   │   ├── DefineProject
+│   │   │   ├── DefineProject.tsx
+│   │   │   └── Styles
+│   │   │       └── DefineProject.styles.ts
+│   │   ├── DiscoveryPage
+│   │   │   ├── DiscoveryPage.tsx
+│   │   │   └── Styles
+│   │   │       └── DiscoveryPage.styles.ts
+│   │   ├── DocumentationPage
+│   │   │   ├── DocumentationPage.tsx
+│   │   │   └── Styles
+│   │   │       └── DocumentationPage.styles.ts
+│   │   ├── HomePage
+│   │   │   ├── FAQ.tsx
+│   │   │   ├── Footer.tsx
+│   │   │   ├── Header.tsx
+│   │   │   ├── HeroSection.tsx
+│   │   │   ├── HighestFundedProjects.tsx
+│   │   │   ├── HomePage.tsx
+│   │   │   ├── NewsletterSection.tsx
+│   │   │   ├── OpenFundingCalls.tsx
+│   │   │   ├── ProjectGraph.tsx
+│   │   │   ├── RecentlyJoinedUsers.tsx
+│   │   │   ├── ResultsDiscovery.tsx
+│   │   │   ├── StatisticsSection.tsx
+│   │   │   ├── Styles
+│   │   │   │   ├── FAQ.styles.ts
+│   │   │   │   ├── Footer.styles.ts
+│   │   │   │   ├── Header.styles.ts
+│   │   │   │   ├── HeroSection.styles.ts
+│   │   │   │   ├── HighestFundedProjects.styles.ts
+│   │   │   │   ├── HomePage.styles.ts
+│   │   │   │   ├── NewsletterSection.styles.ts
+│   │   │   │   ├── OpenFundingCalls.styles.ts
+│   │   │   │   ├── RecentlyJoinedUsers.styles.ts
+│   │   │   │   ├── ResultsDiscovery.styles.ts
+│   │   │   │   └── StatisticsSection.styles.ts
+│   │   │   └── styles.ts
+│   │   ├── MyComponent.test.tsx
+│   │   ├── ProjectDetails
+│   │   │   ├── ProjectDetails.tsx
+│   │   │   └── Styles
+│   │   │       └── ProjectDetails.styles.ts
+│   │   └── ProjectsPage
+│   │       └── ProjectsPage.tsx
+│   ├── cypress
+│   │   └── e2e
+│   │       └── spec.cy.js
+│   ├── i18n
+│   │   ├── ar.json
+│   │   ├── de.json
+│   │   ├── en.json
+│   │   ├── fa.json
+│   │   ├── i18n.ts
+│   │   └── ru.json
+│   ├── index.css
+│   ├── index.tsx
+│   ├── reportWebVitals.js
+│   ├── setupTests.js
+│   └── utils
+│       └── walletConfig.ts
+├── tree.txt
+└── yarn.lock
+
+20 directories, 63 files
