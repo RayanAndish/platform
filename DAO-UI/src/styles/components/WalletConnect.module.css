@@ -1,0 +1,26 @@
+.wallet-connect-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .connect-wallet-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .connect-wallet-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .connected-status {
+    color: green;
+    font-weight: bold;
+  }

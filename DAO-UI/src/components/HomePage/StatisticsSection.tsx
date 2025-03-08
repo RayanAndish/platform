@@ -1,32 +1,28 @@
-// src/components/HomePage/StatisticsSection.tsx
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { StyledStatisticsSection, Statistic, StatisticValue, StatisticLabel } from './styles.ts';
+import React from "react";
+import { useTranslation } from "react-i18next";
+import styles from "../../styles/pages/HomePage.module.css";
 
-interface StatisticsProps {
-  listedProjects: number;
-  fundedProjects: number;
-  researchers: number;
-}
+const StatisticsSection: React.FC = () => {
+  const { t } = useTranslation();
 
-const StatisticsSection: React.FC<StatisticsProps> = ({ listedProjects, fundedProjects, researchers }) => {
-  const { t, i18n } = useTranslation();
-    return (
-      <StyledStatisticsSection>
-        <Statistic>
-          <StatisticValue>{listedProjects}</StatisticValue>
-          <StatisticLabel>{t('Listed Projects')}</StatisticLabel>
-        </Statistic>
-        <Statistic>
-          <StatisticValue>{fundedProjects}</StatisticValue>
-          <StatisticLabel>{t('Funded Projects')}</StatisticLabel>
-        </Statistic>
-        <Statistic>
-          <StatisticValue>{researchers}</StatisticValue>
-          <StatisticLabel>{t('Researchers')}</StatisticLabel>
-        </Statistic>
-      </StyledStatisticsSection>
-    );
+  const stats = [
+    { label: t("stats.projects"), value: "12,345" },
+    { label: t("stats.users"), value: "56,789" },
+    { label: t("stats.investments"), value: "$1,234,567" },
+  ];
+
+  return (
+    <section className={styles.statisticsSection}>
+      <div className="container mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8">
+        {stats.map((stat, index) => (
+          <div key={index} className={styles.statBox}>
+            <p className={styles.statValue}>{stat.value}</p>
+            <p className={styles.statLabel}>{stat.label}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
 };
 
 export default StatisticsSection;

@@ -1,0 +1,16 @@
+/* Colors */
+:root {
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --background-color: #f8f9fa;
+    --text-color: #212529;
+  
+    /* Buttons */
+    --button-bg: #007bff;
+    --button-hover-bg: #0056b3;
+    --button-color: #ffffff;
+  
+    /* Footer */
+    --footer-bg: #343a40;
+    --footer-color: #ffffff;
+  }

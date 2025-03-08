@@ -1,0 +1,39 @@
+.footer {
+    background-color: #f8f9fa;
+    padding: 40px 20px;
+    text-align: center;
+    color: #333;
+  }
+  .aboutSection,
+  .linksSection,
+  .socialsSection {
+    margin-bottom: 20px;
+  }
+  
+  .aboutSection h3,
+  .linksSection h3,
+  .socialsSection h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .linksSection a,
+  .socialsSection a {
+    display: block;
+    color: #007bff;
+    text-decoration: none;
+    margin: 5px 0;
+  }
+  
+  .linksSection a:hover,
+  .socialsSection a:hover {
+    text-decoration: underline;
+  }
+  
+  .copyright {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  

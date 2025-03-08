@@ -1,0 +1,3390 @@
+### File: /home/errick/dao-ui/package.json ###
+{
+  "name": "dao-ui",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@tanstack/react-query": "^4.0.0",
+    "@wagmi/core": "^1.0.0",
+    "@web3modal/ui": "^5.1.11",
+    "ethers": "5",
+    "i18next": "^23.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-i18next": "^13.0.0",
+    "react-router-dom": "^7.2.0",
+    "react-scripts": "^5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint src/**/*.{js,jsx,ts,tsx} --fix",
+    "format": "prettier --write src/**/*.{js,jsx,ts,tsx}"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.39",
+    "@types/react": "^18.2.28",
+    "@types/react-dom": "^18.2.13",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "@typescript-eslint/parser": "^6.7.4",
+    "eslint": "^8.0.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^3.0.3"
+  }
+}
+
+
+### File: /home/errick/dao-ui/ui-content.txt ###
+
+
+### File: /home/errick/dao-ui/Dockerfile ###
+# Use an official Node.js runtime as a parent image
+FROM node:20-alpine
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy package.json and yarn.lock to the working directory
+COPY package.json yarn.lock ./
+
+# Install dependencies
+RUN yarn install --frozen-lockfile
+
+# Copy the source code to the working directory
+COPY . .
+
+# Build the React app
+RUN yarn build
+
+# Expose the port the app runs on
+EXPOSE 3000
+
+# Define the command to run the app
+CMD ["yarn", "start"]
+
+### File: /home/errick/dao-ui/src/App.test.js ###
+import { render, screen } from '@testing-library/react';
+import App from './App.tsx';
+
+test('renders learn react link', () => {
+  render(<App />);
+  const linkElement = screen.getByText(/learn react/i);
+  expect(linkElement).toBeInTheDocument();
+});
+
+
+### File: /home/errick/dao-ui/src/index.tsx ###
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App.tsx';
+import reportWebVitals from './reportWebVitals';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+
+
+### File: /home/errick/dao-ui/src/reportWebVitals.js ###
+const reportWebVitals = onPerfEntry => {
+  if (onPerfEntry && onPerfEntry instanceof Function) {
+    import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+      getCLS(onPerfEntry);
+      getFID(onPerfEntry);
+      getFCP(onPerfEntry);
+      getLCP(onPerfEntry);
+      getTTFB(onPerfEntry);
+    });
+  }
+};
+
+export default reportWebVitals;
+
+
+### File: /home/errick/dao-ui/src/App.css ###
+/* src/App.css */
+.App {
+  max-width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+body {
+margin: 0;
+padding: 0;
+max-width: 100%;
+max-height: 100%;
+overflow: auto;  /* Prevent scrollbars if content is too large */
+background-color: #120d26;
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+
+### File: /home/errick/dao-ui/src/setupTests.js ###
+// jest-dom adds custom jest matchers for asserting on DOM nodes.
+// allows you to do things like:
+// expect(element).toHaveTextContent(/react/i)
+// learn more: https://github.com/testing-library/jest-dom
+import '@testing-library/jest-dom';
+
+
+### File: /home/errick/dao-ui/src/index.css ###
+/* src/index.css */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#root {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+}
+
+### File: /home/errick/dao-ui/src/App.tsx ###
+// src/App.tsx
+import React from 'react';
+import { WagmiConfig, useAccount, useConnect, useDisconnect } from 'wagmi'
+import { createWeb3Modal, useWeb3Modal, defaultWagmiConfig } from '@web3modal/wagmi'
+import { Web3Modal } from '@web3modal/ui'
+import { 
+  BrowserRouter as Router, 
+  Routes, 
+  Route, 
+  Link 
+} from 'react-router-dom';
+import HomePage from './components/HomePage/HomePage.tsx';
+import ProjectsPage from './components/ProjectsPage/ProjectsPage.tsx';
+import DiscoveryPage from './components/DiscoveryPage/DiscoveryPage.tsx';
+import DocumentationPage from './components/DocumentationPage/DocumentationPage.tsx';
+import DefineProject from './components/DefineProject/DefineProject.tsx';
+import ProjectDetails from './components/ProjectDetails/ProjectDetails.tsx';
+import './App.css';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import {sepolia} from "@wagmi/chains";
+import i18n from './i18n/i18n.ts';
+import { useEffect } from 'react';
+
+// 1. Define constants
+const projectId = 'YOUR_PROJECT_ID'; // Replace with your WalletConnect project ID
+
+// 2. Configure wagmi
+const metadata = {
+  name: 'Rayan DAO - VC',
+  description: 'A Web3 Application for Rayan DAO',
+  url: 'https://www.dao-vc.ir',
+  icons: ['https://avatars.githubusercontent.com/u/37784886'] // Replace with your app icon
+}
+
+const chains = [sepolia]  // mainnet, polygon, avalanche, arbitrum  - removed other chains to keep things simple
+const wagmiConfig = defaultWagmiConfig({
+  chains,
+  projectId,
+  metadata
+})
+
+// 3. Create modal
+createWeb3Modal({ wagmiConfig, projectId, chains })
+
+function App() {
+  const { open } = useWeb3Modal()
+  const { address, isConnected } = useAccount()
+  const { connect, connectors, isLoading, error } = useConnect()
+  const { disconnect } = useDisconnect()
+  const queryClient = new QueryClient();
+
+  useEffect(() => {
+    const storedLanguage = localStorage.getItem('i18nextLng');
+    if (storedLanguage) {
+      i18n.changeLanguage(storedLanguage);
+    }
+  }, []);
+
+  return (
+    <WagmiConfig config={wagmiConfig}>
+      <QueryClientProvider client={queryClient}>
+        <div className="App">
+          <header className="App-header">
+            <h1>Rayan DAO - VC</h1>
+            <div>
+              {isConnected ? (
+                <>
+                  <p>Connected with {address}</p>
+                  <button onClick={disconnect}>Disconnect</button>
+                </>
+              ) : (
+                <button onClick={() => open()}>Connect Wallet</button>
+              )}
+              {error && <div>{error.message}</div>}
+            </div>
+          </header>
+          <Router>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/ProjectsPage" element={<ProjectsPage />} />
+              <Route path="/DiscoveryPage" element={<DiscoveryPage />} />
+              <Route path="/DocumentationPage" element={<DocumentationPage />} />
+              <Route path="/DefineProject" element={<DefineProject />} />
+              <Route path="/project/:projectId" element={<ProjectDetails />} />
+            </Routes>
+          </Router>
+           <Web3Modal />
+        </div>
+      </QueryClientProvider>
+    </WagmiConfig>
+  );
+}
+
+export default App;
+
+### File: /home/errick/dao-ui/src/cypress/e2e/spec.cy.js ###
+// cypress/e2e/spec.cy.js
+describe('My First Test', () => {
+    it('Visits the Kitchen Sink', () => {
+      cy.visit('https://example.cypress.io')
+      cy.contains('type').click()
+      // Should be on a new URL which
+      // includes '/commands/actions'
+      cy.url().should('include', '/commands/actions')
+      // Get an input, type into it and verify
+      // that the value has been updated
+      cy.get('.action-email')
+        .type('fake@email.com')
+        .should('have.value', 'fake@email.com')
+    })
+  })
+
+### File: /home/errick/dao-ui/src/i18n/en.json ###
+{
+  "appName": "Rayan DAO for VCs",
+  "home": "Home",
+  "projects": "Projects",
+  "discovery": "Discovery",
+  "documentation": "Documentation",
+  "connectWallet": "Connect Wallet",
+  "heroTitle": "Token-Fundraising with\nDECENTRALIZED  AND\nMOST SECURE DAO PLATROFM",
+  "heroSubtitle": "Empower Your StartUP: Tokenize, Commercialize, and Disseminate with DAO Ventur Capitals",
+  "defineProject": "Define your project",
+  "explore": "Explore",
+  "listedProjects": "Listed Projects",
+  "fundedProjects": "Funded Projects",
+  "researchers": "Investors",
+  "subscribeNewsletter": "SUBSCRIBE TO OUR NEWSLETTER",
+  "newsletterDescription": "Get weekly access to the last listed projects, available grants and programs",
+  "enterEmail": "Enter you email",
+  "subscribe": "Subscribe",
+  "aboutUsTitle": "About Rayan DAO",
+  "aboutUsDescription": "At Ryan DAO, our goal is to democratize access to finance and create a vibrant community of investors eager to advance innovative projects. We see ourselves as catalysts for change in the startup funding landscape, unlocking creativity and accelerating progress for the betterment of all.",
+  "usefulLinks": "Useful links",
+  "termsOfService": "Terms of Service",
+  "copyright": "Copyright © {{year}} Rayan DAO. All rights reserved.",
+  "fundedAmount": "Funded Amount",
+  "openFundingCalls": "Open Funding Calls",
+  "seeAll": "See all",
+  "defineYourProjectTitle": "DEFINE YOUR PROJECT AND RUN A FUNDRAISING EVENT",
+  "defineYourProjectSubtitle": "Ignite your project with the power of Token! Join startups across domains...",
+  "defineYourProjectButton": "Set up an Token-Fundraising event",
+  "resultsDiscovery": "RESULTS DISCOVERY",
+  "recentlyJoinedUsers": "RECENTLY JOINED USERS",
+  "highestFundedProjects": "HIGHEST FUNDED PROJECTS",
+  "faqQuestion1": "What is Rayan DAO?",
+  "faqAnswer1": "Rayan DAO is a platform for...",
+  "faqQuestion2": "How does Rayan DAO work?",
+  "faqAnswer2": "Rayan DAO works by...",
+  "basicInfo": "Basic Info",
+  "timelineBudget": "Timeline & Budget",
+  "methods": "Methods",
+  "projectTitle": "Project Title",
+  "projectTitlePlaceholder": "Write a short and accurate title of your project",
+  "category": "Category",
+  "selectCategory": "Select a category related to your project",
+  "keyword": "Keyword",
+  "keywordPlaceholder": "Add the most prominent keywords of your project",
+  "projectLink": "Project Link",
+  "projectLinkPlaceholder": "Please provide external links to your project (Personal web page, Github, Kaggle, Dribbble...)",
+  "addNewLink": "Add new link",
+  "projectSummary": "Project Summary",
+  "projectSummaryPlaceholder": "Write a summary of research proposal includes definition, background, objectives, and methods of your research, etc.",
+  "addGraphicalAbstract": "Add Graphical Abstract",
+  "graphicalAbstractLabel": "A graphical abstract (or visual abstract) is a graphical or visual equivalent of a written abstract. Graphical abstracts are a single image and are designed to help the reader to quickly gain an overview on a scholarly paper, research project, diagram, etc. File types: JPG, PNG, GIF. Max size: 2 MB",
+  "saveDraft": "Save Draft",
+  "preview": "Preview"
+}
+
+### File: /home/errick/dao-ui/src/i18n/ru.json ###
+{
+    "appName": "FunDeSci",
+    "home": "Home",
+    "projects": "Projects",
+    "discovery": "Discovery",
+    "documentation": "Documentation",
+    "connectWallet": "Connect Wallet",
+    "heroTitle": "NFT-Fundraising For\nDECENTRALIZED SCIENCE AND\nOPEN-SOURCE PROJECTS",
+    "heroSubtitle": "Empower Your Research: Tokenize, Commercialize, and Disseminate with NFT-Fundraising",
+    "defineProject": "Define your project",
+    "explore": "Explore",
+    "listedProjects": "Listed Projects",
+    "fundedProjects": "Funded Projects",
+    "researchers": "Researchers",
+    "subscribeNewsletter": "SUBSCRIBE TO OUR NEWSLETTER",
+    "newsletterDescription": "Get weekly access to the last listed projects, available grants and programs",
+    "enterEmail": "Enter you email",
+    "subscribe": "Subscribe",
+    "aboutUsTitle": "About FunDeSci",
+    "aboutUsDescription": "At FunDeSci, We aim to democratize access to funds and create a vibrant community of scientists who are passionate about driving forward the frontiers of human knowledge. We see ourselves as catalysts for change in the scientific landscape, unlocking creativity and accelerating progress for the betterment of all.",
+    "usefulLinks": "Useful links",
+    "termsOfService": "Terms of Service",
+    "copyright": "Copyright © {{year}} FunDeSci. All rights reserved."
+  }
+
+### File: /home/errick/dao-ui/src/i18n/ar.json ###
+{
+    "appName": "فان‌دِساي",
+    "home": "خانه",
+    "projects": "پروژه‌ها",
+    "discovery": "کشف",
+    "documentation": "مستندات",
+    "connectWallet": "اتصال کیف پول",
+    "heroTitle": "جمع‌آوری سرمایه از طریق NFT برای\nعلوم غیرمتمرکز و پروژه‌های متن‌باز",
+    "heroSubtitle": "تحقیقات خود را توانمند کنید: توکنیزه کنید، تجاری سازی کنید و با جمع آوری سرمایه از طریق NFT منتشر کنید",
+    "defineProject": "تعریف پروژه",
+    "explore": "کاوش",
+    "listedProjects": "پروژه‌های فهرست‌شده",
+    "fundedProjects": "پروژه‌های تأمین‌شده",
+    "researchers": "محققان",
+    "subscribeNewsletter": "عضویت در خبرنامه",
+    "newsletterDescription": "به پروژه‌های فهرست‌شده، کمک‌های مالی و برنامه‌های هفتگی دسترسی پیدا کنید",
+    "enterEmail": "ایمیل خود را وارد کنید",
+    "subscribe": "عضویت",
+    "aboutUsTitle": "درباره فان‌دِساي",
+    "aboutUsDescription": "در فان‌دِساي، هدف ما دموکراتیزه کردن دسترسی به منابع مالی و ایجاد یک جامعه پر جنب و جوش از دانشمندانی است که مشتاق به پیشبرد مرزهای دانش بشری هستند. ما خود را به عنوان کاتالیزور تغییر در چشم انداز علمی می بینیم، خلاقیت را باز می کنیم و پیشرفت را برای بهبود همه سرعت می دهیم.",
+    "usefulLinks": "لینک‌های مفید",
+    "termsOfService": "شرایط خدمات",
+    "copyright": "کپی رایت © {{year}} فان‌دِساي. کلیه حقوق محفوظ است."
+  }
+
+### File: /home/errick/dao-ui/src/i18n/i18n.ts ###
+// src/i18n/i18n.ts
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';  // Import LanguageDetector
+import en from './en.json';
+import fa from './fa.json';
+import ar from './ar.json';
+import de from './de.json';
+import ru from './ru.json';
+
+i18n
+  .use(LanguageDetector) // Use LanguageDetector
+  .use(initReactI18next)
+  .init({
+    resources: {
+      en: { translation: en },
+      ar: { translation: ar },
+      de: { translation: de },
+      ru: { translation: ru },
+      fa: { translation: fa },
+    },
+    lng: 'en', // Default language
+    fallbackLng: 'en',
+    interpolation: {
+      escapeValue: false, // React already escapes the values
+    },
+    detection: {
+      order: ['localStorage', 'navigator'], // Detect language from local storage or browser
+      lookupLocalStorage: 'i18nextLng',
+      caches: ['localStorage'],
+    },
+  });
+
+export default i18n;
+
+### File: /home/errick/dao-ui/src/i18n/de.json ###
+{
+    "appName": "FunDeSci",
+    "home": "Home",
+    "projects": "Projects",
+    "discovery": "Discovery",
+    "documentation": "Documentation",
+    "connectWallet": "Connect Wallet",
+    "heroTitle": "NFT-Fundraising For\nDECENTRALIZED SCIENCE AND\nOPEN-SOURCE PROJECTS",
+    "heroSubtitle": "Empower Your Research: Tokenize, Commercialize, and Disseminate with NFT-Fundraising",
+    "defineProject": "Define your project",
+    "explore": "Explore",
+    "listedProjects": "Listed Projects",
+    "fundedProjects": "Funded Projects",
+    "researchers": "Researchers",
+    "subscribeNewsletter": "SUBSCRIBE TO OUR NEWSLETTER",
+    "newsletterDescription": "Get weekly access to the last listed projects, available grants and programs",
+    "enterEmail": "Enter you email",
+    "subscribe": "Subscribe",
+    "aboutUsTitle": "About FunDeSci",
+    "aboutUsDescription": "At FunDeSci, We aim to democratize access to funds and create a vibrant community of scientists who are passionate about driving forward the frontiers of human knowledge. We see ourselves as catalysts for change in the scientific landscape, unlocking creativity and accelerating progress for the betterment of all.",
+    "usefulLinks": "Useful links",
+    "termsOfService": "Terms of Service",
+    "copyright": "Copyright © {{year}} FunDeSci. All rights reserved."
+  }
+
+### File: /home/errick/dao-ui/src/i18n/fa.json ###
+{
+  "appName": "پلتفرم رایان",
+  "home": "خانه",
+  "projects": "پروژه‌ها",
+  "discovery": "کشف",
+  "documentation": "مستندات",
+  "connectWallet": "اتصال کیف پول",
+  "heroTitle": "جمع‌آوری سرمایه از طریق توکن برای\nعلوم غیرمتمرکز و پروژه‌های متن‌باز",
+  "heroSubtitle": "پروژه های خود را توانمند کنید: توکنیزه کنید، تجاری سازی کنید و با جمع آوری سرمایه از طریق توکن منتشر کنید",
+  "defineProject": "تعریف پروژه",
+  "explore": "کاوش",
+  "listedProjects": "پروژه‌های فهرست‌شده",
+  "fundedProjects": "پروژه‌های تأمین‌شده",
+  "researchers": "محققان",
+  "subscribeNewsletter": "عضویت در خبرنامه",
+  "newsletterDescription": "به پروژه‌های فهرست‌شده، کمک‌های مالی و برنامه‌های هفتگی دسترسی پیدا کنید",
+  "enterEmail": "ایمیل خود را وارد کنید",
+  "subscribe": "عضویت",
+  "aboutUsTitle": "درباره فان‌دِساي",
+  "aboutUsDescription": "در رایان DAO، هدف ما دموکراتیک کردن دسترسی به منابع مالی و ایجاد جامعه ای پر جنب و جوش از سرمایه گذارانی است که مشتاق پیشبرد پروژه های نوآورانه هستند. ما خود را کاتالیزورهایی برای تغییر در چشم انداز حمایت از استارتاپ ها می بینیم، خلاقیت را باز می کنیم و پیشرفت را برای بهبود همگان تسریع می کنیم.",
+  "usefulLinks": "لینک‌های مفید",
+  "termsOfService": "شرایط خدمات",
+  "copyright": "کپی رایت © {{year}} فان‌دِساي. کلیه حقوق محفوظ است.",
+  "fundedAmount": "مبلغ تأمین شده",
+  "openFundingCalls": "فراخوان های تامین مالی باز",
+  "seeAll": "مشاهده همه",
+  "defineYourProjectTitle": "پروژه خود را تعریف کنید و یک رویداد جمع آوری سرمایه NFT اجرا کنید",
+  "defineYourProjectSubtitle": "تحقیقات خود را با قدرت NFT ها شعله ور کنید! به دانشمندان در سراسر دامنه ها بپیوندید...",
+  "defineYourProjectButton": "تنظیم یک رویداد جمع آوری سرمایه NFT",
+  "resultsDiscovery": "کشف نتایج",
+  "recentlyJoinedUsers": "کاربران تازه پیوسته",
+  "highestFundedProjects": "پروژه های با بیشترین بودجه",
+  "faqQuestion1": "Rayan DAO چیست؟",
+  "faqAnswer1": "Rayan DAO یک پلتفرم برای...",
+  "faqQuestion2": "Rayan DAO چگونه کار می کند؟",
+  "faqAnswer2": "Rayan DAO با...",
+  "basicInfo": "اطلاعات پایه",
+  "timelineBudget": "زمان‌بندی و بودجه",
+  "methods": "روش‌ها",
+  "projectTitle": "عنوان پروژه",
+  "projectTitlePlaceholder": "یک عنوان کوتاه و دقیق برای پروژه خود بنویسید",
+  "category": "دسته بندی",
+  "selectCategory": "یک دسته بندی مرتبط با پروژه خود انتخاب کنید",
+  "keyword": "کلمات کلیدی",
+  "keywordPlaceholder": "کلمات کلیدی برجسته پروژه خود را اضافه کنید",
+  "projectLink": "لینک پروژه",
+  "projectLinkPlaceholder": "لطفاً لینک های خارجی پروژه خود را ارائه دهید (صفحه وب شخصی، گیت‌هاب، کگل، دریبل ...)",
+  "addNewLink": "افزودن لینک جدید",
+  "projectSummary": "خلاصه پروژه",
+  "projectSummaryPlaceholder": "یک خلاصه از پیشنهاد تحقیق شامل تعریف، پیشینه، اهداف و روش‌های تحقیق خود بنویسید و...",
+  "addGraphicalAbstract": "افزودن خلاصه گرافیکی",
+  "graphicalAbstractLabel": "خلاصه گرافیکی (یا خلاصه بصری) یک معادل گرافیکی یا بصری از یک چکیده نوشته شده است. خلاصه‌های گرافیکی یک تصویر واحد هستند و برای کمک به خواننده برای به دست آوردن سریع یک نمای کلی از یک مقاله علمی، پروژه تحقیقاتی، نمودار و غیره طراحی شده‌اند. انواع فایل: JPG, PNG, GIF. حداکثر اندازه: 2 مگابایت",
+  "saveDraft": "ذخیره پیش‌نویس",
+  "preview": "پیش‌نمایش"
+}
+
+### File: /home/errick/dao-ui/src/utils/walletConfig.ts ###
+// src/utils/walletConfig.ts
+import { configureChains, createConfig } from 'wagmi';
+import { publicProvider } from 'wagmi/providers/public';
+import { MetaMaskConnector } from 'wagmi/connectors/metaMask';
+import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet';
+import { InjectedConnector } from 'wagmi/connectors/injected';
+import { sepolia, arbitrum } from 'wagmi/chains'; // Import the chains you want to support
+
+// Ensure Ganache is configured with the correct chainId.
+const ganacheChainId = 5777; // or your Ganache chainId (if you changed it)
+
+//  Define your custom chain for Ganache (if not using a standard chainId)
+const ganacheChain = {
+  id: ganacheChainId,
+  name: 'Ganache',
+  network: 'ganache',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'Ether',
+    symbol: 'ETH',
+  },
+  rpcUrls: {
+    default: {
+      http: 'http://172.16.22.120:9545', // Your Ganache RPC URL (adjust if different)
+    },
+  },
+  testnet: true, // or false if it's not a test network
+};
+
+const { chains, publicClient, webSocketPublicClient } = configureChains(
+  [
+    ganacheChain, // Add your Ganache chain
+    sepolia,  // Add other chains like sepolia if you need them
+    // mainnet,
+  ],
+  [
+    publicProvider(), // Add publicProvider, you can add your own providers
+  ]
+);
+
+export const config = createConfig({
+  autoConnect: true,
+  publicClient,
+  webSocketPublicClient,
+  connectors: [
+      new MetaMaskConnector({ chains }),
+      new CoinbaseWalletConnector({
+          chains,
+          options: {
+              appName: 'Rayan DAO', //  Your app name
+              // ... other options
+          },
+      }),
+      new InjectedConnector({
+          chains,
+          options: {
+              name: 'Injected',
+              shimDisconnect: true,
+          },
+      }),
+  ],
+});
+
+export { chains };
+
+### File: /home/errick/dao-ui/src/components/MyComponent.test.tsx ###
+// src/components/HeroSection.test.tsx
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import HeroSection from './HomePage/HeroSection.tsx';
+
+test('renders hero section with title', () => {
+  render(<HeroSection />);
+  const titleElement = screen.getByText(/NFT-Fundraising For/i); // You may need to adjust the regex
+  expect(titleElement).toBeInTheDocument();
+});
+
+### File: /home/errick/dao-ui/src/components/DefineProject/styles.ts ###
+// src/components/DefineProject/styles.ts
+import styled from 'styled-components';
+import { FaPlus } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+
+export const DefineProjectContainer = styled.div`
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+`;
+
+export const StepIndicator = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+`;
+
+export const Step = styled.div<{ active?: boolean }>`
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: ${({ active }) => (active ? '#7933ff' : 'transparent')};
+  color: ${({ active }) => (active ? '#fff' : '#7933ff')};
+  font-weight: bold;
+  cursor: pointer;
+`;
+
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
+export const FormGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Label = styled.label`
+  font-size: 1rem;
+  margin-bottom: 5px;
+  color: #fff;
+`;
+
+export const Input = styled.input`
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #241c3d;
+  color: #fff;
+  border: none;
+  &::placeholder {
+    color: #888;
+  }
+`;
+
+export const Select = styled.select`
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #241c3d;
+  color: #fff;
+  border: none;
+  &::placeholder {
+    color: #888;
+  }
+`;
+
+export const TextArea = styled.textarea`
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #241c3d;
+  color: #fff;
+  border: none;
+  &::placeholder {
+    color: #888;
+  }
+`;
+
+export const GraphicalAbstractSection = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const GraphicalAbstractLabel = styled.label`
+  display: block;
+  padding: 15px;
+  border: 1px dashed #7933ff;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  color: #7933ff;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  &:hover {
+      background-color: rgba(121, 51, 255, 0.1);
+  }
+`;
+
+export const GraphicalAbstractInput = styled.input`
+  display: none;
+`;
+
+export const Button = styled.button<{ primary?: boolean; secondary?: boolean }>`
+  padding: 12px 25px;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  background-color: ${({ primary }) => (primary ? '#7933ff' : secondary ? 'transparent' : '#241c3d')};
+  color: ${({ primary, secondary }) => (primary ? '#fff' : secondary ? '#7933ff' : '#fff')};
+  border: ${({ secondary }) => (secondary ? '2px solid #7933ff' : 'none')};
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: ${({ primary }) => (primary ? '#692acc' : '#f0e6ff')};
+  }
+`;
+
+export const ProjectLinkSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
+export const AddLinkButton = styled.button`
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #7933ff;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: #692acc;
+  }
+`;
+
+export const LinkInput = styled.input`
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #241c3d;
+    color: #fff;
+    border: none;
+    &::placeholder {
+        color: #888;
+    }
+    margin-bottom: 10px;
+`
+
+export const StyledIcon = styled.span`
+  margin-right: 5px;
+`;
+
+### File: /home/errick/dao-ui/src/components/DefineProject/DefineProject.tsx ###
+// src/components/DefineProject/DefineProject.tsx
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import {
+  DefineProjectContainer,
+  StepIndicator,
+  Step,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Select,
+  TextArea,
+  AddLinkButton,
+  Button,
+  GraphicalAbstractSection,
+  GraphicalAbstractLabel,
+  GraphicalAbstractInput,
+  ProjectLinkSection,
+  LinkInput,
+  AddLinkIcon,
+  StyledIcon,
+  ProgressBar,
+  TimelineSection,
+  TimelineItem,
+  TimelineInput,
+  BudgetSection,
+  BudgetItem,
+  BudgetItemInput,
+  BudgetItemDetails,
+  FundraisingMethodsSection,
+  MethodOption,
+  TeamMemberInput,
+  TeamMemberSection,
+  ServiceFeeSection,
+  SupplementaryDocumentSection,
+  ErrorText } from './Styles/DefineProject.styles';
+import Header from '../HomePage/Header.tsx';
+import NewsletterSection from '../HomePage/NewsletterSection.tsx';
+import Footer from '../HomePage/Footer.tsx';
+import { FaPlus, FaTrashAlt } from 'react-icons/fa';
+import {  FaCalendarAlt, FaDollarSign, FaFileAlt } from 'react-icons/fa';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';  // Import Yup
+import { format } from 'date-fns';
+
+const DefineProject: React.FC = () => {
+    const { t } = useTranslation();
+    const [activeStep, setActiveStep] = useState(1);
+
+    // Define validation schema using Yup
+    const validationSchema = Yup.object().shape({
+        projectTitle: Yup.string().required(t('projectTitleRequired')),
+        category: Yup.string().required(t('categoryRequired')),
+        keywords: Yup.string().required(t('keywordsRequired')),
+        // Add more validations as needed (e.g., for projectLinks, projectSummary, etc.)
+    });
+
+    const formik = useFormik({
+        initialValues: {
+            projectTitle: '',
+            category: '',
+            keywords: '',
+            projectLinks: [''],
+            graphicalAbstract: null,
+            projectSummary: '',
+            projectTimeline: [
+                { phase: '', startDate: '', endDate: '', budget: '' },
+            ],
+            budgetAllocation: [
+                { category: '', details: '', amount: '' },
+            ],
+            fundraisingMethod: 'crowdfunding',
+            minimumOffer: 1,
+            expirationDate: '',
+            serviceFee: 4,
+            supplementaryDocument: null,
+            teamMembers: [{ email: '', invited: false, approved: false }],
+        },
+        validationSchema: validationSchema,
+        onSubmit: (values) => {
+            // Handle form submission here
+            console.log(values);
+            alert('Form submitted successfully!'); // Replace with your actual submission logic
+        },
+    });
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        formik.setFieldValue('graphicalAbstract', e.target.files?.[0]);
+    };
+
+    const addLink = () => {
+        formik.setFieldValue('projectLinks', [...formik.values.projectLinks, '']);
+    };
+
+    const handleLinkChange = (index: number, value: string) => {
+        const newLinks = [...formik.values.projectLinks];
+        newLinks[index] = value;
+        formik.setFieldValue('projectLinks', newLinks);
+    };
+
+    const addTimelineItem = () => {
+        formik.setFieldValue('projectTimeline', [...formik.values.projectTimeline, { phase: '', startDate: '', endDate: '', budget: '' }]);
+    };
+
+    const handleTimelineChange = (index: number, field: string, value: string) => {
+        const newTimeline = [...formik.values.projectTimeline];
+        newTimeline[index] = { ...newTimeline[index], [field]: value };
+        formik.setFieldValue('projectTimeline', newTimeline);
+    };
+
+    const deleteTimelineItem = (index: number) => {
+        const newTimeline = [...formik.values.projectTimeline];
+        newTimeline.splice(index, 1);
+        formik.setFieldValue('projectTimeline', newTimeline);
+    };
+
+    const addBudgetItem = () => {
+        formik.setFieldValue('budgetAllocation', [...formik.values.budgetAllocation, { category: '', details: '', amount: '' }]);
+    };
+
+    const handleBudgetItemChange = (index: number, field: string, value: string) => {
+        const newBudget = [...formik.values.budgetAllocation];
+        newBudget[index] = { ...newBudget[index], [field]: value };
+        formik.setFieldValue('budgetAllocation', newBudget);
+    };
+
+    const deleteBudgetItem = (index: number) => {
+        const newBudget = [...formik.values.budgetAllocation];
+        newBudget.splice(index, 1);
+        formik.setFieldValue('budgetAllocation', newBudget);
+    };
+
+    const handleFundraisingMethodChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        formik.setFieldValue('fundraisingMethod', e.target.value);
+    };
+
+    const handleTeamMemberChange = (index: number, value: string) => {
+        const newTeamMembers = [...formik.values.teamMembers];
+        newTeamMembers[index] = { ...newTeamMembers[index], email: value, invited: false, approved: false };
+        formik.setFieldValue('teamMembers', newTeamMembers);
+    };
+
+    const addTeamMember = () => {
+        formik.setFieldValue('teamMembers', [...formik.values.teamMembers, { email: '', invited: false, approved: false }]);
+    };
+
+    const deleteTeamMember = (index: number) => {
+        const newTeamMembers = [...formik.values.teamMembers];
+        newTeamMembers.splice(index, 1);
+        formik.setFieldValue('teamMembers', newTeamMembers);
+    };
+
+    const goToNextStep = () => {
+      // Validation before moving to the next step
+      if (activeStep === 1 && !formik.values.projectTitle) {
+        // Handle validation error, e.g., show an error message
+        alert(t('projectTitleRequired'));
+        return;
+      }
+      setActiveStep(prevStep => Math.min(prevStep + 1, 3));
+    };
+
+    const goToPrevStep = () => {
+      setActiveStep(prevStep => Math.max(prevStep - 1, 1));
+    };
+
+    const renderStepContent = () => {
+        switch (activeStep) {
+            case 1:
+              return (
+                <>
+                  <FormGroup>
+                    <Label htmlFor="projectTitle">{t('projectTitle')}</Label>
+                    <Input
+                      type="text"
+                      id="projectTitle"
+                      name="projectTitle"
+                      {...formik.getFieldProps('projectTitle')}
+                      placeholder={t('projectTitlePlaceholder')}
+                    />
+                    {formik.touched.projectTitle && formik.errors.projectTitle && (
+                        <ErrorText>{formik.errors.projectTitle}</ErrorText>
+                    )}
+                  </FormGroup>
+
+                  <FormGroup>
+                    <Label htmlFor="category">{t('category')}</Label>
+                    <Select
+                      id="category"
+                      name="category"
+                      {...formik.getFieldProps('category')}
+                    >
+                      <option value="">{t('selectCategory')}</option>
+                      {/* Add category options here (from a list or API) */}
+                      <option value="biotechnology">Biotechnology</option>
+                    </Select>
+                    {formik.touched.category && formik.errors.category && (
+                        <ErrorText>{formik.errors.category}</ErrorText>
+                    )}
+                  </FormGroup>
+
+                  <FormGroup>
+                    <Label htmlFor="keywords">{t('keyword')}</Label>
+                    <Input
+                      type="text"
+                      id="keywords"
+                      name="keywords"
+                      {...formik.getFieldProps('keywords')}
+                      placeholder={t('keywordPlaceholder')}
+                    />
+                    {formik.touched.keywords && formik.errors.keywords && (
+                        <ErrorText>{formik.errors.keywords}</ErrorText>
+                    )}
+                  </FormGroup>
+
+                  <ProjectLinkSection>
+                    <Label>{t('projectLink')}</Label>
+                    {formik.values.projectLinks.map((link, index) => (
+                        <FormGroup key={index}>
+                            <Input
+                                type="text"
+                                placeholder={t('projectLinkPlaceholder')}
+                                value={link}
+                                onChange={(e) => handleLinkChange(index, e.target.value)}
+                            />
+                        </FormGroup>
+                    ))}
+                    <AddLinkButton onClick={addLink}>
+                        <StyledIcon as={FaPlus} /> {t('addNewLink')}
+                    </AddLinkButton>
+                  </ProjectLinkSection>
+
+                  <FormGroup>
+                    <Label htmlFor="projectSummary">{t('projectSummary')}</Label>
+                    <TextArea
+                      id="projectSummary"
+                      name="projectSummary"
+                      {...formik.getFieldProps('projectSummary')}
+                      rows={5}
+                      placeholder={t('projectSummaryPlaceholder')}
+                    />
+                  </FormGroup>
+
+                  <GraphicalAbstractSection>
+                    <Label>{t('addGraphicalAbstract')}</Label>
+                    <GraphicalAbstractLabel htmlFor="graphicalAbstract">
+                      {t('graphicalAbstractLabel')}
+                      <GraphicalAbstractInput
+                          type="file"
+                          id="graphicalAbstract"
+                          name="graphicalAbstract"
+                          onChange={handleFileChange}
+                          accept=".jpg,.jpeg,.png,.gif,.pdf"
+                      />
+                    </GraphicalAbstractLabel>
+                  </GraphicalAbstractSection>
+                </>
+              );
+            case 2:
+              return (
+                <>
+                  <TimelineSection>
+                    <Label>{t('projectTimeline')}</Label>
+                    {formik.values.projectTimeline.map((item, index) => (
+                        <TimelineItem key={index}>
+                            <TimelineInput
+                                type="text"
+                                placeholder={t('phase')}
+                                value={item.phase}
+                                onChange={(e) => handleTimelineChange(index, 'phase', e.target.value)}
+                            />
+                            <TimelineInput
+                                type="date"
+                                placeholder={t('startDate')}
+                                value={item.startDate}
+                                onChange={(e) => handleTimelineChange(index, 'startDate', e.target.value)}
+                            />
+                            <TimelineInput
+                                type="date"
+                                placeholder={t('endDate')}
+                                value={item.endDate}
+                                onChange={(e) => handleTimelineChange(index, 'endDate', e.target.value)}
+                            />
+                            <TimelineInput
+                                type="number"
+                                placeholder={t('budget')}
+                                value={item.budget}
+                                onChange={(e) => handleTimelineChange(index, 'budget', e.target.value)}
+                            />
+                            <StyledIcon as={FaTrashAlt} onClick={() => deleteTimelineItem(index)} style={{marginLeft: '10px', color: 'red', cursor: 'pointer'}} />
+                        </TimelineItem>
+                    ))}
+                    <Button secondary onClick={addTimelineItem} style={{ marginTop: '10px' }}>
+                        {t('addTimeline')}
+                    </Button>
+                  </TimelineSection>
+
+                  <BudgetSection>
+                    <Label>{t('budgetAllocation')}</Label>
+                    {formik.values.budgetAllocation.map((item, index) => (
+                        <BudgetItem key={index}>
+                            <BudgetItemInput
+                                type="text"
+                                placeholder={t('category')}
+                                value={item.category}
+                                onChange={(e) => handleBudgetItemChange(index, 'category', e.target.value)}
+                            />
+                            <BudgetItemDetails>
+                                {/* Add more budget details inputs here, e.g., for details and amount */}
+                                <BudgetItemInput
+                                    type="text"
+                                    placeholder={t('details')}
+                                    value={item.details}
+                                    onChange={(e) => handleBudgetItemChange(index, 'details', e.target.value)}
+                                />
+                                <BudgetItemInput
+                                    type="number"
+                                    placeholder={t('amount')}
+                                    value={item.amount}
+                                    onChange={(e) => handleBudgetItemChange(index, 'amount', e.target.value)}
+                                />
+                            </BudgetItemDetails>
+                            <StyledIcon as={FaTrashAlt} onClick={() => deleteBudgetItem(index)} style={{marginLeft: '10px', color: 'red', cursor: 'pointer'}} />
+                        </BudgetItem>
+                    ))}
+                    <Button secondary onClick={addBudgetItem} style={{ marginTop: '10px' }}>
+                        {t('addCategory')}
+                    </Button>
+                  </BudgetSection>
+                </>
+              );
+            case 3:
+              return (
+                <>
+                  <FundraisingMethodsSection>
+                    <Label>{t('fundraisingMethods')}</Label>
+                    <MethodOption>
+                      <input
+                        type="radio"
+                        id="crowdfunding"
+                        name="fundraisingMethod"
+                        value="crowdfunding"
+                        checked={formik.values.fundraisingMethod === 'crowdfunding'}
+                        onChange={handleFundraisingMethodChange}
+                      />
+                      <label htmlFor="crowdfunding">{t('crowdfunding')}</label>
+                    </MethodOption>
+                    <MethodOption>
+                      <input
+                        type="radio"
+                        id="fundraisingAuction"
+                        name="fundraisingMethod"
+                        value="fundraisingAuction"
+                        checked={formik.values.fundraisingMethod === 'fundraisingAuction'}
+                        onChange={handleFundraisingMethodChange}
+                      />
+                      <label htmlFor="fundraisingAuction">{t('fundraisingAuction')}</label>
+                    </MethodOption>
+                  </FundraisingMethodsSection>
+
+                  {/* Minimum offer and Expiration Date */}
+                  <FormGroup>
+                      <Label htmlFor="minimumOffer">{t('minimumOffer')}</Label>
+                      <Input
+                          type="number"
+                          id="minimumOffer"
+                          name="minimumOffer"
+                          {...formik.getFieldProps('minimumOffer')}
+                      />
+                  </FormGroup>
+
+                  <FormGroup>
+                      <Label htmlFor="expirationDate">{t('expirationDate')}</Label>
+                      <Input
+                          type="date"
+                          id="expirationDate"
+                          name="expirationDate"
+                          {...formik.getFieldProps('expirationDate')}
+                      />
+                  </FormGroup>
+
+                  {/* Service Fee */}
+                  <ServiceFeeSection>
+                      <Label>{t('serviceFee')}</Label>
+                      <span>{formik.values.serviceFee}%</span>
+                  </ServiceFeeSection>
+
+                  {/* Supplementary Document */}
+                  <SupplementaryDocumentSection>
+                      <Label htmlFor="supplementaryDocument">{t('supplementaryDocument')}</Label>
+                      <GraphicalAbstractLabel htmlFor="supplementaryDocument">
+                          {t('attachSupplementaryDocument')} (PDF file up to 2 MB)
+                          <GraphicalAbstractInput
+                              type="file"
+                              id="supplementaryDocument"
+                              name="supplementaryDocument"
+                              onChange={handleFileChange}
+                              accept=".pdf"
+                          />
+                      </GraphicalAbstractLabel>
+                  </SupplementaryDocumentSection>
+
+                  {/* Team Members */}
+                  <TeamMemberSection>
+                    <Label>{t('addMembersToYourTeam')}</Label>
+                    {formik.values.teamMembers.map((member, index) => (
+                      <TeamMemberInput key={index}>
+                          <Input
+                              type="email"
+                              placeholder={t('inviteTeamMember')}
+                              value={member.email}
+                              onChange={(e) => handleTeamMemberChange(index, e.target.value)}
+                          />
+                          {/* Add a button or indicator to show invite status */}
+                          <StyledIcon as={FaTrashAlt} onClick={() => deleteTeamMember(index)} style={{marginLeft: '10px', color: 'red', cursor: 'pointer'}} />
+                      </TeamMemberInput>
+                    ))}
+                    <Button secondary onClick={addTeamMember}>
+                      {t('addMember')}
+                    </Button>
+                  </TeamMemberSection>
+                </>
+              );
+            default:
+              return null;
+        }
+    };
+
+    const totalSteps = 3;
+    const progress = (activeStep - 1) * (100 / (totalSteps - 1));
+
+    return (
+      <>
+        <Header />
+        <DefineProjectContainer>
+          <StepIndicator>
+            <Step active={activeStep === 1}>1 {t('basicInfo')}</Step>
+            <Step active={activeStep === 2}>2 {t('timelineBudget')}</Step>
+            <Step active={activeStep === 3}>3 {t('methods')}</Step>
+          </StepIndicator>
+          <ProgressBar progress={progress} />
+          <Form onSubmit={formik.handleSubmit}> {/* Add onSubmit to the Form */}
+            {renderStepContent()}
+            <div>
+              {activeStep > 1 && (
+                <Button secondary onClick={goToPrevStep}>
+                  {t('prevStep')}
+                </Button>
+              )}
+              {activeStep < 3 && (
+                <Button primary onClick={goToNextStep}>
+                  {t('nextStep')}
+                </Button>
+              )}
+              {activeStep === 3 && (
+                <>
+                  <Button secondary type="submit"> {t('saveDraft')}</Button>  {/* Change secondary to type="submit" */}
+                  <Button primary > {t('preview')}</Button>
+                </>
+              )}
+            </div>
+          </Form>
+        </DefineProjectContainer>
+        <NewsletterSection />
+        <Footer />
+      </>
+    );
+};
+
+export default DefineProject ;
+
+### File: /home/errick/dao-ui/src/components/DefineProject/Styles/DefineProject.styles.ts ###
+
+
+### File: /home/errick/dao-ui/src/components/DiscoveryPage/DiscoveryPage.tsx ###
+// src/components/DiscoveryPage/discoveryPage.tsx
+import React from 'react';
+
+function DiscoveryPage() {
+  return (
+    <div>
+      <h1>Discovery</h1>
+      {/* Add your project list content here */}
+    </div>
+  );
+}
+
+export default DiscoveryPage;
+
+### File: /home/errick/dao-ui/src/components/DiscoveryPage/Styles/DiscoveryPage.styles.ts ###
+// src/components/DiscoveryPage/discoveryPage.tsx
+import React from 'react';
+
+function DiscoveryPage() {
+  return (
+    <div>
+      <h1>Discovery</h1>
+      {/* Add your project list content here */}
+    </div>
+  );
+}
+
+export default DiscoveryPage;
+
+### File: /home/errick/dao-ui/src/components/DocumentationPage/DocumentationPage.tsx ###
+// src/components/DocumentationPage/documentationPage.tsx.tsx
+import React from 'react';
+
+function DocumentationPage() {
+  return (
+    <div>
+      <h1>Documents</h1>
+      {/* Add your project list content here */}
+    </div>
+  );
+}
+
+export default DocumentationPage;
+
+### File: /home/errick/dao-ui/src/components/DocumentationPage/Styles/DocumentationPage.styles.ts ###
+// src/components/DocumentationPage/documentationPage.tsx.tsx
+import React from 'react';
+
+function DocumentationPage() {
+  return (
+    <div>
+      <h1>Documents</h1>
+      {/* Add your project list content here */}
+    </div>
+  );
+}
+
+export default DocumentationPage;
+
+### File: /home/errick/dao-ui/src/components/ProjectsPage/ProjectsPage.tsx ###
+// src/components/ProjectsPage/ProjectsPage.tsx
+import React from 'react';
+
+function ProjectsPage() {
+  return (
+    <div>
+      <h1>Projects</h1>
+      {/* Add your project list content here */}
+    </div>
+  );
+}
+
+export default ProjectsPage;
+
+### File: /home/errick/dao-ui/src/components/ProjectDetails/ProjectDetails.tsx ###
+// src/components/ProjectDetails/ProjectDetails.tsx
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import {
+  ProjectDetailsContainer,
+  ProjectImage,
+  Tabs,
+  Tab,
+  ContentArea,
+} from './Styles/ProjectDetails.styles.ts';
+import Header from '../HomePage/Header.tsx';
+import Footer from '../HomePage/Footer.tsx';
+import NewsletterSection from '../HomePage/NewsletterSection.tsx';
+
+// Define an interface for project details (this will depend on your data structure)
+interface ProjectDetailsProps {
+  projectId: string; // Or the appropriate identifier for your project
+}
+interface Project {
+  imageUrl: string;
+  title: string;
+  description: string;
+  tokenStandard: string;
+  // ... (Other project details)
+}
+
+const ProjectDetails: React.FC<ProjectDetailsProps> = () => {
+  const { projectId } = useParams(); // Get projectId from URL
+  const { t } = useTranslation();
+  const [activeTab, setActiveTab] = useState('details');
+  const [project, setProject] = useState<Project | null>(null);
+
+  // Simulated data fetching (replace with your actual API call)
+  useEffect(() => {
+    const fetchProjectDetails = async () => {
+      if (!projectId) return;  // اگر projectId وجود نداشت، هیچ کاری انجام نده.
+      // Simulate API call using the projectId
+      const mockProject: Project = {
+        imageUrl: '/images/p1.png', // Replace with the actual image path
+        title: `Project ${projectId}`, // Use projectId to make it dynamic
+        description: `This is a sample description for project ${projectId}.`,
+        tokenStandard: 'ERC-721',
+        // ... (More project details)
+      };
+      setProject(mockProject);
+    };
+
+    fetchProjectDetails();
+  }, [projectId]);
+
+    const renderContent = () => {
+        if (!project) {
+            return <p>{t('loading')}</p>; // Or a loading spinner
+        }
+
+        switch (activeTab) {
+            case 'details':
+                return (
+                    <div>
+                        {/* Information Section */}
+                        <p>Token Standard: {project.tokenStandard}</p>
+                        {/* Project Summary (Problem statement and objectives) */}
+                        <h3>Project Summary</h3>
+                        <p>{project.description}</p>
+                    </div>
+                );
+            case 'timelineBudget':
+                return (
+                    <div>
+                        {/* Timeline & Budget content here (based on your data) */}
+                        Timeline & Budget Content
+                    </div>
+                );
+            case 'contributors':
+                return (
+                    <div>
+                        {/* Contributors content here */}
+                        Contributors Content
+                    </div>
+                );
+            case 'results':
+                return (
+                    <div>
+                        {/* Results content here */}
+                        Results Content
+                    </div>
+                );
+            case 'discussion':
+                return (
+                    <div>
+                        {/* Discussion content here */}
+                        Discussion Content
+                    </div>
+                );
+            default:
+                return null;
+        }
+    };
+
+  return (
+    <>
+      <Header />
+      <ProjectDetailsContainer>
+        {project && <ProjectImage src={project.imageUrl} alt={project.title} />}
+        {/* Project Image */}
+
+        <Tabs>
+          <Tab active={activeTab === 'details'} onClick={() => setActiveTab('details')}>{t('details')}</Tab>
+          <Tab active={activeTab === 'timelineBudget'} onClick={() => setActiveTab('timelineBudget')}>{t('timelineBudget')}</Tab>
+          <Tab active={activeTab === 'contributors'} onClick={() => setActiveTab('contributors')}>{t('contributors')}</Tab>
+          <Tab active={activeTab === 'results'} onClick={() => setActiveTab('results')}>{t('results')}</Tab>
+          <Tab active={activeTab === 'discussion'} onClick={() => setActiveTab('discussion')}>{t('discussion')}</Tab>
+        </Tabs>
+
+        <ContentArea>
+          {renderContent()}
+        </ContentArea>
+      </ProjectDetailsContainer>
+      <NewsletterSection />
+      <Footer />
+    </>
+  );
+};
+
+export default ProjectDetails;
+
+### File: /home/errick/dao-ui/src/components/ProjectDetails/Styles/ProjectDetails.styles.ts ###
+// src/components/ProjectDetails/ProjectDetails.styles.ts
+import styled from 'styled-components';
+
+export const ProjectDetailsContainer = styled.div`
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #1a1430; // Use a background color
+`;
+
+export const ProjectImage = styled.img`
+  width: 100%; // or a fixed width
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 20px;
+`;
+
+export const Tabs = styled.div`
+  display: flex;
+  border-bottom: 1px solid #333;
+  margin-bottom: 10px;
+`;
+
+export const Tab = styled.button<{ active?: boolean }>`
+  padding: 10px 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: ${({ active }) => (active ? '#7933ff' : '#ccc')};
+  border-bottom: ${({ active }) => (active ? '2px solid #7933ff' : 'none')};
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const ContentArea = styled.div`
+  padding: 20px 0;
+  color: #fff;  // Set text color
+`;
+
+### File: /home/errick/dao-ui/src/components/HomePage/Header.tsx ###
+// src/components/HomePage/Header.tsx
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { StyledHeader, Logo, Navigation, NavLink, LanguageSelect } from './Styles/Header.styles.ts';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { useAccount } from 'wagmi'; // Import useAccount
+
+interface HeaderProps {
+    isLoggedIn: boolean;
+    onLogin: () => void;
+    onLogout: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ isLoggedIn, onLogin, onLogout }) => {
+    const { t, i18n } = useTranslation();
+    const { address, isConnected } = useAccount(); // Get account and isConnected
+
+    const changeLanguage = (lng: string) => {
+        i18n.changeLanguage(lng);
+    };
+
+    return (
+        <StyledHeader>
+            <Logo>{t('appName')}</Logo>
+            <Navigation>
+                <NavLink to="/">{t('home')}</NavLink>
+                <NavLink to="/projects">{t('projects')}</NavLink>
+                <NavLink to="/discovery">{t('discovery')}</NavLink>
+                <NavLink to="/documentation">{t('documentation')}</NavLink>
+            </Navigation>
+            {isConnected ? (
+                <>
+                    <span>{address.substring(0, 6)}...{address.substring(address.length - 4)}</span>
+                </>
+            ) : (
+                <ConnectButton /> // Show the Connect Button
+            )}
+            <LanguageSelect onChange={(e) => changeLanguage(e.target.value)}>
+                <option value="en">English</option>
+                <option value="fa">فارسی</option>
+                <option value="ar">العربیة</option>
+                <option value="de">Dutch</option>
+                <option value="ru">Russen</option>
+            </LanguageSelect>
+        </StyledHeader>
+    );
+};
+
+export default Header;
+
+### File: /home/errick/dao-ui/src/components/HomePage/NewsletterSection.tsx ###
+// src/components/HomePage/NewsletterSection.tsx
+import React from 'react';
+import { useTranslation } from 'react-i18next'; // Import useTranslation
+import { StyledNewsletterSection, Title, Form, Input, Button } from './Styles/NewsletterSection.styles.ts';
+
+const NewsletterSection: React.FC = () => {
+  const { t, i18n } = useTranslation();
+    return (
+      <StyledNewsletterSection>
+        <Title>SUBSCRIBE TO OUR NEWSLETTER</Title>
+        <p>Get weekly access to the last listed projects, available grants and programs</p>
+        <Form>
+          <Input type="email" placeholder="Enter you email" />
+          <Button primary>t{('Subscribe')}</Button>
+        </Form>
+      </StyledNewsletterSection>
+    );
+};
+
+export default NewsletterSection;
+
+### File: /home/errick/dao-ui/src/components/HomePage/StatisticsSection.tsx ###
+// src/components/HomePage/StatisticsSection.tsx
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { StyledStatisticsSection, Statistic, StatisticValue, StatisticLabel } from './styles.ts';
+
+interface StatisticsProps {
+  listedProjects: number;
+  fundedProjects: number;
+  researchers: number;
+}
+
+const StatisticsSection: React.FC<StatisticsProps> = ({ listedProjects, fundedProjects, researchers }) => {
+  const { t, i18n } = useTranslation();
+    return (
+      <StyledStatisticsSection>
+        <Statistic>
+          <StatisticValue>{listedProjects}</StatisticValue>
+          <StatisticLabel>{t('Listed Projects')}</StatisticLabel>
+        </Statistic>
+        <Statistic>
+          <StatisticValue>{fundedProjects}</StatisticValue>
+          <StatisticLabel>{t('Funded Projects')}</StatisticLabel>
+        </Statistic>
+        <Statistic>
+          <StatisticValue>{researchers}</StatisticValue>
+          <StatisticLabel>{t('Researchers')}</StatisticLabel>
+        </Statistic>
+      </StyledStatisticsSection>
+    );
+};
+
+export default StatisticsSection;
+
+### File: /home/errick/dao-ui/src/components/HomePage/Footer.tsx ###
+// src/components/HomePage/Footer.tsx
+import React from 'react';
+import { useTranslation } from 'react-i18next'; // Import useTranslation
+import { StyledFooter, AboutSection, UsefulLinksSection, NavLink, SocialLinks, SocialIcon } from './Styles/Footer.styles.ts';
+import { FaXTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa6';
+
+const Footer: React.FC = () => {
+  const { t } = useTranslation(); // Initialize useTranslation
+    return (
+      <StyledFooter>
+        <AboutSection>
+          <h3>About Rayan DAO</h3>
+          <p>At Rayan DAO, We aim to democratize access to funds and create a vibrant community of startups who are passionate about driving forward the frontiers of innovation. We see ourselves as catalysts for change in the startups landscape, unlocking creativity and accelerating progress for the betterment of all.</p>
+          <SocialLinks>
+            <SocialIcon href="#"><FaXTwitter /></SocialIcon>
+            <SocialIcon href="#"><FaInstagram /></SocialIcon>
+            <SocialIcon href="#"><FaLinkedin /></SocialIcon>
+          </SocialLinks>
+        </AboutSection>
+        <UsefulLinksSection>
+          <h3>Useful links</h3>
+          <NavLink href="#">{t('Home')}</NavLink>
+          <NavLink href="#">{t('Projects')}</NavLink>
+          <NavLink href="#">{t('Terms of Service')}</NavLink>
+          <NavLink href="#">{t('Documentation')}</NavLink>
+        </UsefulLinksSection>
+        <p>Copyright © 2024 Rayan DAO. All rights reserved.</p>
+      </StyledFooter>
+    );
+};
+
+export default Footer;
+
+### File: /home/errick/dao-ui/src/components/HomePage/HomePage.tsx ###
+// src/components/HomePage/HomePage.tsx
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import Header from './Header.tsx';
+import HeroSection from './HeroSection.tsx';
+import StatisticsSection from './StatisticsSection.tsx';
+import NewsletterSection from './NewsletterSection.tsx';
+import Footer from './Footer.tsx';
+import OpenFundingCalls from './OpenFundingCalls.tsx';
+import ResultsDiscovery from './ResultsDiscovery.tsx';
+import RecentlyJoinedUsers from './RecentlyJoinedUsers.tsx';
+import HighestFundedProjects from './HighestFundedProjects.tsx';
+import FAQ from './FAQ.tsx';
+import { Container, HeroSectionContainer, HeroTitle, HeroSubtitle, HeroButtonsContainer, Button, SectionTitle } from './Styles/HomePage.styles.ts';
+import { Link } from 'react-router-dom';
+
+const HomePage: React.FC = () => {
+  const { t } = useTranslation();
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
+  const [openFundingCallsData, setOpenFundingCallsData] = useState<any[]>([]); // State for open funding calls
+  const [resultsDiscoveryData, setResultsDiscoveryData] = useState<any[]>([]);
+  const [recentlyJoinedUsersData, setRecentlyJoinedUsersData] = useState<any[]>([]);
+  const [highestFundedProjectsData, setHighestFundedProjectsData] = useState<any[]>([]);
+  const [faqData, setFaqData] = useState<any[]>([]);
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+    //  In a real app, this would involve authentication
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    //  In a real app, this would involve logging out
+  };
+
+    useEffect(() => {
+        // Fetch open funding calls
+        const fetchOpenFundingCalls = async () => {
+            try {
+                const response = await fetch('/api/projects');  // Replace with your API endpoint
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                // Assuming the backend returns a list of projects
+                setOpenFundingCallsData(data.slice(0, 2)); // Display only 2 projects for now
+            } catch (error) {
+                console.error('Error fetching open funding calls:', error);
+            }
+        };
+        // Fetch results discovery
+        const fetchResultsDiscovery = async () => {
+          try {
+            const response = await fetch('/api/projects'); // Replace with your API endpoint
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            setResultsDiscoveryData(data.slice(0, 2));
+          } catch (error) {
+            console.error('Error fetching results discovery:', error);
+          }
+        };
+
+        // Fetch recently joined users
+        const fetchRecentlyJoinedUsers = async () => {
+            // This is an example and needs to be implemented based on your API
+            // Replace with your actual API endpoint
+            setRecentlyJoinedUsersData([
+                { image: '/images/user1.png', name: 'User A' },
+                { image: '/images/user2.png', name: 'User B' },
+            ]);
+        };
+
+        // Fetch highest funded projects
+        const fetchHighestFundedProjects = async () => {
+            // This is an example and needs to be implemented based on your API
+            // Replace with your actual API endpoint
+            setHighestFundedProjectsData([
+                { image: '/images/project1.png', title: 'Project X', amountRaised: '$38,2262', endsIn: '7/31/2024' },
+                { image: '/images/project2.png', title: 'Project Y', amountRaised: '$32,6681', endsIn: '7/28/2024' },
+            ]);
+        };
+        // Fetch FAQ data (replace with your API)
+        const fetchFaqData = async () => {
+            setFaqData([
+                { question: t('faqQuestion1'), answer: t('faqAnswer1') },
+                { question: t('faqQuestion2'), answer: t('faqAnswer2') },
+            ]);
+        };
+
+        fetchOpenFundingCalls();
+        fetchResultsDiscovery();
+        fetchRecentlyJoinedUsers();
+        fetchHighestFundedProjects();
+        fetchFaqData();
+    }, [t]);
+
+    return (
+        <Container>
+            <Header isLoggedIn={isLoggedIn} onLogin={handleLogin} onLogout={handleLogout} />
+            <HeroSectionContainer>
+              <HeroTitle>NFT-Fundraising For Decentralized Science and Open-Source Projects</HeroTitle>
+              <HeroSubtitle>Empower Your Research: Tokenize, Commercialize, and Disseminate with NFT-Fundraising</HeroSubtitle>
+              <HeroButtonsContainer>
+                <Link to="/define-project">
+                  <Button primary>{t('defineProject')}</Button>
+                </Link>
+                <Button>{t('explore')}</Button>
+              </HeroButtonsContainer>
+            </HeroSectionContainer>
+
+            <SectionTitle>{t('openFundingCalls')}</SectionTitle>
+            <OpenFundingCalls openCalls={openFundingCallsData} />
+
+            {/* Show these sections only after login */}
+            {isLoggedIn && (
+                <>
+                    <SectionTitle>{t('highestFundedProjects')}</SectionTitle>
+                    <HighestFundedProjects projects={highestFundedProjectsData} />
+                    <SectionTitle>{t('resultsDiscovery')}</SectionTitle>
+                    <ResultsDiscovery results={resultsDiscoveryData} />
+                    <SectionTitle>{t('recentlyJoinedUsers')}</SectionTitle>
+                    <RecentlyJoinedUsers users={recentlyJoinedUsersData} />
+                    <SectionTitle>{t('frequentlyAskedQuestions')}</SectionTitle>
+                    <FAQ faqs={faqData} />
+                </>
+            )}
+
+            <NewsletterSection />
+            <Footer />
+        </Container>
+    );
+};
+
+export default HomePage;
+
+### File: /home/errick/dao-ui/src/components/HomePage/ProjectGraph.tsx ###
+// src/components/HomePage/ProjectGraph.tsx
+import React from 'react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+
+interface ProjectGraphProps {
+  data: { projectName: string; fundedAmount: number }[];
+}
+
+const ProjectGraph: React.FC<ProjectGraphProps> = ({ data }) => {
+  return (
+    <ResponsiveContainer width="100%" height={300}>
+      <BarChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="projectName" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Bar dataKey="fundedAmount" fill="#8884d8" />
+      </BarChart>
+    </ResponsiveContainer>
+  );
+};
+
+export default ProjectGraph;
+
+### File: /home/errick/dao-ui/src/components/HomePage/FAQ.tsx ###
+// src/components/FAQ/FAQ.tsx
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { FAQContainer, FAQItem, Question, Answer } from './Styles/FAQ.styles.ts';
+interface FAQ {
+    question: string;
+    answer: string;
+}
+interface FAQProps {
+    faqs: FAQ[];
+}
+const FAQ: React.FC<FAQProps> = ({ faqs }) => {
+    const { t } = useTranslation();
+    return (
+        <FAQContainer>
+            <h2>{t('frequentlyAskedQuestions')}</h2>
+            {faqs.map((faq, index) => (
+                <FAQItem key={index}>
+                    <Question>{faq.question}</Question>
+                    <Answer>{faq.answer}</Answer>
+                </FAQItem>
+            ))}
+        </FAQContainer>
+    );
+};
+export default FAQ;
+
+### File: /home/errick/dao-ui/src/components/HomePage/DefineYourProject.tsx ###
+// src/components/HomePage/DefineYourProject.tsx
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { DefineYourProjectContainer, Title, Subtitle, Button, Image } from './styles.ts';
+
+const DefineYourProject: React.FC = () => {
+  const { t } = useTranslation();
+  return (
+    <DefineYourProjectContainer>
+        <Image src="/path/to/image.png" alt="Define your project" />
+        <Title>{t('defineYourProjectTitle')}</Title>
+        <Subtitle>{t('defineYourProjectSubtitle')}</Subtitle>
+        <Button primary>{t('defineYourProjectButton')}</Button>
+    </DefineYourProjectContainer>
+  );
+};
+
+export { DefineYourProject };
+
+### File: /home/errick/dao-ui/src/components/HomePage/RecentlyJoinedUsers.tsx ###
+// src/components/RecentlyJoinedUsers/RecentlyJoinedUsers.tsx
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { RecentlyJoinedUsersContainer, UserCard, UserImage, UserName, SeeAllLink } from './Styles/RecentlyJoinedUsers.styles.ts';
+
+interface User {
+    image: string;
+    name: string;
+}
+
+interface RecentlyJoinedUsersProps {
+    users: User[];
+}
+
+const RecentlyJoinedUsers: React.FC<RecentlyJoinedUsersProps> = ({ users }) => {
+    const { t } = useTranslation();
+
+    return (
+        <RecentlyJoinedUsersContainer>
+            <h2>
+                {t('recentlyJoinedUsers')} <SeeAllLink href="#">{t('seeAll')}</SeeAllLink>
+            </h2>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '15px' }}> {/* Add a wrapper for the user cards */}
+                {users.map((user, index) => (
+                    <UserCard key={index}>
+                        <UserImage src={user.image} alt={user.name} />
+                        <UserName>{user.name}</UserName>
+                    </UserCard>
+                ))}
+            </div>
+        </RecentlyJoinedUsersContainer>
+    );
+};
+
+export default RecentlyJoinedUsers;
+
+### File: /home/errick/dao-ui/src/components/HomePage/OpenFundingCalls.tsx ###
+// src/components/OpenFundingCalls/OpenFundingCalls.tsx
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import {
+  OpenFundingCallsContainer,
+  OpenCallCard,
+  OpenCallImage,
+  OpenCallTitle,
+  OpenCallSubtitle,
+  OpenCallDetails,
+  SeeAllLink,
+} from './Styles/OpenFundingCalls.styles.ts'; // Import styles
+
+interface OpenFundingCall {
+  image: string;
+  title: string;
+  subtitle: string;
+  deadline: string;
+  funded: string;
+  daysLeft: number;
+}
+
+interface OpenFundingCallsProps {
+  openCalls: OpenFundingCall[];
+}
+
+const OpenFundingCalls: React.FC<OpenFundingCallsProps> = ({ openCalls }) => {
+  const { t } = useTranslation();
+
+  return (
+    <OpenFundingCallsContainer>
+      <h2>
+        {t('openFundingCalls')} <SeeAllLink href="#">{t('seeAll')}</SeeAllLink>
+      </h2>
+      {openCalls.map((call, index) => (
+        <OpenCallCard key={index}>
+          <OpenCallImage src={call.image} alt={call.title} />
+          <div>
+            <OpenCallTitle>{call.title}</OpenCallTitle>
+            <OpenCallSubtitle>{call.subtitle}</OpenCallSubtitle>
+            <OpenCallDetails>
+              <p>
+                {t('deadline')}: {call.deadline}
+              </p>
+              <p>
+                {t('funded')}: {call.funded}
+              </p>
+              <p>
+                {call.daysLeft} {t('daysLeft')}
+              </p>
+            </OpenCallDetails>
+          </div>
+        </OpenCallCard>
+      ))}
+    </OpenFundingCallsContainer>
+  );
+};
+
+export default OpenFundingCalls;
+
+### File: /home/errick/dao-ui/src/components/HomePage/styles.ts ###
+// src/components/HomePage/styles.ts
+import styled from 'styled-components';
+import { FaPlus, FaRegCopy, FaCalendarAlt, FaDollarSign, FaFileAlt, FaTrashAlt } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+
+// General
+export const Container = styled.div`
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color:rgb(182, 106, 34); // Dark purple
+  color: #fff;
+  font-family: sans-serif;
+  min-height: 100vh;
+`;
+export const Button = styled.button<{ primary?: boolean; secondary?: boolean }>`
+  padding: 12px 25px;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  background-color: ${({ primary, secondary }) => (primary ? '#7933ff' : secondary ? 'transparent' : '#241c3d')};
+  color: ${({ primary, secondary }) => (primary ? '#fff' : secondary ? '#7933ff' : '#fff')};
+  border: ${({ secondary }) => (secondary ? '2px solid #7933ff' : 'none')};
+  transition: background-color 0.2s ease;
+  margin-right: 10px;
+
+  &:hover {
+    background-color: ${({ primary }) => (primary ? '#692acc' : '#f0e6ff')};
+  }
+`;
+
+export const ProjectLinkSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
+export const AddLinkButton = styled.button`
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #7933ff;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+
+  &:hover {
+    background-color: #692acc;
+  }
+`;
+
+export const LinkInput = styled.input`
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #241c3d;
+  color: #fff;
+  border: none;
+  &::placeholder {
+    color: #888;
+  }
+`;
+
+export const StyledIcon = styled.span`
+  margin-right: 5px;
+  font-size: 1.2rem;
+`;
+
+export const ProgressBar = styled.div<{ progress: number }>`
+  width: 100%;
+  height: 8px;
+  background-color: #ddd;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: ${({ progress }) => `${progress}%`};
+    background-color: #7933ff;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+  }
+`;
+
+export const TimelineSection = styled.div`
+    margin-bottom: 20px;
+`;
+
+export const TimelineItem = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+`;
+
+export const TimelineInput = styled.input`
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    background-color: #241c3d;
+    color: #fff;
+    border: none;
+    &::placeholder {
+      color: #888;
+    }
+`;
+
+export const BudgetSection = styled.div`
+    margin-bottom: 20px;
+`;
+
+export const BudgetItem = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+`;
+
+export const BudgetItemInput = styled.input`
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    background-color: #241c3d;
+    color: #fff;
+    border: none;
+    &::placeholder {
+      color: #888;
+    }
+`;
+
+export const BudgetItemDetails = styled.div`
+    display: flex;
+    gap: 10px;
+`;
+
+export const FundraisingMethodsSection = styled.div`
+    margin-bottom: 20px;
+`;
+
+export const MethodOption = styled.div`
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    input[type="radio"] {
+        margin-right: 8px;
+    }
+`;
+
+export const ServiceFeeSection = styled.div`
+    margin-bottom: 20px;
+`;
+
+export const SupplementaryDocumentSection = styled.div`
+    margin-bottom: 20px;
+`;
+
+export const TeamMemberSection = styled.div`
+    margin-bottom: 20px;
+`;
+
+export const TeamMemberInput = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+`;
+
+export const ErrorText = styled.p`
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 5px;
+`;
+
+### File: /home/errick/dao-ui/src/components/HomePage/HighestFundedProjects.tsx ###
+// src/components/HighestFundedProjects/HighestFundedProjects.tsx
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { HighestFundedProjectsContainer, ProjectCard, ProjectImage, ProjectTitle, ProjectDetails, SeeProjectLink } from './Styles/HighestFundedProjects.styles.ts';
+interface HighestFundedProject {
+    image: string;
+    title: string;
+    amountRaised: string;
+    endsIn: string;
+}
+interface HighestFundedProjectsProps {
+    projects: HighestFundedProject[];
+}
+const HighestFundedProjects: React.FC<HighestFundedProjectsProps> = ({ projects }) => {
+    const { t } = useTranslation();
+    return (
+        <HighestFundedProjectsContainer>
+            <h2>{t('highestFundedProjects')}</h2>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}> {/* Add a wrapper for the project cards */}
+                {projects.map((project, index) => (
+                    <ProjectCard key={index}>
+                        <ProjectImage src={project.image} alt={project.title} />
+                        <div>
+                            <ProjectTitle>{project.title}</ProjectTitle>
+                            <ProjectDetails>
+                                <p>{t('amountRaised')}: {project.amountRaised}</p>
+                                <p>{t('endsIn')}: {project.endsIn}</p>
+                            </ProjectDetails>
+                            <SeeProjectLink href="#">{t('seeProject')}</SeeProjectLink>
+                        </div>
+                    </ProjectCard>
+                ))}
+            </div>
+        </HighestFundedProjectsContainer>
+    );
+};
+export default HighestFundedProjects;
+
+### File: /home/errick/dao-ui/src/components/HomePage/ResultsDiscovery.tsx ###
+// src/components/ResultsDiscovery/ResultsDiscovery.tsx
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { ResultsDiscoveryContainer, ResultCard, ResultImage, ResultTitle, ResultSubtitle, SeeAllLink } from './Styles/ResultsDiscovery.styles.ts';
+
+interface Result {
+    image: string;
+    title: string;
+    subtitle: string;
+}
+
+interface ResultsDiscoveryProps {
+    results: Result[];
+}
+
+const ResultsDiscovery: React.FC<ResultsDiscoveryProps> = ({ results }) => {
+    const { t } = useTranslation();
+
+    return (
+        <ResultsDiscoveryContainer>
+            <h2>
+                {t('resultsDiscovery')} <SeeAllLink href="#">{t('seeAll')}</SeeAllLink>
+            </h2>
+            {results.map((result, index) => (
+                <ResultCard key={index}>
+                    <ResultImage src={result.image} alt={result.title} />
+                    <div>
+                        <ResultTitle>{result.title}</ResultTitle>
+                        <ResultSubtitle>{result.subtitle}</ResultSubtitle>
+                    </div>
+                </ResultCard>
+            ))}
+        </ResultsDiscoveryContainer>
+    );
+};
+
+export default ResultsDiscovery;
+
+### File: /home/errick/dao-ui/src/components/HomePage/HeroSection.tsx ###
+// src/components/HomePage/HeroSection.tsx
+import React from 'react';
+import { useTranslation } from 'react-i18next'; // Import useTranslation
+import { StyledHeroSection, Title, Subtitle, CallToActionButtons, Button } from './styles.ts';
+import { Link } from 'react-router-dom';
+
+const HeroSection: React.FC = () => {
+    const { t, i18n } = useTranslation(); // Initialize useTranslation
+      return (
+      <StyledHeroSection>
+        <Title>Token-Fundraising For <br />DECENTRALIZED DAO AND <br />INVESTMENT PLATFORM</Title>
+        <Subtitle>Empower Your Startup: Tokenize, Commercialize, and Disseminate with Fundraising</Subtitle>
+        <CallToActionButtons>
+        <Link to="/DefineProject">  {/* Use Link for the button */}
+          <Button primary>{t('defineProject')}</Button>
+        </Link>
+        <Button> {t('explore')}</Button>
+      </CallToActionButtons>
+      </StyledHeroSection>
+    );
+};
+
+export default HeroSection;
+
+### File: /home/errick/dao-ui/src/components/HomePage/Styles/Header.styles.ts ###
+// src/components/HomePage/styles/Header.styles.ts
+import styled from 'styled-components';
+
+export const StyledHeader = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  margin-bottom: 20px;
+  width: 100%;  // add width: 100%
+`;
+
+export const Logo = styled.h1`
+  font-size: 1.5rem;
+  font-weight: bold;
+`;
+
+export const Navigation = styled.nav`
+  display: flex;
+  gap: 20px;
+`;
+
+export const NavLink = styled(Link)` // Assuming NavLink is a styled Link component from react-router-dom.
+  color: #fff;
+  text-decoration: none;
+  &:hover {
+    color: #ccc;
+  }
+`;
+
+export const LanguageSelect = styled.select`
+  background-color: rgb(255, 189, 7);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  option {
+    color: black;
+  }
+`;
+
+### File: /home/errick/dao-ui/src/components/HomePage/Styles/NewsletterSection.styles.ts ###
+// src/components/HomePage/styles.ts
+import styled from 'styled-components';
+
+// General
+export const Container = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #120d26; // Dark purple
+  color: #fff;
+  font-family: sans-serif;
+  min-height: 100vh;
+`;
+
+// Header
+export const StyledHeader = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+`;
+
+export const Logo = styled.h1`
+  font-size: 1.5rem;
+  font-weight: bold;
+`;
+
+export const Navigation = styled.nav`
+  display: flex;
+  gap: 20px;
+`;
+
+export const NavLink = styled.a`
+  color: #fff;
+  text-decoration: none;
+  &:hover {
+    color: #ccc;
+  }
+`;
+
+export const ConnectWalletButton = styled.button`
+  background-color: #7933ff; // Lighter purple
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  &:hover {
+    background-color: #692acc;
+  }
+`;
+
+// Hero Section
+export const StyledHeroSection = styled.section`
+  text-align: center;
+  padding: 50px 0;
+`;
+
+export const Title = styled.h2`
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 20px;
+`;
+
+export const Subtitle = styled.p`
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+`;
+
+export const CallToActionButtons = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+`;
+
+export const Button = styled.button<{ primary?: boolean }>`
+  background-color: ${({ primary }) => (primary ? '#7933ff' : 'transparent')};
+  color: ${({ primary }) => (primary ? '#fff' : '#7933ff')};
+  border: 2px solid #7933ff;
+  padding: 15px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  &:hover {
+    background-color: ${({ primary }) => (primary ? '#692acc' : '#f0e6ff')};
+  }
+`;
+
+// Statistics Section
+export const StyledStatisticsSection = styled.section`
+  display: flex;
+  justify-content: space-around;
+  padding: 30px 0;
+  border-bottom: 1px solid #333;
+`;
+
+export const Statistic = styled.div`
+  text-align: center;
+`;
+
+export const StatisticValue = styled.span`
+  font-size: 2rem;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+`;
+
+export const StatisticLabel = styled.span`
+  font-size: 1rem;
+  color: #ccc;
+`;
+
+// Newsletter Section
+export const StyledNewsletterSection = styled.section`
+  text-align: center;
+  padding: 50px 0;
+`;
+
+export const Form = styled.form`
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+`;
+
+export const Input = styled.input`
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 300px;
+`;
+
+// Footer
+export const StyledFooter = styled.footer`
+  padding: 40px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-top: 1px solid #333;
+`;
+
+export const AboutSection = styled.div`
+  width: 30%;
+`;
+
+export const UsefulLinksSection = styled.div`
+  width: 30%;
+`;
+
+export const Link = styled.a`
+  display: block;
+  color: #ccc;
+  text-decoration: none;
+  margin-bottom: 5px;
+  &:hover {
+    color: #fff;
+  }
+`;
+
+export const SocialLinks = styled.div`
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+`
+
+export const SocialIcon = styled.a`
+    color: #7933ff;
+    font-size: 1.5rem;
+    &:hover {
+        color: #692acc;
+    }
+`
+
+### File: /home/errick/dao-ui/src/components/HomePage/Styles/ResultsDiscovery.styles.ts ###
+// src/components/ResultsDiscovery/styles/ResultsDiscovery.styles.ts
+import styled from 'styled-components';
+
+export const ResultsDiscoveryContainer = styled.section`
+  margin-bottom: 40px;
+`;
+
+export const ResultCard = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background-color: #1a1430;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+      transform: translateY(-5px);
+  }
+`;
+
+export const ResultImage = styled.img`
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 15px;
+`;
+
+export const ResultTitle = styled.h3`
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+`;
+
+export const ResultSubtitle = styled.p`
+  font-size: 1rem;
+  color: #ccc;
+`;
+export const SeeAllLink = styled.a`
+  color: #7933ff;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+  font-size: 0.9rem;
+`;
+
+### File: /home/errick/dao-ui/src/components/HomePage/Styles/HeroSection.styles.ts ###
+import styled from 'styled-components';
+// Hero Section
+export const StyledHeroSection = styled.section`
+  text-align: center;
+  padding: 50px 0;
+`;
+
+export const Title = styled.h2`
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 20px;
+`;
+
+export const Subtitle = styled.p`
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+`;
+
+export const CallToActionButtons = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+`;
+
+### File: /home/errick/dao-ui/src/components/HomePage/Styles/HighestFundedProjects.styles.ts ###
+// src/components/HighestFundedProjects/styles/HighestFundedProjects.styles.ts
+import styled from 'styled-components';
+
+export const HighestFundedProjectsContainer = styled.section`
+    margin-bottom: 40px;
+`;
+
+export const ProjectCard = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: #1a1430;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
+    width: 100%; // Take full width
+`;
+
+export const ProjectImage = styled.img`
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+`;
+
+export const ProjectTitle = styled.h3`
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+`;
+
+export const ProjectDetails = styled.div`
+    text-align: right;
+`;
+
+export const SeeProjectLink = styled.a`
+    color: #7933ff;
+    text-decoration: none;
+    font-weight: bold;
+    &:hover {
+        text-decoration: underline;
+    }
+`;
+
+### File: /home/errick/dao-ui/src/components/HomePage/Styles/HomePage.styles.ts ###
+// src/components/HomePage/styles/HomePage.styles.ts
+import styled from 'styled-components';
+
+export const Container = styled.div`
+  padding: 20px;
+  background-color:rgb(99, 120, 121); // Dark purple
+  color: #fff;
+  font-family: sans-serif;
+  min-height: 100vh;
+`;
+
+export const HeroSectionContainer = styled.section`
+  text-align: center;
+  padding: 50px 0;
+`;
+
+export const HeroTitle = styled.h2`
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 20px;
+`;
+
+export const HeroSubtitle = styled.p`
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+`;
+
+export const HeroButtonsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+`;
+
+export const Button = styled.button<{ primary?: boolean }>`
+  background-color: ${({ primary }) => (primary ? '#7933ff' : 'transparent')};
+  color: ${({ primary }) => (primary ? '#fff' : '#7933ff')};
+  border: 2px solid #7933ff;
+  padding: 15px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  &:hover {
+    background-color: ${({ primary }) => (primary ? '#692acc' : '#f0e6ff')};
+  }
+`;
+
+export const SectionTitle = styled.h2`
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-align: left; // or the desired alignment
+  margin-top: 40px;
+`;
+
+// Open Funding Calls
+export const OpenFundingCallsContainer = styled.section`
+  margin-bottom: 40px;
+`;
+
+export const OpenCallCard = styled.div`
+  display: flex;
+  align-items: center;  // Align items vertically
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background-color: #1a1430;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+  &:hover {
+    transform: translateY(-5px);
+  }
+`;
+
+export const OpenCallImage = styled.img`
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 20px;
+`;
+
+export const OpenCallTitle = styled.h3`
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+`;
+
+export const OpenCallSubtitle = styled.p`
+  font-size: 0.9rem;
+  color: #ccc;
+  margin-bottom: 10px;
+`;
+
+export const OpenCallDetails = styled.div`
+  flex-grow: 1;
+  text-align: right; // Align details to the right
+`;
+
+export const SeeAllLink = styled.a`
+  color: #7933ff;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+  font-size: 0.9rem;
+`;
+
+// Statistics Section (you can adjust the styles based on your design)
+export const StatisticsSectionContainer = styled.section`
+  display: flex;
+  justify-content: space-around;
+  padding: 30px 0;
+  border-bottom: 1px solid #333;
+  margin-bottom: 30px;
+`;
+export const Statistic = styled.div`
+    text-align: center;
+`;
+
+export const StatisticValue = styled.span`
+    font-size: 2rem;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+`;
+export const StatisticLabel = styled.span`
+    font-size: 1rem;
+    color: #ccc;
+`;
+
+// Results Discovery (you can adjust the styles based on your design)
+export const ResultsDiscoveryContainer = styled.section`
+    margin-bottom: 40px;
+`;
+export const ResultCard = styled.div`
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background-color: #1a1430;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+`;
+
+export const ResultImage = styled.img`
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 15px;
+`;
+
+export const ResultTitle = styled.h3`
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+`;
+
+export const ResultSubtitle = styled.p`
+    font-size: 1rem;
+    color: #ccc;
+`;
+// Recently Joined Users (you can adjust the styles based on your design)
+export const RecentlyJoinedUsersContainer = styled.section`
+    margin-bottom: 40px;
+`;
+
+export const UserCard = styled.div`
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #1a1430;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+`;
+export const UserImage = styled.img`
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+`;
+
+export const UserName = styled.span`
+    font-size: 1.1rem;
+    font-weight: bold;
+`;
+// Highest Funded Projects (you can adjust the styles based on your design)
+export const HighestFundedProjectsContainer = styled.section`
+    margin-bottom: 40px;
+`;
+
+export const ProjectCard = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #1a1430;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+`;
+export const ProjectImage = styled.img`
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+`;
+
+export const ProjectTitle = styled.h3`
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+`;
+
+export const ProjectDetails = styled.div`
+    text-align: right;
+`;
+export const SeeProjectLink = styled.a`
+    color: #7933ff;
+    text-decoration: none;
+    font-weight: bold;
+    &:hover {
+        text-decoration: underline;
+    }
+`;
+
+// FAQ (you can adjust the styles based on your design)
+export const FAQContainer = styled.section`
+  margin-bottom: 40px;
+`;
+export const FAQItem = styled.div`
+  margin-bottom: 15px;
+`;
+
+export const Question = styled.h4`
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+`;
+
+export const Answer = styled.p`
+  font-size: 1rem;
+  color: #ccc;
+`;
+
+export const NewsletterSectionContainer = styled.section`
+    text-align: center;
+    padding: 50px 0;
+`;
+export const NewsletterTitle = styled.h2`
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+`;
+
+export const NewsletterForm = styled.form`
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+`;
+
+export const NewsletterInput = styled.input`
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 300px;
+    background-color: #241c3d;
+    color: #fff;
+    border: none;
+    &::placeholder {
+        color: #888;
+    }
+`;
+
+export const FooterContainer = styled.footer`
+    padding: 40px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-top: 1px solid #333;
+`;
+export const AboutSection = styled.div`
+    width: 30%;
+`;
+export const UsefulLinksSection = styled.div`
+    width: 30%;
+`;
+export const Link = styled.a`
+    display: block;
+    color: #ccc;
+    text-decoration: none;
+    margin-bottom: 5px;
+    &:hover {
+        color: #fff;
+    }
+`;
+
+export const SocialLinks = styled.div`
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+`;
+
+export const SocialIcon = styled.a`
+    color: #7933ff;
+    font-size: 1.5rem;
+    &:hover {
+        color: #692acc;
+    }
+`;
+
+### File: /home/errick/dao-ui/src/components/HomePage/Styles/FAQ.styles.ts ###
+// src/components/FAQ/styles/FAQ.styles.ts
+import styled from 'styled-components';
+
+export const FAQContainer = styled.section`
+  margin-bottom: 40px;
+`;
+
+export const FAQItem = styled.div`
+  margin-bottom: 15px;
+`;
+
+export const Question = styled.h4`
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+`;
+
+export const Answer = styled.p`
+  font-size: 1rem;
+  color: #ccc;
+`;
+
+### File: /home/errick/dao-ui/src/components/HomePage/Styles/StatisticsSection.styles.ts ###
+import styled from 'styled-components';
+// Statistics Section
+export const StyledStatisticsSection = styled.section`
+  display: flex;
+  justify-content: space-around;
+  padding: 30px 0;
+  border-bottom: 1px solid #333;
+  margin-bottom: 30px;
+`;
+
+export const Statistic = styled.div`
+  text-align: center;
+`;
+
+export const StatisticValue = styled.span`
+  font-size: 2rem;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+`;
+
+export const StatisticLabel = styled.span`
+  font-size: 1rem;
+  color: #ccc;
+`;
+
+
+### File: /home/errick/dao-ui/src/components/HomePage/Styles/OpenFundingCalls.styles.ts ###
+// src/components/OpenFundingCalls/styles/OpenFundingCalls.styles.ts
+import styled from 'styled-components';
+
+export const OpenFundingCallsContainer = styled.div`
+  margin-bottom: 20px;
+`;
+
+export const OpenCallCard = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+`;
+
+export const OpenCallImage = styled.img`
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 15px;
+`;
+
+export const OpenCallTitle = styled.h3`
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+`;
+
+export const OpenCallSubtitle = styled.p`
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 10px;
+`;
+
+export const OpenCallDetails = styled.div`
+  flex-grow: 1;
+  text-align: right;
+`;
+
+export const SeeAllLink = styled.a`
+  color: #7933ff;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+  font-size: 0.9rem;
+`;
+
+### File: /home/errick/dao-ui/src/components/HomePage/Styles/RecentlyJoinedUsers.styles.ts ###
+// src/components/RecentlyJoinedUsers/styles/RecentlyJoinedUsers.styles.ts
+import styled from 'styled-components';
+
+export const RecentlyJoinedUsersContainer = styled.section`
+    margin-bottom: 40px;
+`;
+
+export const UserCard = styled.div`
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #1a1430;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
+    width: 100%;
+    max-width: 200px; // Limit the width of each card
+    &:hover {
+        transform: translateY(-5px);
+    }
+`;
+
+export const UserImage = styled.img`
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+`;
+
+export const UserName = styled.span`
+    font-size: 1.1rem;
+    font-weight: bold;
+`;
+export const SeeAllLink = styled.a`
+  color: #7933ff;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+  font-size: 0.9rem;
+`;
+
+### File: /home/errick/dao-ui/src/components/HomePage/Styles/Footer.styles.ts ###
+// src/components/HomePage/styles.ts
+import styled from 'styled-components';
+
+// General
+export const Container = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #120d26; // Dark purple
+  color: #fff;
+  font-family: sans-serif;
+  min-height: 100vh;
+`;
+
+// Header
+export const StyledHeader = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+`;
+
+export const Logo = styled.h1`
+  font-size: 1.5rem;
+  font-weight: bold;
+`;
+
+export const Navigation = styled.nav`
+  display: flex;
+  gap: 20px;
+`;
+
+export const NavLink = styled.a`
+  color: #fff;
+  text-decoration: none;
+  &:hover {
+    color: #ccc;
+  }
+`;
+
+export const ConnectWalletButton = styled.button`
+  background-color: #7933ff; // Lighter purple
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  &:hover {
+    background-color: #692acc;
+  }
+`;
+
+// Hero Section
+export const StyledHeroSection = styled.section`
+  text-align: center;
+  padding: 50px 0;
+`;
+
+export const Title = styled.h2`
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 20px;
+`;
+
+export const Subtitle = styled.p`
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+`;
+
+export const CallToActionButtons = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+`;
+
+export const Button = styled.button<{ primary?: boolean }>`
+  background-color: ${({ primary }) => (primary ? '#7933ff' : 'transparent')};
+  color: ${({ primary }) => (primary ? '#fff' : '#7933ff')};
+  border: 2px solid #7933ff;
+  padding: 15px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  &:hover {
+    background-color: ${({ primary }) => (primary ? '#692acc' : '#f0e6ff')};
+  }
+`;
+
+// Statistics Section
+export const StyledStatisticsSection = styled.section`
+  display: flex;
+  justify-content: space-around;
+  padding: 30px 0;
+  border-bottom: 1px solid #333;
+`;
+
+export const Statistic = styled.div`
+  text-align: center;
+`;
+
+export const StatisticValue = styled.span`
+  font-size: 2rem;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+`;
+
+export const StatisticLabel = styled.span`
+  font-size: 1rem;
+  color: #ccc;
+`;
+
+// Newsletter Section
+export const StyledNewsletterSection = styled.section`
+  text-align: center;
+  padding: 50px 0;
+`;
+
+export const Form = styled.form`
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+`;
+
+export const Input = styled.input`
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 300px;
+`;
+
+// Footer
+export const StyledFooter = styled.footer`
+  padding: 40px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-top: 1px solid #333;
+`;
+
+export const AboutSection = styled.div`
+  width: 30%;
+`;
+
+export const UsefulLinksSection = styled.div`
+  width: 30%;
+`;
+
+export const Link = styled.a`
+  display: block;
+  color: #ccc;
+  text-decoration: none;
+  margin-bottom: 5px;
+  &:hover {
+    color: #fff;
+  }
+`;
+
+export const SocialLinks = styled.div`
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+`
+
+export const SocialIcon = styled.a`
+    color: #7933ff;
+    font-size: 1.5rem;
+    &:hover {
+        color: #692acc;
+    }
+`
+
+### File: /home/errick/dao-ui/build/logo512.png ###
+Error reading file: 'utf-8' codec can't decode byte 0x89 in position 0: invalid start byte
+
+### File: /home/errick/dao-ui/build/logo192.png ###
+Error reading file: 'utf-8' codec can't decode byte 0x89 in position 0: invalid start byte
+
+### File: /home/errick/dao-ui/build/robots.txt ###
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Disallow:
+
+
+### File: /home/errick/dao-ui/build/manifest.json ###
+{
+  "short_name": "Rayan DAO for VCs",
+  "name": "Tokenize DAO Platform for Venture Capitals & Investment",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
+
+
+### File: /home/errick/dao-ui/build/favicon.ico ###
+Error reading file: 'utf-8' codec can't decode byte 0xe3 in position 14: invalid continuation byte
+
+### File: /home/errick/dao-ui/build/images/p4.png ###
+Error reading file: 'utf-8' codec can't decode byte 0x89 in position 0: invalid start byte
+
+### File: /home/errick/dao-ui/build/images/p1.png ###
+Error reading file: 'utf-8' codec can't decode byte 0x89 in position 0: invalid start byte
+
+### File: /home/errick/dao-ui/build/images/p2.png ###
+Error reading file: 'utf-8' codec can't decode byte 0x89 in position 0: invalid start byte
+
+### File: /home/errick/dao-ui/build/images/p3.png ###
+Error reading file: 'utf-8' codec can't decode byte 0x89 in position 0: invalid start byte
+
+### File: /home/errick/dao-ui/public/logo512.png ###
+Error reading file: 'utf-8' codec can't decode byte 0x89 in position 0: invalid start byte
+
+### File: /home/errick/dao-ui/public/logo192.png ###
+Error reading file: 'utf-8' codec can't decode byte 0x89 in position 0: invalid start byte
+
+### File: /home/errick/dao-ui/public/robots.txt ###
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Disallow:
+
+
+### File: /home/errick/dao-ui/public/index.html ###
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>Rayan DAO for VCs</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>
+
+
+### File: /home/errick/dao-ui/public/manifest.json ###
+{
+  "short_name": "Rayan DAO for VCs",
+  "name": "Tokenize DAO Platform for Venture Capitals & Investment",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
+
+
+### File: /home/errick/dao-ui/public/favicon.ico ###
+Error reading file: 'utf-8' codec can't decode byte 0xe3 in position 14: invalid continuation byte
+
+### File: /home/errick/dao-ui/public/images/p4.png ###
+Error reading file: 'utf-8' codec can't decode byte 0x89 in position 0: invalid start byte
+
+### File: /home/errick/dao-ui/public/images/p1.png ###
+Error reading file: 'utf-8' codec can't decode byte 0x89 in position 0: invalid start byte
+
+### File: /home/errick/dao-ui/public/images/p2.png ###
+Error reading file: 'utf-8' codec can't decode byte 0x89 in position 0: invalid start byte
+
+### File: /home/errick/dao-ui/public/images/p3.png ###
+Error reading file: 'utf-8' codec can't decode byte 0x89 in position 0: invalid start byte
+

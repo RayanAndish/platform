@@ -1,0 +1,29 @@
+/* ریسپانسیو برای موبایل */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  .headerContent {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  .walletDashboard {
+    margin-top: 20px;
+  }
+}

@@ -1,55 +1,69 @@
 {
-  "appName": "Rayan DAO for VCs",
-  "home": "Home",
-  "projects": "Projects",
-  "discovery": "Discovery",
-  "documentation": "Documentation",
-  "connectWallet": "Connect Wallet",
-  "heroTitle": "Token-Fundraising with\nDECENTRALIZED  AND\nMOST SECURE DAO PLATROFM",
-  "heroSubtitle": "Empower Your StartUP: Tokenize, Commercialize, and Disseminate with DAO Ventur Capitals",
-  "defineProject": "Define your project",
-  "explore": "Explore",
-  "listedProjects": "Listed Projects",
-  "fundedProjects": "Funded Projects",
-  "researchers": "Investors",
-  "subscribeNewsletter": "SUBSCRIBE TO OUR NEWSLETTER",
-  "newsletterDescription": "Get weekly access to the last listed projects, available grants and programs",
-  "enterEmail": "Enter you email",
-  "subscribe": "Subscribe",
-  "aboutUsTitle": "About Rayan DAO",
-  "aboutUsDescription": "At Ryan DAO, our goal is to democratize access to finance and create a vibrant community of investors eager to advance innovative projects. We see ourselves as catalysts for change in the startup funding landscape, unlocking creativity and accelerating progress for the betterment of all.",
-  "usefulLinks": "Useful links",
-  "termsOfService": "Terms of Service",
-  "copyright": "Copyright © {{year}} Rayan DAO. All rights reserved.",
-  "fundedAmount": "Funded Amount",
-  "openFundingCalls": "Open Funding Calls",
-  "seeAll": "See all",
-  "defineYourProjectTitle": "DEFINE YOUR PROJECT AND RUN A FUNDRAISING EVENT",
-  "defineYourProjectSubtitle": "Ignite your project with the power of Token! Join startups across domains...",
-  "defineYourProjectButton": "Set up an Token-Fundraising event",
-  "resultsDiscovery": "RESULTS DISCOVERY",
-  "recentlyJoinedUsers": "RECENTLY JOINED USERS",
-  "highestFundedProjects": "HIGHEST FUNDED PROJECTS",
-  "faqQuestion1": "What is Rayan DAO?",
-  "faqAnswer1": "Rayan DAO is a platform for...",
-  "faqQuestion2": "How does Rayan DAO work?",
-  "faqAnswer2": "Rayan DAO works by...",
-  "basicInfo": "Basic Info",
-  "timelineBudget": "Timeline & Budget",
-  "methods": "Methods",
-  "projectTitle": "Project Title",
-  "projectTitlePlaceholder": "Write a short and accurate title of your project",
-  "category": "Category",
-  "selectCategory": "Select a category related to your project",
-  "keyword": "Keyword",
-  "keywordPlaceholder": "Add the most prominent keywords of your project",
-  "projectLink": "Project Link",
-  "projectLinkPlaceholder": "Please provide external links to your project (Personal web page, Github, Kaggle, Dribbble...)",
-  "addNewLink": "Add new link",
-  "projectSummary": "Project Summary",
-  "projectSummaryPlaceholder": "Write a summary of research proposal includes definition, background, objectives, and methods of your research, etc.",
-  "addGraphicalAbstract": "Add Graphical Abstract",
-  "graphicalAbstractLabel": "A graphical abstract (or visual abstract) is a graphical or visual equivalent of a written abstract. Graphical abstracts are a single image and are designed to help the reader to quickly gain an overview on a scholarly paper, research project, diagram, etc. File types: JPG, PNG, GIF. Max size: 2 MB",
-  "saveDraft": "Save Draft",
-  "preview": "Preview"
+  "header": {
+    "title": "DAO VC Funding Platform",
+    "connectWallet": "Connect Wallet",
+    "authenticate": "Authenticate",
+    "welcome": "Welcome, User!"
+  },
+
+  "hero": {
+    "title": "Welcome to the Future of Crowdfunding",
+    "subtitle": "Discover, Invest, and Grow with the best blockchain-based projects.",
+    "getStarted": "Get Started"
+  },
+
+  "stats": {
+    "projects": "Projects",
+    "users": "Users",
+    "investments": "Total Investments"
+  },
+
+  "projects": {
+    "title": "Explore Projects",
+    "loading": "Loading projects...",
+    "error": "Failed to load projects.",
+    "searchPlaceholder": "Search projects by name...",
+    "budget": "Budget",
+    "progress": "Progress",
+    "status": "Status",
+    "viewDetails": "View Details"
+  },
+
+  "projectDetails": {
+    "loading": "Loading project details...",
+    "error": "Failed to load project details.",
+    "budget": "Budget",
+    "progress": "Progress",
+    "status": "Status",
+    "investButton": "Invest in Project"
+  },
+
+  "defineProject": {
+    "title": "Define New Project",
+    "fields": {
+      "name": "Project Name",
+      "description": "Description",
+      "budget": "Budget (USD)",
+      "duration": "Duration (Days)",
+      "category": "Category",
+      "selectCategory": "Select a category..."
+    },
+    "categories": {
+      "tech": "Technology",
+      "health": "Health",
+      "education": "Education"
+    },
+    "validation": {
+      "name": "Project name is required",
+      "description": "Description is required",
+      "budget": "Budget is required",
+      "budgetPositive": "Budget must be a positive number",
+      "duration": "Duration is required",
+      "durationPositive": "Duration must be a positive number",
+      "category": "Category is required"
+    },
+    "submitButton": "Submit",
+    "success": "Project successfully defined!",
+    "error": "Failed to define the project. Please try again."
+  }
 }

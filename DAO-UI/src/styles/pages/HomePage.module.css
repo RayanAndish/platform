@@ -1,0 +1,184 @@
+/* کانتینر اصلی */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+/* هدر */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #007bff;
+  margin: 0;
+}
+/* ناوبری */
+.nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.navLink {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.navLink:hover {
+  color: #007bff;
+}
+
+/* محتوای اصلی */
+.main {
+  min-height: calc(100vh - 160px); /* ارتفاع صفحه منهای هدر و فوتر */
+  padding: 50px 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 40px 20px;
+  background-image: url('../../../public/images/hero-bg.png');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  border-radius: 8px;
+  position: relative;
+}
+
+/* دکمه‌های بالای Hero */
+.heroActions {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.hero p {
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: #f0f0f0;
+}
+
+/* Statistics Section */
+.statistics {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 40px;
+  padding: 20px 0;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.statItem {
+  text-align: center;
+}
+
+.statItem h2 {
+  font-size: 32px;
+  color: #007bff;
+}
+
+.statItem p {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Projects Section */
+.projectsSection {
+  margin-top: 40px;
+}
+
+.projectsSection h2 {
+  text-align: center;
+  font-size: 28px;
+  color: #007bff;
+  margin-bottom: 20px;
+}
+
+.projectsList {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.projectCard {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 30%;
+}
+
+.projectCard h3 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.projectCard p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.projectCard button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.projectCard button:hover {
+  background-color: #0056b3;
+}
+
+/* فوتر */
+.footer {
+  background-color: #343a40;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.footer p {
+  font-size: 14px;
+  margin: 0;
+}

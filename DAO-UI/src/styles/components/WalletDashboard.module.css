@@ -1,0 +1,65 @@
+.walletDashboard {
+  position: relative;
+  margin-top: 20px;
+}
+
+.walletHeader {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.walletButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.walletButton:hover {
+  background-color: #0056b3;
+}
+
+.walletDropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 1000;
+  width: 200px;
+}
+
+.walletDropdownItem {
+  padding: 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.walletDropdownItem:hover {
+  background-color: #f0f0f0;
+}
+
+.walletInfo {
+  margin-top: 20px;
+}
+
+.toggleWalletInfo {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.toggleWalletInfo:hover {
+  background-color: #218838;
+}
