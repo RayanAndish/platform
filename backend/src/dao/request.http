@@ -1,0 +1,28 @@
+### دریافت اطلاعات DAO
+GET http://localhost:3001/dao/123/info HTTP/1.1
+
+### ایجاد یک پروپوزال جدید
+POST http://localhost:3001/dao/123/proposals HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <your_token>
+
+{
+  "title": "New Proposal",
+  "description": "This is a new proposal description."
+}
+
+### دریافت لیست پروپوزال‌ها
+GET http://localhost:3001/dao/123/proposals HTTP/1.1
+
+### رأی دادن به یک پروپوزال
+POST http://localhost:3001/dao/123/proposals/proposal1/vote HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer <your_token>
+
+{
+  "userId": "user123",
+  "vote": "yes"
+}
+
+### دریافت نتیجه پروپوزال
+GET http://localhost:3001/dao/123/proposals/proposal1/results HTTP/1.1

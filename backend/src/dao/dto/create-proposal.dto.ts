@@ -1,6 +1,11 @@
-// src/dao/dto/create-proposal.dto.ts
+import { IsString, IsNotEmpty } from 'class-validator';
+
 export class CreateProposalDto {
-    title: string;
-    description: string;
-    // Add other proposal-related fields as needed (e.g., actions, targets, etc.)
-  }
+  @IsString()
+  @IsNotEmpty()
+  readonly title: string;
+
+  @IsString()
+  @IsNotEmpty()
+  readonly description: string;
+}
