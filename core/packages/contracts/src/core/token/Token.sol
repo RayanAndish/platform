@@ -2,7 +2,7 @@
 pragma solidity ^0.8.28;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol"; // اتصال به قرارداد ERC20 از OpenZeppelin
-import "@openzeppelin/contracts/access/Ownable.sol"; // اتصال به قرارداد Ownable از OpenZeppelin
+import "@openzeppelin/contracts/access/Ownable2Step.sol"; // اتصال به قرارداد Ownable2Step از OpenZeppelin
 import "@openzeppelin/contracts/utils/Counters.sol"; // اتصال به کتابخانه Counters از OpenZeppelin
 import "../permission/AccControl.sol"; // اتصال به قرارداد AccControl برای مدیریت نقش‌ها
 import "../security/CustomHash.sol"; // اتصال به قرارداد CustomHash برای هش کردن اطلاعات
@@ -11,7 +11,7 @@ import "../security/CustomHash.sol"; // اتصال به قرارداد CustomHas
  * @title Token
  * @dev مدیریت توکن و دارایی‌های شبکه DAO-VC
  */
-contract Token is ERC20, Ownable {
+contract Token is ERC20, Ownable2Step {
     using Counters for Counters.Counter; // استفاده از کتابخانه Counters برای شمارش شناسه‌ها
 
     AccControl public accControl; // متغیر عمومی برای نگهداری آدرس قرارداد AccControl
@@ -45,8 +45,9 @@ contract Token is ERC20, Ownable {
      * @param _hasher آدرس قرارداد تابع هش
      */
     constructor(uint256 initialSupply, address initialOwner, address _accControl, address _hasher) 
-        ERC20("Rayan Token", "RYC") Ownable(initialOwner) {
+        ERC20("Rayan Token", "RYC") {
         _mint(msg.sender, initialSupply); // ضرب توکن‌های اولیه
+        _transferOwnership(initialOwner);
         accControl = AccControl(_accControl);
         hasher = CustomHash(_hasher);
     }

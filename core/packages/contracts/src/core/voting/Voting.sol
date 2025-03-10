@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.28;
 
-import "@openzeppelin/contracts/access/Ownable.sol"; // اتصال به قرارداد Ownable از OpenZeppelin
+import "@openzeppelin/contracts/access/Ownable2Step.sol"; // اتصال به قرارداد Ownable2Step از OpenZeppelin
 import "../permission/AccControl.sol"; // اتصال به قرارداد AccControl برای مدیریت نقش‌ها
 import "../security/CustomHash.sol"; // اتصال به قرارداد CustomHash برای هش کردن اطلاعات
 
@@ -9,7 +9,7 @@ import "../security/CustomHash.sol"; // اتصال به قرارداد CustomHas
  * @title Voting
  * @dev مدیریت رأی‌گیری برای تصمیم‌گیری‌های DAO-VC با الگوریتم ترکیبی PoA + dPoS + PoP + AI
  */
-contract Voting is Ownable {
+contract Voting is Ownable2Step {
     AccControl public accControl; // متغیر عمومی برای نگهداری آدرس قرارداد AccControl
     CustomHash public hasher; // متغیر عمومی برای نگهداری آدرس قرارداد تابع هش
 
@@ -43,11 +43,16 @@ contract Voting is Ownable {
 
     /**
      * @dev سازنده قرارداد
-     * @param initialOwner آدرس مالک اولیه
      * @param _accControl آدرس قرارداد AccControl
      * @param _hasher آدرس قرارداد تابع هش
+     * @param initialOwner آدرس مالک اولیه
      */
-    constructor(address initialOwner, address _accControl, address _hasher) Ownable(initialOwner) {
+    constructor(address _accControl, address _hasher, address initialOwner) {
+        require(_accControl != address(0), "Invalid AccControl address");
+        require(_hasher != address(0), "Invalid CustomHash address");
+        require(initialOwner != address(0), "Invalid owner address");
+        
+        _transferOwnership(initialOwner);
         accControl = AccControl(_accControl);
         hasher = CustomHash(_hasher);
     }

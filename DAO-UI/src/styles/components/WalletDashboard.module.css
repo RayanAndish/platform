@@ -1,65 +1,141 @@
 .walletDashboard {
   position: relative;
-  margin-top: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.walletHeader {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.walletButton {
-  background-color: #007bff;
+.connectButton {
+  background: #007bff;
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
+  padding: 8px 16px;
+  border-radius: 6px;
   cursor: pointer;
-  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
-.walletButton:hover {
-  background-color: #0056b3;
-}
-
-.walletDropdown {
-  position: absolute;
-  top: 40px;
-  right: 0;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  z-index: 1000;
-  width: 200px;
-}
-
-.walletDropdownItem {
-  padding: 10px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.walletDropdownItem:hover {
-  background-color: #f0f0f0;
+.connectButton:hover {
+  background: #0056b3;
 }
 
 .walletInfo {
-  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.toggleWalletInfo {
-  background-color: #28a745;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
+.networkButton,
+.addressButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: rgba(0, 123, 255, 0.1);
+  border: 1px solid rgba(0, 123, 255, 0.2);
+  border-radius: 6px;
+  color: #333;
   cursor: pointer;
-  margin-top: 10px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
 }
 
-.toggleWalletInfo:hover {
-  background-color: #218838;
+.networkButton:hover,
+.addressButton:hover {
+  background: rgba(0, 123, 255, 0.15);
+}
+
+.networkIcon {
+  font-size: 1.2em;
+}
+
+.balance {
+  color: #0056b3;
+  font-weight: 500;
+}
+
+.address {
+  color: #666;
+}
+
+.networkMenu,
+.walletMenu {
+  position: absolute;
+  top: 100%;
+  margin-top: 4px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 8px 0;
+  min-width: 200px;
+  z-index: 1000;
+}
+
+.networkMenu {
+  left: 0;
+}
+
+.walletMenu {
+  right: 0;
+}
+
+.networkMenuItem,
+.walletMenuItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.networkMenuItem:hover,
+.walletMenuItem:hover {
+  background-color: rgba(0, 123, 255, 0.08);
+}
+
+.networkMenuItem.active {
+  background-color: rgba(0, 123, 255, 0.12);
+  font-weight: 500;
+}
+
+.menuItemLabel {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.fullAddress {
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: #333;
+  word-break: break-all;
+}
+
+.disconnect {
+  color: #dc3545;
+  border-top: 1px solid #eee;
+  margin-top: 8px;
+  padding-top: 8px;
+}
+
+.disconnect:hover {
+  background-color: rgba(220, 53, 69, 0.08);
+}
+
+/* RTL Support */
+[dir="rtl"] .networkMenu {
+  left: auto;
+  right: 0;
+}
+
+[dir="rtl"] .walletMenu {
+  right: auto;
+  left: 0;
+}
+
+[dir="rtl"] .networkMenuItem,
+[dir="rtl"] .walletMenuItem {
+  flex-direction: row-reverse;
 }

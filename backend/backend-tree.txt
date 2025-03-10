@@ -1,4 +1,91 @@
 .
+├── backend-content.txt
+├── backend-tree.txt
+├── dist
+│   ├── app.controller.d.ts
+│   ├── app.controller.js
+│   ├── app.controller.js.map
+│   ├── app.module.d.ts
+│   ├── app.module.js
+│   ├── app.module.js.map
+│   ├── app.service.d.ts
+│   ├── app.service.js
+│   ├── app.service.js.map
+│   ├── auth
+│   │   ├── auth.controller.d.ts
+│   │   ├── auth.controller.js
+│   │   ├── auth.controller.js.map
+│   │   ├── auth.guard.d.ts
+│   │   ├── auth.guard.js
+│   │   ├── auth.guard.js.map
+│   │   ├── auth.module.d.ts
+│   │   ├── auth.module.js
+│   │   ├── auth.module.js.map
+│   │   ├── auth.service.d.ts
+│   │   ├── auth.service.js
+│   │   ├── auth.service.js.map
+│   │   └── decorators
+│   │       ├── public.decorator.d.ts
+│   │       ├── public.decorator.js
+│   │       └── public.decorator.js.map
+│   ├── dao
+│   │   ├── dao.controller.d.ts
+│   │   ├── dao.controller.js
+│   │   ├── dao.controller.js.map
+│   │   ├── dao.module.d.ts
+│   │   ├── dao.module.js
+│   │   ├── dao.module.js.map
+│   │   ├── dao.service.d.ts
+│   │   ├── dao.service.js
+│   │   ├── dao.service.js.map
+│   │   ├── dto
+│   │   │   ├── create-proposal.dto.d.ts
+│   │   │   ├── create-proposal.dto.js
+│   │   │   └── create-proposal.dto.js.map
+│   │   └── schemas
+│   │       ├── dao.schema.d.ts
+│   │       ├── dao.schema.js
+│   │       └── dao.schema.js.map
+│   ├── main.d.ts
+│   ├── main.js
+│   ├── main.js.map
+│   ├── project
+│   │   ├── project.controller.d.ts
+│   │   ├── project.controller.js
+│   │   ├── project.controller.js.map
+│   │   ├── project.module.d.ts
+│   │   ├── project.module.js
+│   │   ├── project.module.js.map
+│   │   ├── project.service.d.ts
+│   │   ├── project.service.js
+│   │   ├── project.service.js.map
+│   │   └── schemas
+│   │       ├── project.schema.d.ts
+│   │       ├── project.schema.js
+│   │       └── project.schema.js.map
+│   ├── tsconfig.build.tsbuildinfo
+│   └── user
+│       ├── dto
+│       │   ├── create-user.dto.d.ts
+│       │   ├── create-user.dto.js
+│       │   ├── create-user.dto.js.map
+│       │   ├── update-user.dto.d.ts
+│       │   ├── update-user.dto.js
+│       │   └── update-user.dto.js.map
+│       ├── schemas
+│       │   ├── user.schema.d.ts
+│       │   ├── user.schema.js
+│       │   └── user.schema.js.map
+│       ├── user.controller.d.ts
+│       ├── user.controller.js
+│       ├── user.controller.js.map
+│       ├── user.module.d.ts
+│       ├── user.module.js
+│       ├── user.module.js.map
+│       ├── user.service.d.ts
+│       ├── user.service.js
+│       └── user.service.js.map
+├── Dockerfile
 ├── eslint.config.mjs
 ├── nest-cli.json
 ├── package.json
@@ -12,7 +99,7 @@
 │   ├── app.service.ts
 │   ├── auth
 │   │   ├── auth.controller.ts
-│   │   ├── auth.gaurd.ts
+│   │   ├── auth.guard.ts
 │   │   ├── auth.module.ts
 │   │   ├── auth.service.ts
 │   │   └── decorators
@@ -25,18 +112,23 @@
 │   ├── config
 │   ├── dao
 │   │   ├── dao.controller.ts
-│   │   ├── dao.madule.ts
+│   │   ├── dao.module.ts
 │   │   ├── dao.service.ts
 │   │   ├── dto
-│   │   │   └── createproposal.dto.ts
+│   │   │   └── create-proposal.dto.ts
 │   │   └── schemas
 │   │       └── dao.schema.ts
 │   ├── main.ts
 │   ├── project
-│   │   └── project.module.ts
+│   │   ├── project.controller.ts
+│   │   ├── project.module.ts
+│   │   ├── project.service.ts
+│   │   └── schemas
+│   │       └── project.schema.ts
 │   └── user
 │       ├── dto
-│       │   └── create-user.dto.ts
+│       │   ├── create-user.dto.ts
+│       │   └── update-user.dto.ts
 │       ├── schemas
 │       │   └── user.schema.ts
 │       ├── user.controller.ts
@@ -46,9 +138,8 @@
 ├── test
 │   ├── app.e2e-spec.ts
 │   └── jest-e2e.json
-├── tree.txt
 ├── tsconfig.build.json
 ├── tsconfig.json
 └── yarn.lock
 
-18 directories, 34 files
+30 directories, 113 files

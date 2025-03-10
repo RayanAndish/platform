@@ -7,6 +7,9 @@ import HomePage from "./components/HomePage/HomePage";
 import ProjectsPage from "./components/Projects/ProjectsPage";
 import ProjectDetails from "./components/Projects/ProjectDetails";
 import DefineProject from "./components/Projects/DefineProject";
+import StakingPage from "./components/Staking/StakingPage";
+import VotingPage from "./components/DAO/VoingPage";
+import AboutPage from "./components/About/AboutPage";
 
 const queryClient = new QueryClient();
 const App: React.FC = () => {
@@ -14,17 +17,20 @@ const App: React.FC = () => {
     console.log("Connected account:", account);
   };
     return (
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/projects" element={<ProjectsPage />} />
-        <Route path="/projects/:id" element={<ProjectDetails />} />
-        <Route path="/define-project" element={<DefineProject />} />
-        <Route path="/wallet-dashboard" element={<WalletDashboard />} />
-        <Route path="/wallet-connect" element={<WalletConnect onConnect={handleConnect} />} />
-      </Routes>
+      <QueryClientProvider client={queryClient}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/projects/:id" element={<ProjectDetails />} />
+          <Route path="/define-project" element={<DefineProject />} />
+          <Route path="/staking" element={<StakingPage />} />
+          <Route path="/voting" element={<VotingPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/wallet-dashboard" element={<WalletDashboard />} />
+          <Route path="/wallet-connect" element={<WalletConnect onConnect={handleConnect} />} />
+        </Routes>
+      </QueryClientProvider>
     );
 };
-
- 
 
 export default App;

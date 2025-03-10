@@ -1,0 +1,181 @@
+{
+    "Consensus": {
+      "constructorArguments": {
+        "accControl": "0xAccControlContractAddress",
+        "hasher": "0xCustomHashContractAddress",
+        "initialOwner": "0xInitialOwnerAddress"
+      },
+      "dynamicParameters": {
+        "addValidator": {
+          "validatorAddress": "0xValidatorAddress",
+          "stake": 1000
+        },
+        "validateTransaction": {
+          "transactionHash": "0xTransactionHash"
+        }
+      }
+    },
+    "CustomHash": {
+      "constructorArguments": {},
+      "dynamicParameters": {
+        "customHash": {
+          "data": "0xInputData",
+          "salt": "0xSaltValue"
+        }
+      }
+    },
+    "AccControl": {
+      "constructorArguments": {
+        "initialOwner": "0xInitialOwnerAddress",
+        "hasherAddress": "0xCustomHashContractAddress"
+      },
+      "dynamicParameters": {
+        "addMember": {
+          "member": "0xMemberAddress",
+          "role": "Investor"
+        },
+        "addDAONode": {
+          "daoNode": "0xDAONodeAddress"
+        },
+        "addValidator": {
+          "validator": "0xValidatorAddress"
+        }
+      }
+    },
+    "Payments": {
+      "constructorArgs": {
+        "initialOwner": "0x1234567890abcdef1234567890abcdef12345678",
+        "_token": "0xabcdefabcdefabcdefabcdefabcdefabcdefabcd",
+        "_accControl": "0x9876543210abcdef9876543210abcdef98765432",
+        "_hasher": "0x7654321076543210765432107654321076543210"
+      },
+      "operations": {
+        "transferPayment": {
+          "to": "0xabcdefabcdefabcdefabcdefabcdefabcdefabcd",
+          "amount": 1000
+        },
+        "withdrawFunds": {
+          "amount": 500
+        }
+      }
+    },
+    "DAO": {
+      "constructorArgs": {
+        "initialOwner": "0x1234567890abcdef1234567890abcdef12345678",
+        "_tokenAddress": "0xabcdefabcdefabcdefabcdefabcdefabcdefabcd",
+        "_votingThreshold": 50
+      },
+      "operations": {
+        "createProposal": {
+          "description": "Proposal to increase funding",
+          "duration": 3600
+        },
+        "vote": {
+          "proposalId": 1,
+          "support": true
+        },
+        "executeProposal": {
+          "proposalId": 1
+        }
+      }
+    },
+    "Investment": {
+      "constructorArgs": {
+        "initialOwner": "0x1234567890abcdef1234567890abcdef12345678",
+        "_token": "0xabcdefabcdefabcdefabcdefabcdefabcdefabcd",
+        "_accControl": "0x9876543210abcdef9876543210abcdef98765432",
+        "_hasher": "0x7654321076543210765432107654321076543210"
+      },
+      "operations": {
+        "stakeTokens": {
+          "amount": 1000
+        },
+        "withdrawInvestment": {}
+      }
+    },
+    "Token": {
+      "constructorArguments": {
+        "initialSupply": 1000000,
+        "initialOwner": "0xInitialOwnerAddress",
+        "accControl": "0xAccControlContractAddress",
+        "hasher": "0xHasherContractAddress"
+      },
+      "dynamicParameters": {
+        "registerAsset": {
+          "assetType": "RealEstate",
+          "metadata": "Property in downtown",
+          "valueInTokens": 5000
+        },
+        "transferAsset": {
+          "assetId": 1,
+          "to": "0xRecipientAddress"
+        },
+        "tokenizeAsset": {
+          "assetId": 1
+        }
+      }
+    },
+    "ProjectMon": {
+      "constructorArguments": {
+        "initialOwner": "0xInitialOwnerAddress",
+        "accControl": "0xAccControlContractAddress",
+        "hasher": "0xHasherContractAddress"
+      },
+      "dynamicParameters": {
+        "registerProject": {
+          "name": "Decentralized Voting System",
+          "description": "A project to create a blockchain-based voting system."
+        },
+        "updateProjectStatus": {
+          "projectId": 1,
+          "isCompleted": true
+        }
+      }
+    },
+    "PermissionManager": {
+      "constructorArguments": {
+        "initialOwner": "0xInitialOwnerAddress"
+      },
+      "dynamicParameters": {
+        "grant": {
+          "where": "0xTargetContractAddress",
+          "who": "0xUserAddress",
+          "permissionId": "0xPermissionId"
+        },
+        "grantWithCondition": {
+          "where": "0xTargetContractAddress",
+          "who": "0xUserAddress",
+          "permissionId": "0xPermissionId",
+          "condition": "0xConditionContractAddress"
+        },
+        "revoke": {
+          "where": "0xTargetContractAddress",
+          "who": "0xUserAddress",
+          "permissionId": "0xPermissionId"
+        }
+      }
+    },
+    "Voting": {
+      "constructorArgs": {
+        "initialOwner": "0x1234567890abcdef1234567890abcdef12345678",
+        "_accControl": "0xabcdefabcdefabcdefabcdefabcdefabcdefabcd",
+        "_hasher": "0x9876543210abcdef9876543210abcdef98765432"
+      },
+      "operations": {
+        "createProposal": {
+          "description": "Proposal to improve governance structure"
+        },
+        "vote": {
+          "proposalId": 1,
+          "support": true
+        },
+        "finalizeProposal": {
+          "proposalId": 1
+        },
+        "adjustReputation": {
+          "validator": "0xabcdefabcdefabcdefabcdefabcdefabcdefabcd",
+          "participated": true
+        }
+      }
+    }
+  }

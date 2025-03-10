@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.28;
 
-import "@openzeppelin/contracts/access/Ownable.sol"; // اتصال به قرارداد Ownable از OpenZeppelin
+import "@openzeppelin/contracts/access/Ownable2Step.sol"; // اتصال به قرارداد Ownable2Step از OpenZeppelin
 import "../token/Token.sol"; // اتصال به قرارداد Token برای مدیریت توکن‌ها
 import "../permission/AccControl.sol"; // اتصال به قرارداد AccControl برای مدیریت نقش‌ها
 import "../security/CustomHash.sol"; // اتصال به قرارداد CustomHash برای هش کردن اطلاعات
@@ -10,27 +10,44 @@ import "../security/CustomHash.sol"; // اتصال به قرارداد CustomHas
  * @title Payments
  * @dev مدیریت پرداخت‌ها و تراکنش‌های مالی در شبکه DAO-VC
  */
-contract Payments is Ownable {
+contract Payments is Ownable2Step {
     Token public token; // متغیر عمومی برای نگهداری آدرس قرارداد توکن
     AccControl public accControl; // متغیر عمومی برای نگهداری آدرس قرارداد AccControl
     CustomHash public hasher; // متغیر عمومی برای نگهداری آدرس قرارداد تابع هش
+
+    // ساختار Payment شامل شناسه، پرداخت‌کننده، گیرنده، مقدار و وضعیت
+    struct Payment {
+        uint256 id;
+        address payer;
+        address payee;
+        uint256 amount;
+        bool completed;
+    }
+
+    uint256 public paymentCount; // شمارنده تعداد پرداخت‌ها
+    mapping(uint256 => Payment) public payments; // نگاشت برای ذخیره پرداخت‌ها
 
     // نگاشت برای پیگیری هش تراکنش‌ها به منظور جلوگیری از تراکنش‌های تکراری
     mapping(bytes32 => bool) public transactionHashes;
 
     // رویدادها برای ثبت تغییرات در قرارداد
+    event PaymentCreated(uint256 indexed paymentId, address indexed payer, address indexed payee, uint256 amount);
+    event PaymentCompleted(uint256 indexed paymentId);
     event PaymentTransferred(address indexed from, address indexed to, uint256 amount, bytes32 hash);
     event FundsWithdrawn(address indexed user, uint256 amount, bytes32 hash);
 
     /**
      * @dev سازنده قرارداد
-     * @param initialOwner آدرس مالک اولیه
-     * @param _token آدرس قرارداد توکن
      * @param _accControl آدرس قرارداد AccControl
      * @param _hasher آدرس قرارداد تابع هش
+     * @param initialOwner آدرس مالک اولیه
      */
-    constructor(address initialOwner, address _token, address _accControl, address _hasher) Ownable(initialOwner) {
-        token = Token(_token);
+    constructor(address _accControl, address _hasher, address initialOwner) {
+        require(_accControl != address(0), "Invalid AccControl address");
+        require(_hasher != address(0), "Invalid CustomHash address");
+        require(initialOwner != address(0), "Invalid owner address");
+        
+        _transferOwnership(initialOwner);
         accControl = AccControl(_accControl);
         hasher = CustomHash(_hasher);
     }

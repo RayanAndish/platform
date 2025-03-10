@@ -20,5 +20,185 @@
     "aboutUsDescription": "At FunDeSci, We aim to democratize access to funds and create a vibrant community of scientists who are passionate about driving forward the frontiers of human knowledge. We see ourselves as catalysts for change in the scientific landscape, unlocking creativity and accelerating progress for the betterment of all.",
     "usefulLinks": "Useful links",
     "termsOfService": "Terms of Service",
-    "copyright": "Copyright © {{year}} FunDeSci. All rights reserved."
+    "copyright": "Copyright © {{year}} FunDeSci. All rights reserved.",
+    "header": {
+      "title": "Платформа финансирования DAO VC",
+      "nav": {
+        "projects": "Проекты",
+        "staking": "Стейкинг",
+        "voting": "Голосование",
+        "about": "О нас"
+      },
+      "connectWallet": "Подключить кошелек"
+    },
+    "hero": {
+      "title": "Добро пожаловать на платформу финансирования DAO VC",
+      "subtitle": "Открывайте, инвестируйте и развивайтесь с лучшими блокчейн-проектами"
+    },
+    "stats": {
+      "activeProjects": "Активные проекты",
+      "fundsRaised": "Привлечено средств",
+      "communityMembers": "Участники сообщества",
+      "numbers": {
+        "projects": "25+",
+        "funds": "10M$+",
+        "members": "50+"
+      }
+    },
+    "projects": {
+      "title": "Исследовать проекты",
+      "card": {
+        "learnMore": "Подробнее"
+      }
+    },
+    "footer": {
+      "copyright": "© 2025 Платформа финансирования DAO VC. Все права защищены."
+    },
+    "common": {
+      "loading": "Загрузка...",
+      "error": "Произошла ошибка",
+      "success": "Успешно",
+      "submit": "Отправить",
+      "cancel": "Отмена",
+      "connect": "Подключить кошелек",
+      "disconnect": "Отключить"
+    },
+    "wallet": {
+      "connect": "Подключить кошелек",
+      "connecting": "Подключение...",
+      "disconnect": "Отключить",
+      "balance": "Баланс",
+      "address": "Адрес",
+      "network": {
+        "switch": "Сменить сеть",
+        "switching": "Смена сети...",
+        "error": "Не удалось сменить сеть"
+      },
+      "errors": {
+        "connect": "Не удалось подключить кошелек",
+        "network": "Сеть не поддерживается",
+        "balance": "Не удалось загрузить баланс"
+      }
+    },
+    "projectDetails": {
+      "loading": "Загрузка деталей проекта...",
+      "error": "Ошибка загрузки деталей проекта",
+      "budget": "Бюджет",
+      "progress": "Прогресс",
+      "status": "Статус",
+      "investButton": "Инвестировать в Проект"
+    },
+    "defineProject": {
+      "title": "Создать Новый Проект",
+      "fields": {
+        "name": "Название Проекта",
+        "description": "Описание",
+        "budget": "Бюджет (USD)",
+        "duration": "Длительность (Дней)",
+        "category": "Категория",
+        "selectCategory": "Выберите категорию..."
+      },
+      "categories": {
+        "tech": "Технологии",
+        "health": "Здоровье",
+        "education": "Образование"
+      },
+      "validation": {
+        "name": "Требуется название проекта",
+        "description": "Требуется описание",
+        "budget": "Требуется бюджет",
+        "budgetPositive": "Бюджет должен быть положительным числом",
+        "duration": "Требуется длительность",
+        "durationPositive": "Длительность должна быть положительным числом",
+        "category": "Требуется категория"
+      },
+      "submitButton": "Отправить",
+      "success": "Проект успешно создан!",
+      "error": "Ошибка создания проекта. Пожалуйста, попробуйте снова."
+    },
+    "staking": {
+      "title": "Стейкинг",
+      "totalStaked": "Всего застейкано",
+      "yourStake": "Ваша ставка",
+      "rewards": "Доступные награды",
+      "apr": "Текущий APR",
+      "enterAmount": "Введите сумму для стейкинга",
+      "stake": "Застейкать",
+      "unstake": "Вывести",
+      "claimRewards": "Получить награды"
+    },
+    "voting": {
+      "title": "Управление",
+      "votingPower": "Сила голоса",
+      "createProposal": "Создать предложение",
+      "proposalTitle": "Заголовок предложения",
+      "proposalDescription": "Описание предложения",
+      "proposalDeadline": "Срок голосования",
+      "enterTitle": "Введите заголовок предложения",
+      "enterDescription": "Введите описание предложения",
+      "votesFor": "Голосов за",
+      "votesAgainst": "Голосов против",
+      "voteFor": "Голосовать за",
+      "voteAgainst": "Голосовать против",
+      "status": "Статус",
+      "deadline": "Срок",
+      "creator": "Создатель",
+      "status": {
+        "active": "Активно",
+        "passed": "Принято",
+        "rejected": "Отклонено",
+        "pending": "В ожидании"
+      }
+    },
+    "about": {
+      "title": "О платформе DAO VC",
+      "subtitle": "Создаем будущее децентрализованного венчурного капитала",
+      "mission": {
+        "title": "Наша миссия",
+        "description": "Мы стремимся демократизировать венчурный капитал через технологию блокчейн, обеспечивая прозрачные и инклюзивные инвестиционные возможности для всех."
+      },
+      "features": {
+        "title": "Почему мы",
+        "decentralized": {
+          "title": "Децентрализация",
+          "description": "Истинная децентрализация с принятием решений сообществом и прозрачным управлением."
+        },
+        "secure": {
+          "title": "Безопасность",
+          "description": "Построено на проверенной блокчейн-технологии с множественными уровнями безопасности и аудитами."
+        },
+        "efficient": {
+          "title": "Эффективность",
+          "description": "Быстрые, недорогие транзакции и автоматизированные процессы через смарт-контракты."
+        },
+        "community": {
+          "title": "Управление сообществом",
+          "description": "Активное участие сообщества в выборе проектов и решениях управления."
+        }
+      },
+      "team": {
+        "title": "Наша команда",
+        "member1": {
+          "name": "Сара Джонсон",
+          "role": "Основатель и CEO",
+          "bio": "Эксперт по блокчейну с более чем 10-летним опытом в венчурном капитале и децентрализованных системах."
+        },
+        "member2": {
+          "name": "Майкл Чен",
+          "role": "CTO",
+          "bio": "Эксперт по смарт-контрактам и бывший ведущий разработчик крупных блокчейн-проектов."
+        },
+        "member3": {
+          "name": "Елена Родригес",
+          "role": "Руководитель сообщества",
+          "bio": "Эксперт по развитию сообщества с обширным опытом в DAO и Web3."
+        }
+      },
+      "contact": {
+        "title": "Связаться с нами",
+        "email": "Email",
+        "telegram": "Telegram",
+        "twitter": "Twitter"
+      }
+    }
   }

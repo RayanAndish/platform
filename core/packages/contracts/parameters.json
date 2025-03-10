@@ -1,0 +1,50 @@
+{
+  "CustomHash": {
+    "address": "",
+    "constructorArguments": {}
+  },
+  "AccControl": {
+    "address": "",
+    "constructorArguments": {
+      "initialOwner": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    }
+  },
+  "PermissionManager": {
+    "address": "",
+    "constructorArguments": {
+      "initialOwner": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    }
+  },
+  "Token": {
+    "constructorArguments": {
+      "initialSupply": "1000000000000000000000000",
+      "initialOwner": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "MainToken": {
+      "address": "0x7428697E1022412D49f079b19fbd845eBBd8d83A",
+      "initialSupply": "1000000000000000000000",
+      "owner": "0xc73a9048bf40235A1BACBB1Bd88670D3272469Dc"
+    }
+  },
+  "Voting": {
+    "constructorArguments": {
+      "initialOwner": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "MainVoting": {
+      "address": "0x1FEE29f0F8EfF4F681e031bFb58E589f6B6Fcf45",
+      "owner": "0xc73a9048bf40235A1BACBB1Bd88670D3272469Dc"
+    }
+  },
+  "ProjectMon": {
+    "constructorArguments": {
+      "initialOwner": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    },
+    "MainProjectMon": {
+      "address": "0xe6Cc9C4d8052a7167FC1C3297F7b73B95DA6848a",
+      "owner": "0xc73a9048bf40235A1BACBB1Bd88670D3272469Dc"
+    }
+  },
+  "customHash": "0xc535d4049Dbe20176174144Ae44C358daCeCBA6E",
+  "accControl": "0x34076dA9F971D2cDa0950c26a42cFD139232BdE5",
+  "dao": "0xf76731766eD570a9Bd4504e5d99E8CbdA6AeF7Ea"
+}

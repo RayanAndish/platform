@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.28;
 
-import "@openzeppelin/contracts/access/Ownable.sol"; // اتصال به قرارداد Ownable از OpenZeppelin
+import "@openzeppelin/contracts/access/Ownable2Step.sol"; // اتصال به قرارداد Ownable2Step از OpenZeppelin
 import "../token/Token.sol"; // اتصال به قرارداد Token برای مدیریت توکن‌ها
 import "../permission/AccControl.sol"; // اتصال به قرارداد AccControl برای مدیریت نقش‌ها
 import "../security/CustomHash.sol"; // اتصال به قرارداد CustomHash برای هش کردن اطلاعات
@@ -10,7 +10,7 @@ import "../security/CustomHash.sol"; // اتصال به قرارداد CustomHas
  * @title Investment
  * @dev مدیریت سرمایه‌گذاری‌ها در شبکه DAO-VC
  */
-contract Investment is Ownable {
+contract Investment is Ownable2Step {
     Token public token; // متغیر عمومی برای نگهداری آدرس قرارداد توکن
     AccControl public accControl; // متغیر عمومی برای نگهداری آدرس قرارداد AccControl
     CustomHash public hasher; // متغیر عمومی برای نگهداری آدرس قرارداد تابع هش
@@ -33,13 +33,16 @@ contract Investment is Ownable {
 
     /**
      * @dev سازنده قرارداد
-     * @param initialOwner آدرس مالک اولیه
-     * @param _token آدرس قرارداد توکن
      * @param _accControl آدرس قرارداد AccControl
      * @param _hasher آدرس قرارداد تابع هش
+     * @param initialOwner آدرس مالک اولیه
      */
-    constructor(address initialOwner, address _token, address _accControl, address _hasher) Ownable(initialOwner) {
-        token = Token(_token);
+    constructor(address _accControl, address _hasher, address initialOwner) {
+        require(_accControl != address(0), "Invalid AccControl address");
+        require(_hasher != address(0), "Invalid CustomHash address");
+        require(initialOwner != address(0), "Invalid owner address");
+        
+        _transferOwnership(initialOwner);
         accControl = AccControl(_accControl);
         hasher = CustomHash(_hasher);
     }

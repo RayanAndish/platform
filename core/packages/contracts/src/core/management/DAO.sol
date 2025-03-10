@@ -1,14 +1,54 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.28;
 
-import "@openzeppelin/contracts/access/Ownable.sol"; // اتصال به قرارداد Ownable از OpenZeppelin
+import "@openzeppelin/contracts/access/Ownable2Step.sol"; // اتصال به قرارداد Ownable2Step از OpenZeppelin
+import "../permission/AccControl.sol"; // اتصال به قرارداد AccControl برای مدیریت نقش‌ها
+import "../security/CustomHash.sol"; // اتصال به قرارداد CustomHash برای هش کردن اطلاعات
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol"; // اتصال به رابط IERC20 برای تعامل با توکن‌های ERC20
 
 /**
  * @title DAO
- * @dev قرارداد برای مدیریت سازمان خودمختار غیرمتمرکز (DAO)
+ * @dev مدیریت سازمان مستقل غیرمتمرکز DAO-VC
  */
-contract DAO is Ownable {
+contract DAO is Ownable2Step {
+    AccControl public accControl; // متغیر عمومی برای نگهداری آدرس قرارداد AccControl
+    CustomHash public hasher; // متغیر عمومی برای نگهداری آدرس قرارداد تابع هش
+
+    // ساختار Project شامل شناسه، عنوان، توضیحات، بودجه، وضعیت و زمان‌ها
+    struct Project {
+        uint256 id;
+        string title;
+        string description;
+        uint256 budget;
+        bool active;
+        uint256 startTime;
+        uint256 endTime;
+    }
+
+    uint256 public projectCount; // شمارنده تعداد پروژه‌ها
+    mapping(uint256 => Project) public projects; // نگاشت برای ذخیره پروژه‌ها
+
+    // رویدادها برای ثبت تغییرات در قرارداد
+    event ProjectCreated(uint256 indexed projectId, string title, uint256 budget);
+    event ProjectUpdated(uint256 indexed projectId, string title, uint256 budget);
+    event ProjectCompleted(uint256 indexed projectId);
+
+    /**
+     * @dev سازنده قرارداد
+     * @param _accControl آدرس قرارداد AccControl
+     * @param _hasher آدرس قرارداد تابع هش
+     * @param initialOwner آدرس مالک اولیه
+     */
+    constructor(address _accControl, address _hasher, address initialOwner) {
+        require(_accControl != address(0), "Invalid AccControl address");
+        require(_hasher != address(0), "Invalid CustomHash address");
+        require(initialOwner != address(0), "Invalid owner address");
+        
+        _transferOwnership(initialOwner);
+        accControl = AccControl(_accControl);
+        hasher = CustomHash(_hasher);
+    }
+
     struct Proposal {
         string description; // توضیحات پیشنهاد
         uint256 deadline; // مهلت رأی‌گیری
@@ -27,20 +67,6 @@ contract DAO is Ownable {
     event ProposalCreated(uint256 proposalId, string description, uint256 deadline);
     event VoteCast(address indexed voter, uint256 proposalId, bool support);
     event ProposalExecuted(uint256 proposalId, bool success);
-
-    /**
-     * @dev سازنده قرارداد
-     * @param initialOwner آدرس مالک اولیه
-     * @param _tokenAddress آدرس قرارداد توکن
-     * @param _votingThreshold حداقل تعداد توکن برای شرکت در رأی‌گیری
-     */
-    constructor(address initialOwner, address _tokenAddress, uint256 _votingThreshold) Ownable(initialOwner) {
-        require(_tokenAddress != address(0), "Invalid token address");
-        require(_votingThreshold > 0, "Voting threshold must be greater than zero");
-
-        tokenAddress = _tokenAddress;
-        votingThreshold = _votingThreshold;
-    }
 
     /**
      * @dev Modifier برای اطمینان از اینکه تنها دارندگان توکن می‌توانند عمل انجام دهند

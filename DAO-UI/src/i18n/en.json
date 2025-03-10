@@ -1,32 +1,68 @@
 {
   "header": {
     "title": "DAO VC Funding Platform",
-    "connectWallet": "Connect Wallet",
-    "authenticate": "Authenticate",
-    "welcome": "Welcome, User!"
+    "nav": {
+      "projects": "Projects",
+      "staking": "Staking",
+      "voting": "Voting",
+      "about": "About"
+    },
+    "connectWallet": "Connect Wallet"
   },
 
   "hero": {
-    "title": "Welcome to the Future of Crowdfunding",
-    "subtitle": "Discover, Invest, and Grow with the best blockchain-based projects.",
-    "getStarted": "Get Started"
+    "title": "Welcome to DAO VC Funding Platform",
+    "subtitle": "Discover, Invest, and Grow with the best blockchain-based projects"
   },
 
   "stats": {
-    "projects": "Projects",
-    "users": "Users",
-    "investments": "Total Investments"
+    "activeProjects": "Active Projects",
+    "fundsRaised": "Funds Raised",
+    "communityMembers": "Community Members",
+    "numbers": {
+      "projects": "25+",
+      "funds": "$10M+",
+      "members": "50+"
+    }
   },
 
   "projects": {
     "title": "Explore Projects",
-    "loading": "Loading projects...",
-    "error": "Failed to load projects.",
-    "searchPlaceholder": "Search projects by name...",
-    "budget": "Budget",
-    "progress": "Progress",
-    "status": "Status",
-    "viewDetails": "View Details"
+    "card": {
+      "learnMore": "Learn More"
+    }
+  },
+
+  "footer": {
+    "copyright": "© 2025 DAO VC Funding Platform. All rights reserved."
+  },
+
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "connect": "Connect Wallet",
+    "disconnect": "Disconnect"
+  },
+
+  "wallet": {
+    "connect": "Connect Wallet",
+    "connecting": "Connecting...",
+    "disconnect": "Disconnect",
+    "balance": "Balance",
+    "address": "Address",
+    "network": {
+      "switch": "Switch Network",
+      "switching": "Switching...",
+      "error": "Failed to switch network"
+    },
+    "errors": {
+      "connect": "Failed to connect wallet",
+      "network": "Network not supported",
+      "balance": "Failed to load balance"
+    }
   },
 
   "projectDetails": {
@@ -65,5 +101,93 @@
     "submitButton": "Submit",
     "success": "Project successfully defined!",
     "error": "Failed to define the project. Please try again."
+  },
+
+  "staking": {
+    "title": "Staking",
+    "totalStaked": "Total Staked",
+    "yourStake": "Your Stake",
+    "rewards": "Available Rewards",
+    "apr": "Current APR",
+    "enterAmount": "Enter amount to stake",
+    "stake": "Stake",
+    "unstake": "Unstake",
+    "claimRewards": "Claim Rewards"
+  },
+
+  "voting": {
+    "title": "Governance",
+    "votingPower": "Voting Power",
+    "createProposal": "Create Proposal",
+    "proposalTitle": "Proposal Title",
+    "proposalDescription": "Proposal Description",
+    "proposalDeadline": "Voting Deadline",
+    "enterTitle": "Enter proposal title",
+    "enterDescription": "Enter proposal description",
+    "votesFor": "Votes For",
+    "votesAgainst": "Votes Against",
+    "voteFor": "Vote For",
+    "voteAgainst": "Vote Against",
+    "status": "Status",
+    "deadline": "Deadline",
+    "creator": "Created by",
+    "status": {
+      "active": "Active",
+      "passed": "Passed",
+      "rejected": "Rejected",
+      "pending": "Pending"
+    }
+  },
+
+  "about": {
+    "title": "About DAO VC Platform",
+    "subtitle": "Building the future of decentralized venture capital",
+    "mission": {
+      "title": "Our Mission",
+      "description": "We are dedicated to democratizing venture capital through blockchain technology, enabling transparent and inclusive investment opportunities for everyone."
+    },
+    "features": {
+      "title": "Why Choose Us",
+      "decentralized": {
+        "title": "Decentralized",
+        "description": "True decentralization with community-driven decision making and transparent governance."
+      },
+      "secure": {
+        "title": "Secure",
+        "description": "Built on battle-tested blockchain technology with multiple security layers and audits."
+      },
+      "efficient": {
+        "title": "Efficient",
+        "description": "Fast, low-cost transactions and automated processes through smart contracts."
+      },
+      "community": {
+        "title": "Community-Driven",
+        "description": "Active community participation in project selection and governance decisions."
+      }
+    },
+    "team": {
+      "title": "Our Team",
+      "member1": {
+        "name": "Sarah Johnson",
+        "role": "Founder & CEO",
+        "bio": "Blockchain veteran with 10+ years in venture capital and decentralized systems."
+      },
+      "member2": {
+        "name": "Michael Chen",
+        "role": "CTO",
+        "bio": "Smart contract expert and former lead developer at major blockchain projects."
+      },
+      "member3": {
+        "name": "Elena Rodriguez",
+        "role": "Community Lead",
+        "bio": "Community building expert with extensive experience in DAOs and Web3."
+      }
+    },
+    "contact": {
+      "title": "Get in Touch",
+      "email": "Email",
+      "telegram": "Telegram",
+      "twitter": "Twitter"
+    }
   }
 }

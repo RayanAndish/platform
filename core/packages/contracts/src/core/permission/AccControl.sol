@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.28;
 
-import "@openzeppelin/contracts/access/Ownable.sol"; // اتصال به قرارداد Ownable از OpenZeppelin
+import "@openzeppelin/contracts/access/Ownable2Step.sol"; // Using Ownable2Step instead of Ownable
 import "../security/CustomHash.sol"; // اتصال به تابع هش اختصاصی
 
 /**
  * @title AccControl
  * @dev مدیریت نقش‌ها، نودهای DAO و Validatorها در شبکه DAO-VC
  */
-contract AccControl is Ownable {
+contract AccControl is Ownable2Step {
     CustomHash public hasher; // متغیر عمومی برای نگهداری آدرس قرارداد تابع هش
     
     // تعریف نقش‌های مختلف برای اعضا
@@ -40,8 +40,9 @@ contract AccControl is Ownable {
      * @param initialOwner آدرس مالک اولیه
      * @param hasherAddress آدرس قرارداد تابع هش
      */
-    constructor(address initialOwner, address hasherAddress) Ownable(initialOwner) {
-        hasher = CustomHash(hasherAddress); // تنظیم آدرس قرارداد تابع هش
+    constructor(address initialOwner, address hasherAddress) {
+        _transferOwnership(initialOwner);
+        hasher = CustomHash(hasherAddress);
     }
 
     /**

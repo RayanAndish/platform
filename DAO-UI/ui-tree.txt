@@ -1,0 +1,120 @@
+.
+├── build
+│   ├── favicon.ico
+│   ├── images
+│   │   ├── p1.png
+│   │   ├── p2.png
+│   │   ├── p3.png
+│   │   └── p4.png
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   └── robots.txt
+├── dao-ui-tree.txt
+├── Dockerfile
+├── package.json
+├── package-lock.json
+├── public
+│   ├── favicon.ico
+│   ├── images
+│   │   ├── hero-bg.png
+│   │   ├── icons
+│   │   │   ├── staking.svg
+│   │   │   ├── voting.svg
+│   │   │   └── wallet.svg
+│   │   └── logo.svg
+│   ├── index.html
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   └── robots.txt
+├── README.md
+├── src
+│   ├── App.css
+│   ├── App.test.js
+│   ├── App.tsx
+│   ├── components
+│   │   ├── Common
+│   │   │   ├── Button.tsx
+│   │   │   ├── Input.tsx
+│   │   │   ├── Modal.tsx
+│   │   │   ├── Table.tsx
+│   │   │   └── WalletButton.tsx
+│   │   ├── DAO
+│   │   │   ├── PoposalDetails.tsx
+│   │   │   ├── ProposalForm.tsx
+│   │   │   ├── ProposalList.tsx
+│   │   │   └── VoingPage.tsx
+│   │   ├── HomePage
+│   │   │   ├── Footer.tsx
+│   │   │   ├── Header.tsx
+│   │   │   ├── HeroSection.tsx
+│   │   │   ├── HomePage.tsx
+│   │   │   ├── NewsletterSection.tsx
+│   │   │   └── StatisticsSection.tsx
+│   │   ├── LanguageSwitcher.tsx
+│   │   ├── Projects
+│   │   │   ├── DefineProject.tsx
+│   │   │   ├── ProjectDetails.tsx
+│   │   │   └── ProjectsPage.tsx
+│   │   ├── Staking
+│   │   │   ├── StakingDatails.tsx
+│   │   │   └── StakingPage.tsx
+│   │   └── Wallet
+│   │       ├── WalletConnect.tsx
+│   │       ├── WalletDashboard.tsx
+│   │       └── WalletInfo.tsx
+│   ├── cypress
+│   │   └── e2e
+│   │       ├── HomePage.cy.js
+│   │       ├── ProjectsPage.cy.js
+│   │       ├── StakingPage.cy.js
+│   │       └── VotingPage.cy.js
+│   ├── global.d.ts
+│   ├── hooks
+│   │   ├── useAuth.ts
+│   │   ├── useModal.ts
+│   │   └── useWallet.ts
+│   ├── i18n
+│   │   ├── ar.json
+│   │   ├── de.json
+│   │   ├── en.json
+│   │   ├── fa.json
+│   │   ├── i18n.ts
+│   │   └── ru.json
+│   ├── index.css
+│   ├── index.tsx
+│   ├── styles
+│   │   ├── components
+│   │   │   ├── Button.module.css
+│   │   │   ├── Footer.module.css
+│   │   │   ├── Header.module.css
+│   │   │   ├── Input.module.css
+│   │   │   ├── Modal.module.css
+│   │   │   ├── ProposalList.module.css
+│   │   │   └── WalletDashboard.module.css
+│   │   ├── ConnectWalletButton.css
+│   │   ├── global.css
+│   │   ├── LanguageSwitcher.css
+│   │   ├── mixins.css
+│   │   ├── pages
+│   │   │   ├── DefineProject.module.css
+│   │   │   ├── HomePage.module.css
+│   │   │   ├── ProjectDetails.module.css
+│   │   │   ├── ProjectsPage.module.css
+│   │   │   ├── StakingPage.module.css
+│   │   │   ├── Table.module.css
+│   │   │   └── VotingPage.module.css
+│   │   └── variables.css
+│   └── utils
+│       ├── api.ts
+│       ├── blokchain.ts
+│       ├── helpers.ts
+│       └── walletConfig.ts
+├── tailwind.config.js
+├── tsconfig.json
+├── ui-content.txt
+├── ui-tree.txt
+└── yarn.lock
+
+22 directories, 96 files

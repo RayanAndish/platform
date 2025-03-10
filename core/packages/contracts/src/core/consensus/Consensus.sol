@@ -1,6 +1,6 @@
 pragma solidity ^0.8.28;
 
-import "@openzeppelin/contracts/access/Ownable.sol"; // اتصال به قرارداد Ownable از OpenZeppelin
+import "@openzeppelin/contracts/access/Ownable2Step.sol";
 import "../permission/AccControl.sol"; // اتصال به قرارداد AccControl برای مدیریت نقش‌ها
 import "../security/CustomHash.sol"; // اتصال به تابع هش اختصاصی
 
@@ -8,7 +8,7 @@ import "../security/CustomHash.sol"; // اتصال به تابع هش اختصا
  * @title Consensus
  * @dev مدیریت مکانیزم اجماع با ترکیب PoA + dPoS + PoP + AI
  */
-contract Consensus is Ownable {
+contract Consensus is Ownable2Step {
     AccControl public accControl; // متغیر عمومی برای نگهداری آدرس قرارداد AccControl
     CustomHash public hasher; // متغیر عمومی برای نگهداری آدرس قرارداد تابع هش
 
@@ -39,11 +39,12 @@ contract Consensus is Ownable {
      * @param _hasher آدرس قرارداد تابع هش
      * @param initialOwner آدرس مالک اولیه
      */
-    constructor(address _accControl, address _hasher, address initialOwner) Ownable(initialOwner) {
+    constructor(address _accControl, address _hasher, address initialOwner) {
         require(_accControl != address(0), "Invalid AccControl address");
         require(_hasher != address(0), "Invalid CustomHash address");
         require(initialOwner != address(0), "Invalid owner address");
         
+        _transferOwnership(initialOwner);
         accControl = AccControl(_accControl);
         hasher = CustomHash(_hasher);
     }

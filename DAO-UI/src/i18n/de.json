@@ -20,5 +20,185 @@
     "aboutUsDescription": "At FunDeSci, We aim to democratize access to funds and create a vibrant community of scientists who are passionate about driving forward the frontiers of human knowledge. We see ourselves as catalysts for change in the scientific landscape, unlocking creativity and accelerating progress for the betterment of all.",
     "usefulLinks": "Useful links",
     "termsOfService": "Terms of Service",
-    "copyright": "Copyright © {{year}} FunDeSci. All rights reserved."
+    "copyright": "Copyright © {{year}} FunDeSci. All rights reserved.",
+    "header": {
+      "title": "DAO VC Funding Plattform",
+      "nav": {
+        "projects": "Projekte",
+        "staking": "Staking",
+        "voting": "Abstimmung",
+        "about": "Über uns"
+      },
+      "connectWallet": "Wallet verbinden"
+    },
+    "hero": {
+      "title": "Willkommen bei der DAO VC Funding Plattform",
+      "subtitle": "Entdecken, Investieren und Wachsen mit den besten Blockchain-basierten Projekten"
+    },
+    "stats": {
+      "activeProjects": "Aktive Projekte",
+      "fundsRaised": "Eingesammelte Mittel",
+      "communityMembers": "Community-Mitglieder",
+      "numbers": {
+        "projects": "25+",
+        "funds": "10M$+",
+        "members": "50+"
+      }
+    },
+    "projects": {
+      "title": "Projekte erkunden",
+      "card": {
+        "learnMore": "Mehr erfahren"
+      }
+    },
+    "footer": {
+      "copyright": "© 2025 DAO VC Funding Plattform. Alle Rechte vorbehalten."
+    },
+    "common": {
+      "loading": "Lädt...",
+      "error": "Ein Fehler ist aufgetreten",
+      "success": "Erfolgreich",
+      "submit": "Absenden",
+      "cancel": "Abbrechen",
+      "connect": "Wallet verbinden",
+      "disconnect": "Verbindung trennen"
+    },
+    "wallet": {
+      "connect": "Wallet verbinden",
+      "connecting": "Verbindung wird hergestellt...",
+      "disconnect": "Verbindung trennen",
+      "balance": "Kontostand",
+      "address": "Adresse",
+      "network": {
+        "switch": "Netzwerk wechseln",
+        "switching": "Netzwerk wird gewechselt...",
+        "error": "Netzwerkwechsel fehlgeschlagen"
+      },
+      "errors": {
+        "connect": "Wallet-Verbindung fehlgeschlagen",
+        "network": "Netzwerk nicht unterstützt",
+        "balance": "Kontostand konnte nicht geladen werden"
+      }
+    },
+    "projectDetails": {
+      "loading": "Projektdetails werden geladen...",
+      "error": "Fehler beim Laden der Projektdetails",
+      "budget": "Budget",
+      "progress": "Fortschritt",
+      "status": "Status",
+      "investButton": "In Projekt investieren"
+    },
+    "defineProject": {
+      "title": "Neues Projekt definieren",
+      "fields": {
+        "name": "Projektname",
+        "description": "Beschreibung",
+        "budget": "Budget (EUR)",
+        "duration": "Dauer (Tage)",
+        "category": "Kategorie",
+        "selectCategory": "Kategorie auswählen..."
+      },
+      "categories": {
+        "tech": "Technologie",
+        "health": "Gesundheit",
+        "education": "Bildung"
+      },
+      "validation": {
+        "name": "Projektname ist erforderlich",
+        "description": "Beschreibung ist erforderlich",
+        "budget": "Budget ist erforderlich",
+        "budgetPositive": "Budget muss eine positive Zahl sein",
+        "duration": "Dauer ist erforderlich",
+        "durationPositive": "Dauer muss eine positive Zahl sein",
+        "category": "Kategorie ist erforderlich"
+      },
+      "submitButton": "Einreichen",
+      "success": "Projekt erfolgreich definiert!",
+      "error": "Fehler beim Definieren des Projekts. Bitte versuchen Sie es erneut."
+    },
+    "staking": {
+      "title": "Staking",
+      "totalStaked": "Gesamt gestaked",
+      "yourStake": "Ihr Einsatz",
+      "rewards": "Verfügbare Belohnungen",
+      "apr": "Aktueller APR",
+      "enterAmount": "Staking-Betrag eingeben",
+      "stake": "Staken",
+      "unstake": "Unstaken",
+      "claimRewards": "Belohnungen beanspruchen"
+    },
+    "voting": {
+      "title": "Governance",
+      "votingPower": "Stimmgewicht",
+      "createProposal": "Vorschlag erstellen",
+      "proposalTitle": "Vorschlagstitel",
+      "proposalDescription": "Vorschlagsbeschreibung",
+      "proposalDeadline": "Abstimmungsfrist",
+      "enterTitle": "Vorschlagstitel eingeben",
+      "enterDescription": "Vorschlagsbeschreibung eingeben",
+      "votesFor": "Stimmen dafür",
+      "votesAgainst": "Stimmen dagegen",
+      "voteFor": "Dafür stimmen",
+      "voteAgainst": "Dagegen stimmen",
+      "status": "Status",
+      "deadline": "Frist",
+      "creator": "Erstellt von",
+      "status": {
+        "active": "Aktiv",
+        "passed": "Angenommen",
+        "rejected": "Abgelehnt",
+        "pending": "Ausstehend"
+      }
+    },
+    "about": {
+      "title": "Über die DAO VC Plattform",
+      "subtitle": "Gestaltung der Zukunft des dezentralen Risikokapitals",
+      "mission": {
+        "title": "Unsere Mission",
+        "description": "Wir setzen uns dafür ein, Risikokapital durch Blockchain-Technologie zu demokratisieren und transparente und inklusive Investitionsmöglichkeiten für alle zu schaffen."
+      },
+      "features": {
+        "title": "Warum uns wählen",
+        "decentralized": {
+          "title": "Dezentralisiert",
+          "description": "Echte Dezentralisierung mit Community-basierter Entscheidungsfindung und transparenter Governance."
+        },
+        "secure": {
+          "title": "Sicher",
+          "description": "Aufgebaut auf bewährter Blockchain-Technologie mit mehreren Sicherheitsebenen und Audits."
+        },
+        "efficient": {
+          "title": "Effizient",
+          "description": "Schnelle, kostengünstige Transaktionen und automatisierte Prozesse durch Smart Contracts."
+        },
+        "community": {
+          "title": "Community-gesteuert",
+          "description": "Aktive Community-Beteiligung bei der Projektauswahl und Governance-Entscheidungen."
+        }
+      },
+      "team": {
+        "title": "Unser Team",
+        "member1": {
+          "name": "Sarah Johnson",
+          "role": "Gründerin & CEO",
+          "bio": "Blockchain-Expertin mit über 10 Jahren Erfahrung in Risikokapital und dezentralen Systemen."
+        },
+        "member2": {
+          "name": "Michael Chen",
+          "role": "CTO",
+          "bio": "Smart Contract-Experte und ehemaliger leitender Entwickler bei großen Blockchain-Projekten."
+        },
+        "member3": {
+          "name": "Elena Rodriguez",
+          "role": "Community Lead",
+          "bio": "Community-Building-Expertin mit umfangreicher Erfahrung in DAOs und Web3."
+        }
+      },
+      "contact": {
+        "title": "Kontakt",
+        "email": "E-Mail",
+        "telegram": "Telegram",
+        "twitter": "Twitter"
+      }
+    }
   }

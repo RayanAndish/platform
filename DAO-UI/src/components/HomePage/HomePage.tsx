@@ -1,29 +1,33 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import styles from "../../styles/pages/HomePage.module.css";
 import WalletDashboard from "../Wallet/WalletDashboard";
 import LanguageSwitcher from "../LanguageSwitcher";
 
 const HomePage: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <div className={styles.container}>
       {/* Header */}
       <header className={styles.header}>
         <div className={styles.headerContent}>
-          <h1 className={styles.title}>DAO VC Funding Platform</h1>
+          <h1 className={styles.title}>{t("header.title")}</h1>
           <nav className={styles.nav}>
             <a href="/projects" className={styles.navLink}>
-              Projects
+              {t("header.nav.projects")}
             </a>
             <a href="/staking" className={styles.navLink}>
-              Staking
+              {t("header.nav.staking")}
             </a>
             <a href="/voting" className={styles.navLink}>
-              Voting
+              {t("header.nav.voting")}
             </a>
             <a href="/about" className={styles.navLink}>
-              About
-              </a>
-             <WalletDashboard /> {/* دکمه اتصال ولت به منوی ناوبری منتقل شد */}
+              {t("header.nav.about")}
+            </a>
+            <WalletDashboard />
+            <LanguageSwitcher />
           </nav>
         </div>
       </header>
@@ -32,50 +36,44 @@ const HomePage: React.FC = () => {
       <main className={styles.main}>
         {/* Hero Section */}
         <div className={styles.hero}>
-          {/* Buttons on Hero */}
-          <div className={styles.heroActions}>
-            <LanguageSwitcher />
-          </div>
-          <h1>Welcome to DAO VC Funding Platform</h1>
-          <p>
-            Discover, Invest, and Grow with the best blockchain-based projects.
-          </p>
+          <h1>{t("hero.title")}</h1>
+          <p>{t("hero.subtitle")}</p>
         </div>
 
         {/* Statistics Section */}
         <div className={styles.statistics}>
           <div className={styles.statItem}>
-            <h2>25+</h2>
-            <p>Active Projects</p>
+            <h2>{t("stats.numbers.projects")}</h2>
+            <p>{t("stats.activeProjects")}</p>
           </div>
           <div className={styles.statItem}>
-            <h2>$10M+</h2>
-            <p>Funds Raised</p>
+            <h2>{t("stats.numbers.funds")}</h2>
+            <p>{t("stats.fundsRaised")}</p>
           </div>
           <div className={styles.statItem}>
-            <h2>50+</h2>
-            <p>Community Members</p>
+            <h2>{t("stats.numbers.members")}</h2>
+            <p>{t("stats.communityMembers")}</p>
           </div>
         </div>
 
         {/* Projects Section */}
         <section className={styles.projectsSection}>
-          <h2>Explore Projects</h2>
+          <h2>{t("projects.title")}</h2>
           <div className={styles.projectsList}>
             <div className={styles.projectCard}>
               <h3>Project 1</h3>
               <p>A short description of Project 1.</p>
-              <button>Learn More</button>
+              <button>{t("projects.card.learnMore")}</button>
             </div>
             <div className={styles.projectCard}>
               <h3>Project 2</h3>
               <p>A short description of Project 2.</p>
-              <button>Learn More</button>
+              <button>{t("projects.card.learnMore")}</button>
             </div>
             <div className={styles.projectCard}>
               <h3>Project 3</h3>
               <p>A short description of Project 3.</p>
-              <button>Learn More</button>
+              <button>{t("projects.card.learnMore")}</button>
             </div>
           </div>
         </section>
@@ -83,7 +81,7 @@ const HomePage: React.FC = () => {
 
       {/* Footer */}
       <footer className={styles.footer}>
-        <p>© 2025 DAO VC Funding Platform. All rights reserved.</p>
+        <p>{t("footer.copyright")}</p>
       </footer>
     </div>
   );
