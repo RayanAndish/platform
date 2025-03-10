@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.28;
 
 import "@openzeppelin/contracts/access/Ownable.sol"; // اتصال به قرارداد Ownable از OpenZeppelin
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol"; // اتصال به رابط IERC20 برای تعامل با توکن‌های ERC20

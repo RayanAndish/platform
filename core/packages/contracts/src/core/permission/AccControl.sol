@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.28;
 
 import "@openzeppelin/contracts/access/Ownable.sol"; // اتصال به قرارداد Ownable از OpenZeppelin
-import "./CustomHash.sol"; // اتصال به تابع هش اختصاصی
+import "../security/CustomHash.sol"; // اتصال به تابع هش اختصاصی
 
 /**
  * @title AccControl

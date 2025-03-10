@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Updated `createDao` of the `DAOFactory` to return installed plugins and enable DAO creation without requiring plugins.
-- Changed the solidity compiler pragma from `0.8.17` to `^0.8.8` for all files.
+- Changed the solidity compiler pragma from `0.8.20` to `^0.8.8` for all files.
 - Improved type safety by using `abi.encodeCall` instead of `abi.encodeWithSelector` and the more explicit bracket syntax for permissions.
 - Bumped OpenZeppelin dependencies to `4.9.6`.
 - Refactored the fallback in the `isGranted` function in `PermissionManager` to make conditions mutually exclusive: Specific conditions answering `false` do not fall back to generic caller conditions (`_who: ANY_ADDR`) or generic target conditions (`_where: ANY_ADDR`).
@@ -83,7 +83,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Changed the `createProposal` functions in `TokenVoting` to allow creating proposals when the `_msgSender()` owns at least `minProposerVotingPower()` tokens in the current block, also if they are delegated.
 - Changed the `isMember` function in the `TokenVoting` plugin to also take delegators of the token into account.
 - Fixed and clarified the NatSpec comments according to the Code4rena audit suggestions.
-- Changed the solidity compiler pragma from `0.8.17` to `^0.8.8` for files that external developers inherit from.
+- Changed the solidity compiler pragma from `0.8.20` to `^0.8.8` for files that external developers inherit from.
 
 ### Removed
 

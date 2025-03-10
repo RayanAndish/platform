@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.28;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol"; // اتصال به قرارداد ERC20 از OpenZeppelin
 import "@openzeppelin/contracts/access/Ownable.sol"; // اتصال به قرارداد Ownable از OpenZeppelin
 import "@openzeppelin/contracts/utils/Counters.sol"; // اتصال به کتابخانه Counters از OpenZeppelin
-import "./AccControl.sol"; // اتصال به قرارداد AccControl برای مدیریت نقش‌ها
-import "./CustomHash.sol"; // اتصال به قرارداد CustomHash برای هش کردن اطلاعات
+import "../permission/AccControl.sol"; // اتصال به قرارداد AccControl برای مدیریت نقش‌ها
+import "../security/CustomHash.sol"; // اتصال به قرارداد CustomHash برای هش کردن اطلاعات
 
 /**
  * @title Token

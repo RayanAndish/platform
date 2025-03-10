@@ -5,6 +5,7 @@
 │   ├── Halborn_AragonOSx_2023-06-13.pdf
 │   └── Halborn_AragonOSx_v1_4_Smart_Contract_Security_Assessment_Report_2025_01_03.pdf
 ├── CONTRIBUTION_GUIDE.md
+├── core-content.txt
 ├── core-tree.txt
 ├── crowdin.yml
 ├── DEPLOYMENT_CHECKLIST.md
@@ -438,7 +439,8 @@
 │       │       └── en.json
 │       └── tsconfig.json
 ├── README.md
+├── tree.txt
 ├── UPDATE_CHECKLIST.md
 └── yarn.lock
 
-110 directories, 332 files
+110 directories, 334 files
