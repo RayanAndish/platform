@@ -124,7 +124,8 @@ contract Token is ERC20, Ownable2Step, ReentrancyGuard, Pausable {
      * @dev Modifier to ensure caller is DAO
      */
     modifier onlyDAO() {
-        require(accControl.isDAONode(msg.sender), "Only DAO can execute");
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.Admin, "Only DAO can execute");
         _;
     }
 
@@ -132,7 +133,8 @@ contract Token is ERC20, Ownable2Step, ReentrancyGuard, Pausable {
      * @dev Modifier to ensure caller is Validator
      */
     modifier onlyValidator() {
-        require(accControl.isValidator(msg.sender), "Only validator can execute");
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.Validator, "Only validator can execute");
         _;
     }
 

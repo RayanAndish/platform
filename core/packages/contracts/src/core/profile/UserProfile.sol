@@ -50,6 +50,8 @@ contract UserProfile is Ownable2Step, Pausable, ReentrancyGuard {
         uint256 successfulProjects;     // پروژه‌های موفق
         uint256 createdAt;              // تاریخ ایجاد
         bool isVerified;                // تایید شده
+        bool isActive;                  // وضعیت فعال بودن
+        string metadata;                // متادیتای اضافی
         mapping(uint256 => bool) badges; // نشان‌ها
     }
 
@@ -95,16 +97,19 @@ contract UserProfile is Ownable2Step, Pausable, ReentrancyGuard {
     uint256 public projectCounter;
     uint256 public constant MAX_PROJECTS_PER_USER = 10;
     uint256 public constant MIN_INVESTMENT_AMOUNT = 100 * 10**18; // 100 tokens
+    uint256 public reputationThreshold = 100; // حداقل امتیاز اعتبار مورد نیاز
 
     // Events
     event ProfileCreated(address indexed user, string name, uint256 timestamp);
     event ProfileUpdated(address indexed user, uint256 timestamp);
+    event ProfileMetadataUpdated(address indexed user, string metadata);
     event ProjectCreated(uint256 indexed projectId, address indexed owner, string title);
     event ProjectUpdated(uint256 indexed projectId, ProjectStatus status);
     event InvestmentMade(address indexed investor, uint256 indexed projectId, uint256 amount);
     event AchievementUnlocked(address indexed user, string title, uint256 timestamp);
     event BadgeAwarded(address indexed user, uint256 badgeId);
     event SkillLevelUpdated(address indexed user, SkillLevel newLevel);
+    event StatusUpdated(address indexed member, bool isActive);
 
     /**
      * @dev Constructor
@@ -127,6 +132,8 @@ contract UserProfile is Ownable2Step, Pausable, ReentrancyGuard {
         Profile storage profile = profiles[msg.sender];
         if (profile.createdAt == 0) {
             profile.createdAt = block.timestamp;
+            profile.isActive = true;
+            profile.metadata = "";
             emit ProfileCreated(msg.sender, name, block.timestamp);
         }
 
@@ -207,7 +214,8 @@ contract UserProfile is Ownable2Step, Pausable, ReentrancyGuard {
         ProjectStatus newStatus
     ) external {
         Project storage project = projects[projectId];
-        require(project.owner == msg.sender || accControl.members(msg.sender).role == AccControl.Role.Admin, "Not authorized");
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(project.owner == msg.sender || role == AccControl.Role.Admin, "Not authorized");
         
         project.status = newStatus;
         
@@ -228,7 +236,8 @@ contract UserProfile is Ownable2Step, Pausable, ReentrancyGuard {
         string memory description,
         uint256 value
     ) external {
-        require(accControl.members(msg.sender).role == AccControl.Role.Admin, "Not authorized");
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.Admin, "Not authorized");
 
         Achievement memory achievement = Achievement({
             title: title,
@@ -248,7 +257,8 @@ contract UserProfile is Ownable2Step, Pausable, ReentrancyGuard {
         address user,
         uint256 badgeId
     ) external {
-        require(accControl.members(msg.sender).role == AccControl.Role.Admin, "Not authorized");
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.Admin, "Not authorized");
         require(!profiles[user].badges[badgeId], "Badge already awarded");
 
         profiles[user].badges[badgeId] = true;
@@ -287,7 +297,9 @@ contract UserProfile is Ownable2Step, Pausable, ReentrancyGuard {
         uint256 reputation,
         uint256 totalInvestments,
         uint256 successfulProjects,
-        bool isVerified
+        bool isVerified,
+        bool isActive,
+        string memory metadata
     ) {
         Profile storage profile = profiles[user];
         return (
@@ -298,7 +310,9 @@ contract UserProfile is Ownable2Step, Pausable, ReentrancyGuard {
             profile.reputation,
             profile.totalInvestments,
             profile.successfulProjects,
-            profile.isVerified
+            profile.isVerified,
+            profile.isActive,
+            profile.metadata
         );
     }
 
@@ -333,16 +347,50 @@ contract UserProfile is Ownable2Step, Pausable, ReentrancyGuard {
      * @dev Verify user profile
      */
     function verifyProfile(address user) external {
-        require(accControl.members(msg.sender).role == AccControl.Role.Admin, "Not authorized");
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.Admin, "Not authorized");
         profiles[user].isVerified = true;
         emit ProfileUpdated(user, block.timestamp);
+    }
+
+    /**
+     * @dev Update member profile
+     */
+    function updateMemberProfile(
+        address member,
+        string memory newMetadata
+    ) external {
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.Admin, "Not authorized");
+        
+        Profile storage profile = profiles[member];
+        profile.metadata = newMetadata;
+        
+        emit ProfileMetadataUpdated(member, newMetadata);
+    }
+
+    /**
+     * @dev Update member status
+     */
+    function updateMemberStatus(
+        address member,
+        bool isActive
+    ) external {
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.Admin, "Not authorized");
+        
+        Profile storage profile = profiles[member];
+        profile.isActive = isActive;
+        
+        emit StatusUpdated(member, isActive);
     }
 
     /**
      * @dev Pause contract
      */
     function pause() external {
-        require(accControl.members(msg.sender).role == AccControl.Role.Admin, "Not authorized");
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.Admin, "Not authorized");
         _pause();
     }
 
@@ -350,7 +398,17 @@ contract UserProfile is Ownable2Step, Pausable, ReentrancyGuard {
      * @dev Unpause contract
      */
     function unpause() external {
-        require(accControl.members(msg.sender).role == AccControl.Role.Admin, "Not authorized");
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.Admin, "Not authorized");
         _unpause();
+    }
+
+    /**
+     * @dev Update reputation threshold
+     */
+    function updateReputationThreshold(uint256 newThreshold) external {
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.Admin, "Not authorized");
+        reputationThreshold = newThreshold;
     }
 } 

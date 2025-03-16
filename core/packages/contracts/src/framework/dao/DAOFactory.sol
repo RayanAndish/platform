@@ -80,7 +80,12 @@ contract DAOFactory is ERC165, ProtocolVersion {
         daoRegistry = _registry;
         pluginSetupProcessor = _pluginSetupProcessor;
 
-        DAO dao = new DAO();
+        // Create a new DAO with default parameters
+        DAO dao = new DAO(
+            address(0), // AccControl will be set later
+            address(0), // CustomHash will be set later
+            address(this) // Factory is the initial owner
+        );
         daoBase = address(dao);
 
         // Cache permission IDs for reduced gas usage in future function calls

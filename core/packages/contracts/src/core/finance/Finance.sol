@@ -27,6 +27,14 @@ contract Finance is Ownable2Step, ReentrancyGuard, Pausable {
     uint256 public constant INSTALLMENT_PERIOD = 30 days; // دوره اقساط
     uint256 public constant MULTI_SIG_THRESHOLD = 1000 * 10**18; // حد نصاب نیاز به تأیید چند امضایی
 
+    // سطوح سرمایه‌گذاری
+    enum InvestmentTier {
+        BRONZE,     // 100-1000 tokens
+        SILVER,     // 1001-10000 tokens
+        GOLD,       // 10001-100000 tokens
+        PLATINUM    // 100001+ tokens
+    }
+
     // ساختار سرمایه‌گذاری
     struct Investment {
         uint256 amount;
@@ -36,14 +44,6 @@ contract Finance is Ownable2Step, ReentrancyGuard, Pausable {
         bool active;
         bytes32 hash;
         InvestmentTier tier;
-    }
-
-    // سطوح سرمایه‌گذاری
-    enum InvestmentTier {
-        BRONZE,     // 100-1000 tokens
-        SILVER,     // 1001-10000 tokens
-        GOLD,       // 10001-100000 tokens
-        PLATINUM    // 100001+ tokens
     }
 
     // ساختار پرداخت اقساطی
@@ -58,6 +58,14 @@ contract Finance is Ownable2Step, ReentrancyGuard, Pausable {
         bytes32 hash;
     }
 
+    // وضعیت تراکنش
+    enum TransactionStatus {
+        PENDING,
+        APPROVED,
+        REJECTED,
+        EXECUTED
+    }
+
     // ساختار تراکنش چند امضایی
     struct MultiSigTransaction {
         address initiator;
@@ -65,7 +73,12 @@ contract Finance is Ownable2Step, ReentrancyGuard, Pausable {
         uint256 amount;
         uint256 approvals;
         bool executed;
+        TransactionStatus status;
         mapping(address => bool) hasApproved;
+        mapping(address => bool) validations;
+        uint256 validationCount;
+        uint256 approvalCount;
+        uint256 rejectionCount;
         bytes32 hash;
     }
 
@@ -88,6 +101,7 @@ contract Finance is Ownable2Step, ReentrancyGuard, Pausable {
     event MultiSigTransactionCreated(uint256 indexed txId, address initiator, address recipient, uint256 amount, bytes32 hash);
     event MultiSigTransactionApproved(uint256 indexed txId, address approver);
     event MultiSigTransactionExecuted(uint256 indexed txId, bytes32 hash);
+    event TransactionValidated(uint256 indexed transactionId, address indexed validator, bool isValid, bytes validationData);
     event RewardAdded(address indexed user, uint256 amount, bytes32 reason);
     event PenaltyAdded(address indexed user, uint256 amount, bytes32 reason);
 
@@ -281,6 +295,7 @@ contract Finance is Ownable2Step, ReentrancyGuard, Pausable {
         transaction.amount = amount;
         transaction.approvals = 1;
         transaction.executed = false;
+        transaction.status = TransactionStatus.PENDING;
         transaction.hash = txHash;
         transaction.hasApproved[msg.sender] = true;
 
@@ -292,7 +307,9 @@ contract Finance is Ownable2Step, ReentrancyGuard, Pausable {
      * @dev تأیید تراکنش چند امضایی
      */
     function approveMultiSigTransaction(uint256 txId) external nonReentrant whenNotPaused {
-        require(accControl.isValidator(msg.sender), "Not a validator");
+        // تأیید تراکنش
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.Validator, "Not a validator");
         MultiSigTransaction storage transaction = multiSigTransactions[txId];
         require(!transaction.executed, "Transaction already executed");
         require(!transaction.hasApproved[msg.sender], "Already approved");
@@ -316,6 +333,7 @@ contract Finance is Ownable2Step, ReentrancyGuard, Pausable {
         require(token.balanceOf(address(this)) >= transaction.amount, "Insufficient balance");
 
         transaction.executed = true;
+        transaction.status = TransactionStatus.EXECUTED;
         token.transfer(transaction.recipient, transaction.amount);
 
         emit MultiSigTransactionExecuted(txId, transaction.hash);
@@ -329,7 +347,9 @@ contract Finance is Ownable2Step, ReentrancyGuard, Pausable {
         uint256 amount,
         bytes32 reason
     ) external {
-        require(accControl.isValidator(msg.sender), "Not authorized");
+        // تأیید تراکنش
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.Validator, "Not authorized");
         rewards[user] = rewards[user].add(amount);
         emit RewardAdded(user, amount, reason);
     }
@@ -342,7 +362,9 @@ contract Finance is Ownable2Step, ReentrancyGuard, Pausable {
         uint256 amount,
         bytes32 reason
     ) external {
-        require(accControl.isValidator(msg.sender), "Not authorized");
+        // تأیید تراکنش
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.Validator, "Not authorized");
         penalties[user] = penalties[user].add(amount);
         emit PenaltyAdded(user, amount, reason);
     }
@@ -351,7 +373,8 @@ contract Finance is Ownable2Step, ReentrancyGuard, Pausable {
      * @dev به‌روزرسانی تعداد تأییدهای مورد نیاز
      */
     function updateRequiredApprovals(uint256 _requiredApprovals) external {
-        require(accControl.isDAONode(msg.sender), "Not authorized");
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.DAO, "Not authorized");
         require(_requiredApprovals > 0, "Invalid number of approvals");
         requiredApprovals = _requiredApprovals;
     }
@@ -360,7 +383,8 @@ contract Finance is Ownable2Step, ReentrancyGuard, Pausable {
      * @dev توقف قرارداد
      */
     function pause() external {
-        require(accControl.isDAONode(msg.sender), "Not authorized");
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.DAO, "Not authorized");
         _pause();
     }
 
@@ -368,7 +392,60 @@ contract Finance is Ownable2Step, ReentrancyGuard, Pausable {
      * @dev شروع مجدد قرارداد
      */
     function unpause() external {
-        require(accControl.isDAONode(msg.sender), "Not authorized");
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.DAO, "Not authorized");
         _unpause();
+    }
+
+    /**
+     * @dev Validate transaction
+     */
+    function validateTransaction(
+        uint256 transactionId,
+        bool isValid,
+        bytes memory validationData
+    ) external whenNotPaused {
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.Validator, "Not a validator");
+        
+        MultiSigTransaction storage transaction = multiSigTransactions[transactionId];
+        require(transaction.status == TransactionStatus.PENDING, "Invalid status");
+        require(!transaction.validations[msg.sender], "Already validated");
+
+        transaction.validations[msg.sender] = true;
+        transaction.validationCount++;
+
+        if (isValid) {
+            transaction.approvalCount++;
+        } else {
+            transaction.rejectionCount++;
+        }
+
+        emit TransactionValidated(transactionId, msg.sender, isValid, validationData);
+
+        if (_canBeFinalized(transaction)) {
+            _finalizeTransaction(transactionId);
+        }
+    }
+
+    /**
+     * @dev بررسی امکان نهایی‌سازی تراکنش
+     */
+    function _canBeFinalized(MultiSigTransaction storage transaction) internal view returns (bool) {
+        return transaction.approvals >= requiredApprovals && !transaction.executed;
+    }
+
+    /**
+     * @dev نهایی‌سازی تراکنش
+     */
+    function _finalizeTransaction(uint256 transactionId) internal {
+        MultiSigTransaction storage transaction = multiSigTransactions[transactionId];
+        require(_canBeFinalized(transaction), "Cannot finalize");
+        
+        transaction.executed = true;
+        transaction.status = TransactionStatus.EXECUTED;
+        token.transfer(transaction.recipient, transaction.amount);
+        
+        emit MultiSigTransactionExecuted(transactionId, transaction.hash);
     }
 } 

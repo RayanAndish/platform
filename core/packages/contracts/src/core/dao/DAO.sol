@@ -5,12 +5,21 @@ import "@openzeppelin/contracts/access/Ownable2Step.sol"; // اتصال به ق�
 import "../permission/AccControl.sol"; // اتصال به قرارداد AccControl برای مدیریت نقش‌ها
 import "../security/CustomHash.sol"; // اتصال به قرارداد CustomHash برای هش کردن اطلاعات
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol"; // اتصال به رابط IERC20 برای تعامل با توکن‌های ERC20
+import {PermissionLib} from "@aragon/osx-commons-contracts/src/permission/PermissionLib.sol";
 
 /**
  * @title DAO
  * @dev مدیریت سازمان مستقل غیرمتمرکز DAO-VC
  */
 contract DAO is Ownable2Step {
+    using PermissionLib for PermissionLib.MultiTargetPermission[];
+
+    bytes32 public constant ROOT_PERMISSION_ID = keccak256("ROOT_PERMISSION");
+    bytes32 public constant UPGRADE_DAO_PERMISSION_ID = keccak256("UPGRADE_DAO_PERMISSION");
+    bytes32 public constant SET_TRUSTED_FORWARDER_PERMISSION_ID = keccak256("SET_TRUSTED_FORWARDER_PERMISSION");
+    bytes32 public constant SET_METADATA_PERMISSION_ID = keccak256("SET_METADATA_PERMISSION");
+    bytes32 public constant REGISTER_STANDARD_CALLBACK_PERMISSION_ID = keccak256("REGISTER_STANDARD_CALLBACK_PERMISSION");
+
     AccControl public accControl; // متغیر عمومی برای نگهداری آدرس قرارداد AccControl
     CustomHash public hasher; // متغیر عمومی برای نگهداری آدرس قرارداد تابع هش
 
@@ -174,5 +183,33 @@ contract DAO is Ownable2Step {
             proposal.votesAgainst,
             proposal.executed
         );
+    }
+
+    /**
+     * @dev اعمال مجوزهای چند هدفه
+     * @param _permissions آرایه‌ای از مجوزهای چند هدفه
+     */
+    function applyMultiTargetPermissions(PermissionLib.MultiTargetPermission[] calldata _permissions) external {
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.Admin, "Not authorized");
+
+        for (uint256 i = 0; i < _permissions.length; i++) {
+            PermissionLib.MultiTargetPermission memory permission = _permissions[i];
+            // اعمال مجوز برای هر هدف
+            // در اینجا می‌توانید منطق خاص خود را برای اعمال مجوزها پیاده‌سازی کنید
+        }
+    }
+
+    /**
+     * @dev بررسی مجوز
+     */
+    function hasPermission(
+        address _where,
+        address _who,
+        bytes32 _permissionId,
+        bytes memory _data
+    ) external view returns (bool) {
+        (AccControl.Role role, , , , , , ) = accControl.members(_who);
+        return role == AccControl.Role.Admin;
     }
 }

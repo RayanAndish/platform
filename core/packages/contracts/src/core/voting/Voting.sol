@@ -99,6 +99,7 @@ contract Voting is Ownable2Step, Pausable, ReentrancyGuard {
     uint256 public constant MAX_PROPOSAL_DURATION = 30 days;
     uint256 public constant VOTE_PRECISION = 1e18;
     uint256 public reputationThreshold = 100; // حداقل امتیاز اعتبار مورد نیاز برای رأی دادن
+    uint256 public validatorCount;
 
     // Mappings
     mapping(uint256 => Proposal) public proposals; // نگاشت برای ذخیره‌سازی پیشنهادات
@@ -119,6 +120,7 @@ contract Voting is Ownable2Step, Pausable, ReentrancyGuard {
     event VotingStrategyUpdated(ProposalType indexed proposalType, uint256 quorum, uint256 minPeriod);
     event ReputationUpdated(address indexed voter, uint256 oldScore, uint256 newScore);
     event AIValidationResult(uint256 indexed proposalId, bool validated, string reason);
+    event ValidatorCountUpdated(uint256 newCount);
 
     /**
      * @dev سازنده قرارداد
@@ -198,7 +200,8 @@ contract Voting is Ownable2Step, Pausable, ReentrancyGuard {
      * @dev Modifier برای اطمینان از اینکه تنها اعضای DAO می‌توانند پیشنهادات ایجاد کنند
      */
     modifier onlyDAOMember() {
-        require(accControl.isDAONode(msg.sender), "Only DAO members can create proposals");
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.DAO, "Only DAO members can create proposals");
         _;
     }
 
@@ -206,7 +209,8 @@ contract Voting is Ownable2Step, Pausable, ReentrancyGuard {
      * @dev Modifier برای اطمینان از اینکه تنها اعتبارسنج‌های واجد شرایط می‌توانند رأی دهند
      */
     modifier onlyQualifiedValidator() {
-        require(accControl.isValidator(msg.sender), "Only validators can vote");
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.Validator, "Only validators can vote");
         require(reputationScore[msg.sender] >= reputationThreshold, "Validator reputation too low");
         _;
     }
@@ -226,7 +230,8 @@ contract Voting is Ownable2Step, Pausable, ReentrancyGuard {
         uint256 votingPeriod,
         bool isQuadratic
     ) external whenNotPaused nonReentrant {
-        require(accControl.isDAONode(msg.sender), "Not authorized");
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.DAO, "Not authorized");
         require(bytes(title).length > 0, "Empty title");
         require(bytes(description).length > 0, "Empty description");
         
@@ -273,7 +278,8 @@ contract Voting is Ownable2Step, Pausable, ReentrancyGuard {
         VoteType voteType,
         string memory justification
     ) external whenNotPaused nonReentrant {
-        require(accControl.isValidator(msg.sender), "Not a validator");
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.Validator, "Not a validator");
         
         Proposal storage proposal = proposals[proposalId];
         require(proposal.status == ProposalStatus.ACTIVE, "Proposal not active");
@@ -352,8 +358,7 @@ contract Voting is Ownable2Step, Pausable, ReentrancyGuard {
         Proposal storage proposal
     ) internal view returns (bool) {
         uint256 totalVotes = proposal.votesFor + proposal.votesAgainst + proposal.votesAbstain;
-        uint256 totalValidators = accControl.validatorCount();
-        uint256 quorum = (totalValidators * proposal.quorumRequired) / 100;
+        uint256 quorum = (validatorCount * proposal.quorumRequired) / 100;
         
         return totalVotes >= quorum;
     }
@@ -477,7 +482,8 @@ contract Voting is Ownable2Step, Pausable, ReentrancyGuard {
         ProposalType proposalType,
         VotingStrategy memory newStrategy
     ) external {
-        require(accControl.members(msg.sender).role == AccControl.Role.Admin, "Not authorized");
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.Admin, "Not authorized");
         require(newStrategy.quorumPercentage <= 100, "Invalid quorum");
         require(newStrategy.minVotingPeriod <= newStrategy.maxVotingPeriod, "Invalid periods");
 
@@ -494,7 +500,8 @@ contract Voting is Ownable2Step, Pausable, ReentrancyGuard {
      * @dev Pause contract
      */
     function pause() external {
-        require(accControl.members(msg.sender).role == AccControl.Role.Admin, "Not authorized");
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.Admin, "Not authorized");
         _pause();
     }
 
@@ -502,7 +509,15 @@ contract Voting is Ownable2Step, Pausable, ReentrancyGuard {
      * @dev Unpause contract
      */
     function unpause() external {
-        require(accControl.members(msg.sender).role == AccControl.Role.Admin, "Not authorized");
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.Admin, "Not authorized");
         _unpause();
+    }
+
+    function updateValidatorCount(uint256 newCount) external {
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.Admin, "Not authorized");
+        validatorCount = newCount;
+        emit ValidatorCountUpdated(newCount);
     }
 }

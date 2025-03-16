@@ -413,7 +413,8 @@ contract Consensus is Ownable2Step, Pausable, ReentrancyGuard {
     function updateConsensusParams(
         ConsensusParams memory newParams
     ) external {
-        require(accControl.members(msg.sender).role == AccControl.Role.Admin, "Not authorized");
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.Admin, "Not authorized");
         params = newParams;
     }
 
@@ -423,7 +424,8 @@ contract Consensus is Ownable2Step, Pausable, ReentrancyGuard {
     function updateAIModel(
         string memory modelVersion
     ) external {
-        require(accControl.members(msg.sender).role == AccControl.Role.Admin, "Not authorized");
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.Admin, "Not authorized");
         emit AIModelUpdated(modelVersion, block.timestamp);
     }
 
@@ -481,7 +483,8 @@ contract Consensus is Ownable2Step, Pausable, ReentrancyGuard {
      * @dev Pause contract
      */
     function pause() external {
-        require(accControl.members(msg.sender).role == AccControl.Role.Admin, "Not authorized");
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.Admin, "Not authorized");
         _pause();
     }
 
@@ -489,7 +492,8 @@ contract Consensus is Ownable2Step, Pausable, ReentrancyGuard {
      * @dev Unpause contract
      */
     function unpause() external {
-        require(accControl.members(msg.sender).role == AccControl.Role.Admin, "Not authorized");
+        (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
+        require(role == AccControl.Role.Admin, "Not authorized");
         _unpause();
     }
 }
