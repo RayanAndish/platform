@@ -3,76 +3,62 @@
   display: inline-block;
 }
 
-.dropdownButton {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
+.currentLanguage {
   background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 6px;
-  color: #333;
+  color: var(--text-primary);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
 }
 
-.dropdownButton:hover {
-  background: rgba(255, 255, 255, 0.2);
+.currentLanguage:hover {
+  background: rgba(255, 255, 255, 0.15);
 }
 
-.dropdownButton img {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.dropdownMenu {
+.languageList {
   position: absolute;
   top: 100%;
   right: 0;
-  margin-top: 4px;
-  padding: 8px 0;
-  background: white;
+  margin-top: 8px;
+  background: var(--background-secondary);
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  list-style: none;
-  min-width: 160px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
   z-index: 1000;
+  min-width: 150px;
 }
 
-.dropdownItem {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.languageOption {
+  display: block;
+  width: 100%;
   padding: 8px 16px;
+  border: none;
+  background: none;
+  color: var(--text-primary);
+  text-align: left;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
 }
 
-.dropdownItem:hover {
-  background-color: rgba(0, 123, 255, 0.08);
+.languageOption:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
-.dropdownItem.active {
-  background-color: rgba(0, 123, 255, 0.12);
-  font-weight: 500;
-}
-
-.dropdownItem img {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  object-fit: cover;
+.languageOption.active {
+  background: var(--accent-color);
+  color: white;
 }
 
 /* RTL Support */
-[dir="rtl"] .dropdownMenu {
+[dir="rtl"] .languageList {
   right: auto;
   left: 0;
 }
 
-[dir="rtl"] .dropdownButton,
-[dir="rtl"] .dropdownItem {
-  flex-direction: row-reverse;
+[dir="rtl"] .languageOption {
+  text-align: right;
 }

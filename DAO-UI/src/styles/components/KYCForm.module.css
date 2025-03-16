@@ -1,0 +1,98 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 32px;
+  color: #1890ff;
+}
+
+.form {
+  background: #fff;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.formItem {
+  margin-bottom: 24px;
+}
+
+.content {
+  margin-top: 24px;
+  padding: 20px;
+  background: #fafafa;
+  border-radius: 4px;
+}
+
+.steps {
+  margin-bottom: 32px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
+.submitButton {
+  min-width: 120px;
+}
+
+.errorMessage {
+  color: #ff4d4f;
+  margin-top: 8px;
+}
+
+.successMessage {
+  color: #52c41a;
+  margin-top: 8px;
+  text-align: center;
+}
+
+.infoText {
+  margin: 16px 0;
+  color: #666;
+}
+
+.requiredField::before {
+  content: '*';
+  color: #ff4d4f;
+  margin-right: 4px;
+}
+
+.uploadArea {
+  border: 2px dashed #d9d9d9;
+  border-radius: 4px;
+  padding: 20px;
+  text-align: center;
+  background: #fafafa;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.uploadArea:hover {
+  border-color: #1890ff;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+  
+  .form {
+    padding: 16px;
+  }
+  
+  .buttonContainer {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .submitButton {
+    width: 100%;
+  }
+} 

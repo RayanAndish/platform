@@ -1,71 +1,87 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
+import { Injectable, OnModuleInit, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ethers } from 'ethers';
 import { Client, Context, ContextParams } from '@aragon/sdk-client';
 
-interface GanacheConfig {
+interface NetworkConfig {
   name: string;
   chainId: number;
   gasLimit: number;
   gasPrice: number;
+  rpcUrl: string;
 }
 
 @Injectable()
 export class BlockchainService implements OnModuleInit {
+  private readonly logger = new Logger(BlockchainService.name);
   private provider: ethers.JsonRpcProvider;
   private client: Client;
   private signer: ethers.Signer;
-  private ganacheConfig: GanacheConfig;
+  private networkConfig: NetworkConfig;
 
   constructor(private configService: ConfigService) {
-    this.ganacheConfig = {
-      name: this.configService.get<string>('NETWORK_NAME') || 'ganache',
-      chainId: Number(this.configService.get<string>('CHAIN_ID')) || 1337,
-      gasLimit: Number(this.configService.get<string>('GAS_LIMIT')) || 8000000,
+    this.networkConfig = {
+      name: this.configService.get<string>('NETWORK_NAME') || 'DAO-VC',
+      chainId: Number(this.configService.get<string>('CHAIN_ID')) || 5777,
+      gasLimit: Number(this.configService.get<string>('GAS_LIMIT')) || 6721975,
       gasPrice: Number(this.configService.get<string>('GAS_PRICE')) || 20000000000,
+      rpcUrl: this.configService.get<string>('BLOCKCHAIN_RPC_URL') || 'http://172.16.22.120:9545'
     };
   }
 
   async onModuleInit() {
-    await this.initializeProvider();
-    await this.initializeAragonClient();
+    try {
+      await this.initializeProvider();
+      await this.initializeAragonClient();
+      this.logger.log('Blockchain service initialized successfully');
+    } catch (error) {
+      this.logger.error(`Failed to initialize blockchain service: ${error.message}`);
+      throw error;
+    }
   }
 
   private async initializeProvider() {
-    const rpcUrl = this.configService.get<string>('BLOCKCHAIN_RPC_URL');
-    if (!rpcUrl) {
-      throw new Error('BLOCKCHAIN_RPC_URL is not defined');
-    }
-    
-    // Initialize provider with Ganache settings
-    this.provider = new ethers.JsonRpcProvider(rpcUrl, {
-      name: this.ganacheConfig.name,
-      chainId: this.ganacheConfig.chainId,
-    });
+    try {
+      this.logger.debug(`Connecting to network: ${this.networkConfig.name} (${this.networkConfig.chainId})`);
+      
+      this.provider = new ethers.JsonRpcProvider(this.networkConfig.rpcUrl, {
+        name: this.networkConfig.name,
+        chainId: this.networkConfig.chainId,
+      });
 
-    // Get the first account from Ganache as default signer
-    const accounts = await this.provider.listAccounts();
-    if (accounts.length === 0) {
-      throw new Error('No accounts found in Ganache');
+      // Verify connection
+      const network = await this.provider.getNetwork();
+      this.logger.log(`Connected to network: ${network.name} (${network.chainId})`);
+
+      // Get the first account from Ganache as default signer
+      const accounts = await this.provider.listAccounts();
+      if (accounts.length === 0) {
+        throw new Error('No accounts found in the network');
+      }
+      
+      this.signer = await this.provider.getSigner(accounts[0].address);
+      const address = await this.signer.getAddress();
+      this.logger.log(`Using signer address: ${address}`);
+    } catch (error) {
+      this.logger.error(`Failed to initialize provider: ${error.message}`);
+      throw new Error(`Provider initialization failed: ${error.message}`);
     }
-    
-    // Create a wallet instance for the first account
-    this.signer = await this.provider.getSigner(accounts[0].address);
   }
 
   private async initializeAragonClient() {
-    const rpcUrl = this.configService.get<string>('BLOCKCHAIN_RPC_URL');
-    if (!rpcUrl) {
-      throw new Error('Missing blockchain configuration');
+    try {
+      const context: ContextParams = {
+        network: this.networkConfig.chainId,
+        signer: this.signer as any,
+        web3Providers: [this.networkConfig.rpcUrl],
+      };
+
+      this.client = new Client(new Context(context));
+      this.logger.log('Aragon client initialized successfully');
+    } catch (error) {
+      this.logger.error(`Failed to initialize Aragon client: ${error.message}`);
+      throw new Error(`Aragon client initialization failed: ${error.message}`);
     }
-
-    const context: ContextParams = {
-      network: this.ganacheConfig.chainId,
-      signer: this.signer as any, // Type assertion to fix compatibility issue
-      web3Providers: [rpcUrl],
-    };
-
-    this.client = new Client(new Context(context));
   }
 
   public async getDAO(daoAddress: string) {
@@ -113,8 +129,8 @@ export class BlockchainService implements OnModuleInit {
       // Convert amount to Wei before sending transaction
       const amountInWei = ethers.parseEther(amount);
       const tx = await stakingContract.stake(amountInWei, {
-        gasLimit: this.ganacheConfig.gasLimit,
-        gasPrice: this.ganacheConfig.gasPrice,
+        gasLimit: this.networkConfig.gasLimit,
+        gasPrice: this.networkConfig.gasPrice,
       });
       
       // Wait for transaction confirmation
@@ -144,8 +160,8 @@ export class BlockchainService implements OnModuleInit {
       // Convert amount to Wei before sending transaction
       const amountInWei = ethers.parseEther(amount);
       const tx = await stakingContract.unstake(amountInWei, {
-        gasLimit: this.ganacheConfig.gasLimit,
-        gasPrice: this.ganacheConfig.gasPrice,
+        gasLimit: this.networkConfig.gasLimit,
+        gasPrice: this.networkConfig.gasPrice,
       });
       
       // Wait for transaction confirmation
@@ -173,8 +189,8 @@ export class BlockchainService implements OnModuleInit {
       );
 
       const tx = await stakingContract.claimRewards({
-        gasLimit: this.ganacheConfig.gasLimit,
-        gasPrice: this.ganacheConfig.gasPrice,
+        gasLimit: this.networkConfig.gasLimit,
+        gasPrice: this.networkConfig.gasPrice,
       });
       
       // Wait for transaction confirmation

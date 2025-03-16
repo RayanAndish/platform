@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import Web3 from 'web3';
 import axios from 'axios';
-import styles from '../../styles/components/Voting.module.css';
+import { List, Card, Tag, Space } from 'antd';
+import styles from '@styles/components/Voting.module.css';
 
 interface Proposal {
   id: string;

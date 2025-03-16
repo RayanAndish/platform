@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" style="stop-color:rgba(0, 245, 160, 0.3)"/>
+      <stop offset="100%" style="stop-color:rgba(0, 245, 160, 0)"/>
+    </radialGradient>
+    <filter id="blur">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10"/>
+    </filter>
+  </defs>
+  <circle cx="200" cy="200" r="150" fill="url(#glow)" filter="url(#blur)"/>
+  <circle cx="200" cy="200" r="100" fill="none" stroke="rgba(0, 245, 160, 0.5)" stroke-width="2"/>
+  <circle cx="200" cy="200" r="80" fill="none" stroke="rgba(0, 245, 160, 0.3)" stroke-width="1"/>
+</svg> 

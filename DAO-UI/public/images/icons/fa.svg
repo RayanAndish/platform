@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 630 360">
+  <rect fill="#239f40" width="630" height="120"/>
+  <rect fill="#fff" y="120" width="630" height="120"/>
+  <rect fill="#da0000" y="240" width="630" height="120"/>
+  <g fill="#fff" transform="translate(315,180) scale(0.8)">
+    <path d="M0,0 C0,20 -20,40 -40,40 C-20,40 0,60 0,80 C0,60 20,40 40,40 C20,40 0,20 0,0"/>
+    <path d="M0,-20 C0,0 -20,20 -40,20 C-20,20 0,40 0,60 C0,40 20,20 40,20 C20,20 0,0 0,-20"/>
+  </g>
+</svg> 

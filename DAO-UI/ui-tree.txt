@@ -1,19 +1,9 @@
 .
-├── build
-│   ├── favicon.ico
-│   ├── images
-│   │   ├── p1.png
-│   │   ├── p2.png
-│   │   ├── p3.png
-│   │   └── p4.png
-│   ├── logo192.png
-│   ├── logo512.png
-│   ├── manifest.json
-│   └── robots.txt
 ├── dao-ui-tree.txt
 ├── Dockerfile
+├── .env
+├── .gitignore
 ├── package.json
-├── package-lock.json
 ├── public
 │   ├── favicon.ico
 │   ├── images
@@ -22,26 +12,49 @@
 │   │   │   ├── staking.svg
 │   │   │   ├── voting.svg
 │   │   │   └── wallet.svg
-│   │   └── logo.svg
+│   │   ├── logo.svg
+│   │   └── patterns
+│   │       ├── grid-pattern-dark.svg
+│   │       └── grid-pattern.svg
 │   ├── index.html
 │   ├── logo192.png
 │   ├── logo512.png
 │   ├── manifest.json
 │   └── robots.txt
+├── Rayan DAO for VCs.pdf
 ├── README.md
 ├── src
+│   ├── abis
+│   │   ├── staking.json
+│   │   └── voting.json
 │   ├── App.css
 │   ├── App.test.js
 │   ├── App.tsx
+│   ├── assets
+│   │   └── fonts
+│   │       ├── fonts.css
+│   │       ├── Roboto-Bold.eot
+│   │       ├── Roboto-Bold.ttf
+│   │       ├── Roboto-Bold.woff
+│   │       ├── Roboto-Bold.woff2
+│   │       ├── Roboto-Medium.eot
+│   │       ├── Roboto-Medium.ttf
+│   │       ├── Roboto-Medium.woff
+│   │       ├── Roboto-Medium.woff2
+│   │       ├── Roboto-Regular.eot
+│   │       ├── Roboto-Regular.ttf
+│   │       ├── Roboto-Regular.woff
+│   │       └── Roboto-Regular.woff2
 │   ├── components
+│   │   ├── About
+│   │   │   └── AboutPage.tsx
 │   │   ├── Common
 │   │   │   ├── Button.tsx
 │   │   │   ├── Input.tsx
 │   │   │   ├── Modal.tsx
-│   │   │   ├── Table.tsx
-│   │   │   └── WalletButton.tsx
+│   │   │   └── Table.tsx
 │   │   ├── DAO
-│   │   │   ├── PoposalDetails.tsx
+│   │   │   ├── ProposalDetails.tsx
 │   │   │   ├── ProposalForm.tsx
 │   │   │   ├── ProposalList.tsx
 │   │   │   └── VoingPage.tsx
@@ -52,18 +65,29 @@
 │   │   │   ├── HomePage.tsx
 │   │   │   ├── NewsletterSection.tsx
 │   │   │   └── StatisticsSection.tsx
+│   │   ├── KYC
+│   │   │   └── KYCForm.tsx
 │   │   ├── LanguageSwitcher.tsx
 │   │   ├── Projects
 │   │   │   ├── DefineProject.tsx
+│   │   │   ├── ProjectCard.tsx
 │   │   │   ├── ProjectDetails.tsx
 │   │   │   └── ProjectsPage.tsx
 │   │   ├── Staking
 │   │   │   ├── StakingDatails.tsx
+│   │   │   ├── StakingDetails.tsx
 │   │   │   └── StakingPage.tsx
 │   │   └── Wallet
 │   │       ├── WalletConnect.tsx
 │   │       ├── WalletDashboard.tsx
 │   │       └── WalletInfo.tsx
+│   ├── config
+│   │   └── web3Config.ts
+│   ├── constants
+│   │   ├── config.ts
+│   │   └── routes.ts
+│   ├── contexts
+│   │   └── Web3Context.tsx
 │   ├── cypress
 │   │   └── e2e
 │   │       ├── HomePage.cy.js
@@ -84,37 +108,55 @@
 │   │   └── ru.json
 │   ├── index.css
 │   ├── index.tsx
+│   ├── layouts
+│   │   ├── DashboardLayout.tsx
+│   │   └── MainLayout.tsx
+│   ├── services
+│   │   ├── api.service.ts
+│   │   ├── kyc.service.ts
+│   │   ├── token.service.ts
+│   │   └── web3.service.ts
 │   ├── styles
 │   │   ├── components
+│   │   │   ├── About.module.css
 │   │   │   ├── Button.module.css
 │   │   │   ├── Footer.module.css
 │   │   │   ├── Header.module.css
 │   │   │   ├── Input.module.css
+│   │   │   ├── KYCForm.module.css
+│   │   │   ├── LanguageSwitcher.module.css
 │   │   │   ├── Modal.module.css
+│   │   │   ├── ProjectCard.css
+│   │   │   ├── ProposalDetails.module.css
 │   │   │   ├── ProposalList.module.css
+│   │   │   ├── StakingDetails.module.css
+│   │   │   ├── StakingPage.module.css
+│   │   │   ├── VotingPage.module.css
+│   │   │   ├── WalletConnect.module.css
 │   │   │   └── WalletDashboard.module.css
-│   │   ├── ConnectWalletButton.css
 │   │   ├── global.css
-│   │   ├── LanguageSwitcher.css
 │   │   ├── mixins.css
 │   │   ├── pages
 │   │   │   ├── DefineProject.module.css
 │   │   │   ├── HomePage.module.css
 │   │   │   ├── ProjectDetails.module.css
+│   │   │   ├── ProjectsPage.css
 │   │   │   ├── ProjectsPage.module.css
 │   │   │   ├── StakingPage.module.css
 │   │   │   ├── Table.module.css
 │   │   │   └── VotingPage.module.css
 │   │   └── variables.css
+│   ├── types
+│   │   └── web3.ts
 │   └── utils
 │       ├── api.ts
-│       ├── blokchain.ts
+│       ├── blockchain.ts
+│       ├── errorHandler.ts
 │       ├── helpers.ts
-│       └── walletConfig.ts
-├── tailwind.config.js
+│       └── logger.ts
 ├── tsconfig.json
 ├── ui-content.txt
 ├── ui-tree.txt
 └── yarn.lock
 
-22 directories, 96 files
+32 directories, 128 files

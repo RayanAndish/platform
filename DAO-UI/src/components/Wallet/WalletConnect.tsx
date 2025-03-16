@@ -1,47 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React from 'react';
+import { useWeb3React } from '@web3-react/core';
+import { Web3Provider } from '@ethersproject/providers';
+import { InjectedConnector } from '@web3-react/injected-connector';
+import { useTranslation } from 'react-i18next';
+import styles from '@/styles/components/WalletConnect.module.css';
 
-interface WalletConnectProps {
-  onConnect: (account: string) => void;
-}
+const injected = new InjectedConnector({
+  supportedChainIds: [1, 11155111, 137, 80001, 56]
+});
 
-const WalletConnect: React.FC<WalletConnectProps> = ({ onConnect }) => {
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if ((window as any).ethereum) {
-      console.log("MetaMask is installed!");
-    } else {
-      setError("MetaMask is not installed. Please install it to continue.");
-    }
-  }, []);
+const WalletConnect: React.FC = () => {
+  const { t } = useTranslation();
+  const { active, activate, deactivate } = useWeb3React<Web3Provider>();
 
   const handleConnectWallet = async () => {
-    if ((window as any).ethereum) {
-      const ethereum = (window as any).ethereum as Ethereum;
+    if (!active) {
       try {
-        const accounts: string[] = await ethereum.request({
-          method: "eth_requestAccounts",
-        });
-        onConnect(accounts[0]);
-        setError(null);
-      } catch (err) {
-        setError("Failed to connect wallet. Please try again.");
-        console.error(err);
+        await activate(injected);
+      } catch (error) {
+        console.error('Failed to connect wallet:', error);
       }
     } else {
-      setError("MetaMask is not installed. Please install it to continue.");
+      try {
+        deactivate();
+      } catch (error) {
+        console.error('Failed to disconnect wallet:', error);
+      }
     }
   };
+
   return (
-    <div>
-      <button
-        onClick={handleConnectWallet}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      >
-        Connect Wallet
-      </button>
-      {error && <p className="text-red-500 mt-2">{error}</p>}
-    </div>
+    <button
+      onClick={handleConnectWallet}
+      className={styles.connectButton}
+    >
+      {active ? t('common.disconnect') : t('common.connect_wallet')}
+    </button>
   );
 };
 

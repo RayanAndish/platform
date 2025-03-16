@@ -1,0 +1,51 @@
+.container {
+  max-width: 1000px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+.card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 48px;
+  font-size: 18px;
+}
+
+.error {
+  color: #ff4d4f;
+}
+
+.votingStats {
+  margin: 24px 0;
+}
+
+.statsCard {
+  text-align: center;
+  background: #fafafa;
+}
+
+.progressBar {
+  margin: 24px 0;
+}
+
+.votingPower {
+  margin: 16px 0;
+  padding: 16px;
+  background: #f0f5ff;
+  border-radius: 4px;
+}
+
+.votingButtons {
+  display: flex;
+  justify-content: center;
+  margin: 24px 0;
+}
+
+.deadline {
+  text-align: center;
+  margin-top: 16px;
+} 

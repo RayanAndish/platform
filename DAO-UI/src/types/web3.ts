@@ -1,41 +1,29 @@
-import { Contract } from 'web3-eth-contract';
+import { Contract } from 'ethers';
+import type { BigNumberish } from 'ethers';
 
-export interface StakingContract extends Contract {
-  methods: {
-    totalStaked(): {
-      call(): Promise<string>;
-    };
-    stakedAmount(account: string): {
-      call(): Promise<string>;
-    };
-    getRewards(account: string): {
-      call(): Promise<string>;
-    };
-    getCurrentAPR(): {
-      call(): Promise<string>;
-    };
-    stake(): {
-      send(options: { from: string; value: string }): Promise<void>;
-    };
-    unstake(): {
-      send(options: { from: string }): Promise<void>;
-    };
-    claimRewards(): {
-      send(options: { from: string }): Promise<void>;
-    };
-  };
+export type ContractMethod<T = any> = {
+  (...args: any[]): Promise<T>;
+};
+
+export interface StakingContractInterface {
+  totalStaked: ContractMethod<BigNumberish>;
+  stake: ContractMethod<any>;
+  unstake: ContractMethod<any>;
+  getStakingInfo: ContractMethod<[BigNumberish, BigNumberish, BigNumberish]>;
 }
 
-export interface VotingContract extends Contract {
-  methods: {
-    getVotingPower(account: string): {
-      call(): Promise<string>;
-    };
-    vote(proposalId: string, support: boolean): {
-      send(options: { from: string }): Promise<void>;
-    };
-    createProposal(title: string, description: string, deadline: number): {
-      send(options: { from: string }): Promise<void>;
-    };
-  };
+export interface VotingContractInterface {
+  getVotingPower: ContractMethod<BigNumberish>;
+  vote: ContractMethod<any>;
+  getProposal: ContractMethod<any>;
+}
+
+export type StakingContract = Contract & StakingContractInterface;
+export type VotingContract = Contract & VotingContractInterface;
+
+export interface TokenInfo {
+  address: string;
+  symbol: string;
+  decimals: number;
+  balance: string;
 } 

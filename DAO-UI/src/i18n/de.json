@@ -1,86 +1,98 @@
 {
-    "appName": "FunDeSci",
-    "home": "Home",
-    "projects": "Projects",
-    "discovery": "Discovery",
-    "documentation": "Documentation",
-    "connectWallet": "Connect Wallet",
-    "heroTitle": "NFT-Fundraising For\nDECENTRALIZED SCIENCE AND\nOPEN-SOURCE PROJECTS",
-    "heroSubtitle": "Empower Your Research: Tokenize, Commercialize, and Disseminate with NFT-Fundraising",
-    "defineProject": "Define your project",
-    "explore": "Explore",
-    "listedProjects": "Listed Projects",
-    "fundedProjects": "Funded Projects",
-    "researchers": "Researchers",
-    "subscribeNewsletter": "SUBSCRIBE TO OUR NEWSLETTER",
-    "newsletterDescription": "Get weekly access to the last listed projects, available grants and programs",
-    "enterEmail": "Enter you email",
-    "subscribe": "Subscribe",
-    "aboutUsTitle": "About FunDeSci",
-    "aboutUsDescription": "At FunDeSci, We aim to democratize access to funds and create a vibrant community of scientists who are passionate about driving forward the frontiers of human knowledge. We see ourselves as catalysts for change in the scientific landscape, unlocking creativity and accelerating progress for the betterment of all.",
-    "usefulLinks": "Useful links",
-    "termsOfService": "Terms of Service",
-    "copyright": "Copyright © {{year}} FunDeSci. All rights reserved.",
-    "header": {
-      "title": "DAO VC Funding Plattform",
-      "nav": {
-        "projects": "Projekte",
-        "staking": "Staking",
-        "voting": "Abstimmung",
-        "about": "Über uns"
+    "app": {
+      "name": "Rayan DAO",
+      "title": "DAO VC-Finanzierungsplattform"
+    },
+    "home": {
+      "hero": {
+        "title": "Revolution im dezentralen Risikokapital",
+        "subtitle": "Entdecken und investieren Sie in die besten Blockchain- und KI-Projekte über unsere innovative DAO-Plattform",
+        "exploreButton": "Projekte erkunden",
+        "connectButton": "Wallet verbinden"
       },
-      "connectWallet": "Wallet verbinden"
-    },
-    "hero": {
-      "title": "Willkommen bei der DAO VC Funding Plattform",
-      "subtitle": "Entdecken, Investieren und Wachsen mit den besten Blockchain-basierten Projekten"
-    },
-    "stats": {
-      "activeProjects": "Aktive Projekte",
-      "fundsRaised": "Eingesammelte Mittel",
-      "communityMembers": "Community-Mitglieder",
-      "numbers": {
-        "projects": "25+",
-        "funds": "10M$+",
-        "members": "50+"
+      "stats": {
+        "tvl": "Gesamtwert gesperrt",
+        "projects": "Aktive Projekte",
+        "holders": "Token-Inhaber",
+        "fundsRaised": "Eingesammelte Mittel",
+        "communityMembers": "Community-Mitglieder",
+        "numbers": {
+          "tvl": "$50M+",
+          "projects": "25+",
+          "holders": "10K+",
+          "funds": "$10M+",
+          "members": "50+"
+        }
+      },
+      "features": {
+        "title": "Warum unsere Plattform wählen",
+        "security": {
+          "title": "Enterprise-Grade Sicherheit",
+          "description": "Mehrschichtige Sicherheitsarchitektur mit regelmäßigen Audits und Echtzeit-Überwachung"
+        },
+        "speed": {
+          "title": "Schnelle Transaktionen",
+          "description": "Optimierte Smart Contracts und Multi-Chain-Infrastruktur für sofortige Abwicklungen"
+        },
+        "rewards": {
+          "title": "Großzügige Belohnungen",
+          "description": "Verdienen Sie erhebliche Belohnungen durch Staking, Governance-Teilnahme und frühe Investitionen"
+        }
+      },
+      "how_it_works": {
+        "title": "Wie es funktioniert",
+        "step1": {
+          "title": "Wallet verbinden",
+          "description": "Beginnen Sie mit der Verbindung Ihrer Web3-Wallet zur Plattform"
+        },
+        "step2": {
+          "title": "Staking & Verdienen",
+          "description": "Staken Sie Ihre Token, um Stufen freizuschalten und passive Belohnungen zu verdienen"
+        },
+        "step3": {
+          "title": "Investieren & Mitbestimmen",
+          "description": "Nehmen Sie an exklusiven Investitionsmöglichkeiten und Governance-Entscheidungen teil"
+        }
+      },
+      "cta": {
+        "title": "Bereit, Ihre Reise zu beginnen?",
+        "description": "Schließen Sie sich Tausenden von Investoren an, die bereits von unserer Plattform profitieren",
+        "button": "Staking starten"
+      },
+      "tiers": {
+        "title": "Mitgliedschaftsstufen",
+        "subtitle": "Wählen Sie Ihre Mitgliedschaftsstufe",
+        "stake_amount": "Mindest-Stake: {{amount}} Token",
+        "bronze": {
+          "name": "Bronze"
+        },
+        "silver": {
+          "name": "Silber"
+        },
+        "gold": {
+          "name": "Gold"
+        },
+        "diamond": {
+          "name": "Diamant"
+        },
+        "benefits": {
+          "allocation": "Exklusive Zuteilung in Projekten",
+          "early_access": "Frühzeitiger Zugang zu Projekten",
+          "voting": "Stimmrecht bei Entscheidungen",
+          "premium_support": "Premium-Support",
+          "exclusive_events": "Zugang zu exklusiven Events",
+          "bonus_rewards": "Bonus-Belohnungen",
+          "vip_access": "VIP-Zugang zu Projekten",
+          "governance": "Teilnahme an der Plattform-Governance"
+        }
       }
     },
     "projects": {
-      "title": "Projekte erkunden",
+      "title": "Projekte entdecken",
       "card": {
         "learnMore": "Mehr erfahren"
-      }
-    },
-    "footer": {
-      "copyright": "© 2025 DAO VC Funding Plattform. Alle Rechte vorbehalten."
-    },
-    "common": {
-      "loading": "Lädt...",
-      "error": "Ein Fehler ist aufgetreten",
-      "success": "Erfolgreich",
-      "submit": "Absenden",
-      "cancel": "Abbrechen",
-      "connect": "Wallet verbinden",
-      "disconnect": "Verbindung trennen"
-    },
-    "wallet": {
-      "connect": "Wallet verbinden",
-      "connecting": "Verbindung wird hergestellt...",
-      "disconnect": "Verbindung trennen",
-      "balance": "Kontostand",
-      "address": "Adresse",
-      "network": {
-        "switch": "Netzwerk wechseln",
-        "switching": "Netzwerk wird gewechselt...",
-        "error": "Netzwerkwechsel fehlgeschlagen"
       },
-      "errors": {
-        "connect": "Wallet-Verbindung fehlgeschlagen",
-        "network": "Netzwerk nicht unterstützt",
-        "balance": "Kontostand konnte nicht geladen werden"
-      }
-    },
-    "projectDetails": {
+      "details": {
       "loading": "Projektdetails werden geladen...",
       "error": "Fehler beim Laden der Projektdetails",
       "budget": "Budget",
@@ -88,19 +100,19 @@
       "status": "Status",
       "investButton": "In Projekt investieren"
     },
-    "defineProject": {
+      "define": {
       "title": "Neues Projekt definieren",
       "fields": {
         "name": "Projektname",
         "description": "Beschreibung",
-        "budget": "Budget (EUR)",
+          "budget": "Budget (USD)",
         "duration": "Dauer (Tage)",
         "category": "Kategorie",
         "selectCategory": "Kategorie auswählen..."
       },
       "categories": {
         "tech": "Technologie",
-        "health": "Gesundheit",
+          "health": "Gesundheitswesen",
         "education": "Bildung"
       },
       "validation": {
@@ -112,93 +124,151 @@
         "durationPositive": "Dauer muss eine positive Zahl sein",
         "category": "Kategorie ist erforderlich"
       },
-      "submitButton": "Einreichen",
+        "submitButton": "Absenden",
       "success": "Projekt erfolgreich definiert!",
       "error": "Fehler beim Definieren des Projekts. Bitte versuchen Sie es erneut."
+      }
     },
-    "staking": {
-      "title": "Staking",
-      "totalStaked": "Gesamt gestaked",
-      "yourStake": "Ihr Einsatz",
-      "rewards": "Verfügbare Belohnungen",
-      "apr": "Aktueller APR",
-      "enterAmount": "Staking-Betrag eingeben",
-      "stake": "Staken",
-      "unstake": "Unstaken",
-      "claimRewards": "Belohnungen beanspruchen"
+    "footer": {
+      "aboutTitle": "Über uns",
+      "aboutDescription": "Wir sind eine dezentrale Risikokapital-Plattform, die transparente und inklusive Investitionsmöglichkeiten bietet.",
+      "linksTitle": "Schnelllinks",
+      "socialsTitle": "Folgen Sie uns",
+      "terms": "Nutzungsbedingungen",
+      "copyright": "© 2024 DAO VC Plattform. Alle Rechte vorbehalten."
     },
-    "voting": {
-      "title": "Governance",
-      "votingPower": "Stimmgewicht",
-      "createProposal": "Vorschlag erstellen",
-      "proposalTitle": "Vorschlagstitel",
-      "proposalDescription": "Vorschlagsbeschreibung",
-      "proposalDeadline": "Abstimmungsfrist",
-      "enterTitle": "Vorschlagstitel eingeben",
-      "enterDescription": "Vorschlagsbeschreibung eingeben",
-      "votesFor": "Stimmen dafür",
-      "votesAgainst": "Stimmen dagegen",
-      "voteFor": "Dafür stimmen",
-      "voteAgainst": "Dagegen stimmen",
-      "status": "Status",
-      "deadline": "Frist",
-      "creator": "Erstellt von",
-      "status": {
-        "active": "Aktiv",
-        "passed": "Angenommen",
-        "rejected": "Abgelehnt",
-        "pending": "Ausstehend"
+    "common": {
+      "loading": "Wird geladen...",
+      "error": "Ein Fehler ist aufgetreten",
+      "success": "Erfolgreich",
+      "submit": "Absenden",
+      "cancel": "Abbrechen",
+      "preview": "Vorschau",
+      "seeAll": "Alle anzeigen",
+      "explore": "Erkunden",
+      "connecting": "Verbindung wird hergestellt...",
+      "connect": "Wallet verbinden",
+      "disconnect": "Verbindung trennen",
+      "connect_wallet": "Wallet verbinden",
+      "explore_projects": "Projekte erkunden",
+      "stake_now": "Jetzt staken"
+    },
+    "nav": {
+      "home": "Startseite",
+      "projects": "Projekte",
+      "staking": "Staking",
+      "voting": "Abstimmung",
+      "discovery": "Entdecken",
+      "about": "Über uns"
+    },
+    "wallet": {
+      "connect": "Wallet verbinden",
+      "connecting": "Verbindung wird hergestellt...",
+      "disconnect": "Verbindung trennen",
+      "balance": "Guthaben",
+      "address": "Adresse",
+      "network": {
+        "switch": "Netzwerk wechseln",
+        "switching": "Wechseln...",
+        "error": "Netzwerkwechsel fehlgeschlagen"
+    },
+    "errors": {
+        "connect": "Wallet-Verbindung fehlgeschlagen",
+        "network": "Netzwerk nicht unterstützt",
+        "balance": "Laden des Guthabens fehlgeschlagen",
+        "connection_failed": "Wallet-Verbindung fehlgeschlagen",
+        "wrong_network": "Bitte wechseln Sie zum richtigen Netzwerk",
+        "transaction_failed": "Transaktion fehlgeschlagen"
+      }
+      },
+    "errors": {
+      "auth": {
+        "unauthorized": "Bitte melden Sie sich an",
+        "forbidden": "Sie haben keine Berechtigung"
+      },
+      "common": {
+        "not_found": "Nicht gefunden",
+        "server_error": "Serverfehler",
+        "unknown_error": "Ein unbekannter Fehler ist aufgetreten"
       }
     },
     "about": {
-      "title": "Über die DAO VC Plattform",
-      "subtitle": "Gestaltung der Zukunft des dezentralen Risikokapitals",
+      "title": "Über Rayan DAO",
+      "subtitle": "Die Zukunft des dezentralen Risikokapitals gestalten",
       "mission": {
         "title": "Unsere Mission",
-        "description": "Wir setzen uns dafür ein, Risikokapital durch Blockchain-Technologie zu demokratisieren und transparente und inklusive Investitionsmöglichkeiten für alle zu schaffen."
+        "description": "Wir streben danach, ein dynamisches und transparentes Ökosystem für Investitionen in innovative Startups zu schaffen."
+      },
+      "whyChooseUs": {
+        "title": "Warum Rayan DAO wählen?"
       },
       "features": {
-        "title": "Warum uns wählen",
-        "decentralized": {
-          "title": "Dezentralisiert",
-          "description": "Echte Dezentralisierung mit Community-basierter Entscheidungsfindung und transparenter Governance."
-        },
-        "secure": {
-          "title": "Sicher",
-          "description": "Aufgebaut auf bewährter Blockchain-Technologie mit mehreren Sicherheitsebenen und Audits."
-        },
-        "efficient": {
-          "title": "Effizient",
-          "description": "Schnelle, kostengünstige Transaktionen und automatisierte Prozesse durch Smart Contracts."
-        },
         "community": {
-          "title": "Community-gesteuert",
-          "description": "Aktive Community-Beteiligung bei der Projektauswahl und Governance-Entscheidungen."
+          "title": "Gemeinschaftsgesteuert",
+          "description": "Echte Dezentralisierung mit gemeinschaftlicher Entscheidungsfindung und transparenter Verwaltung"
+        },
+        "security": {
+          "title": "Hohe Sicherheit",
+          "description": "Aufgebaut auf bewährter Blockchain-Technologie mit mehreren Sicherheitsebenen und gründlichen Audits"
+        },
+        "growth": {
+          "title": "Effizient",
+          "description": "Schnelle, kostengünstige Transaktionen und automatisierte Prozesse durch Smart Contracts"
         }
       },
       "team": {
         "title": "Unser Team",
-        "member1": {
-          "name": "Sarah Johnson",
-          "role": "Gründerin & CEO",
-          "bio": "Blockchain-Expertin mit über 10 Jahren Erfahrung in Risikokapital und dezentralen Systemen."
-        },
-        "member2": {
-          "name": "Michael Chen",
-          "role": "CTO",
-          "bio": "Smart Contract-Experte und ehemaliger leitender Entwickler bei großen Blockchain-Projekten."
-        },
-        "member3": {
-          "name": "Elena Rodriguez",
-          "role": "Community Lead",
-          "bio": "Community-Building-Expertin mit umfangreicher Erfahrung in DAOs und Web3."
+        "members": {
+          "sarah": {
+            "name": "Sarah Johnson",
+            "role": "Gründerin & CEO",
+            "description": "Blockchain-Expertin mit über 10 Jahren Erfahrung in Risikokapital und dezentralen Systemen"
+          },
+          "michael": {
+            "name": "Michael Chen",
+            "role": "CTO",
+            "description": "Smart Contract-Experte und ehemaliger leitender Entwickler bei wichtigen Blockchain-Projekten"
+          },
+          "elena": {
+            "name": "Elena Rodriguez",
+            "role": "Community Manager",
+            "description": "Community-Building-Expertin mit umfangreicher Erfahrung in DAOs und Web3"
+          }
         }
       },
       "contact": {
         "title": "Kontakt",
-        "email": "E-Mail",
-        "telegram": "Telegram",
-        "twitter": "Twitter"
+        "email": {
+          "title": "E-Mail",
+          "value": "contact@rayandao.io"
+        },
+        "location": {
+          "title": "Standort",
+          "value": "Berlin, Deutschland"
+        }
+      }
+    },
+    "staking": {
+      "title": "Staking",
+      "description": "Staken Sie Ihre Token und nehmen Sie an der DAO-Governance teil",
+      "button": "Jetzt Staken",
+      "tiers": {
+        "bronze": {
+          "name": "Bronze",
+          "button": "Jetzt Staken"
+        },
+        "silver": {
+          "name": "Silber",
+          "button": "Jetzt Staken"
+        },
+        "gold": {
+          "name": "Gold",
+          "button": "Jetzt Staken"
+        },
+        "diamond": {
+          "name": "Diamant",
+          "button": "Jetzt Staken"
+        }
       }
     }
   }

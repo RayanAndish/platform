@@ -1,0 +1,36 @@
+.container {
+  max-width: 1000px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+.card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.loading {
+  text-align: center;
+  padding: 48px;
+  font-size: 18px;
+}
+
+.statsCard {
+  text-align: center;
+  background: #fafafa;
+}
+
+.stakeSection,
+.unstakeSection {
+  margin: 24px 0;
+  padding: 24px;
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.stakeSection {
+  border-left: 4px solid #1890ff;
+}
+
+.unstakeSection {
+  border-left: 4px solid #ff4d4f;
+} 

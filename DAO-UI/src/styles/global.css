@@ -1,29 +1,222 @@
-/* ریسپانسیو برای موبایل */
-@media (max-width: 768px) {
-  .container {
-    padding: 10px;
-  }
-
-  .headerContent {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .nav {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .hero h1 {
-    font-size: 32px;
-  }
-
-  .hero p {
-    font-size: 14px;
-  }
-
-  .walletDashboard {
-    margin-top: 20px;
-  }
+:root {
+  --primary-gradient: linear-gradient(135deg, #00F5A0 0%, #00D9F5 100%);
+  --secondary-gradient: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%);
+  --accent-color: #00F5A0;
+  --text-primary: #FFFFFF;
+  --text-secondary: #B4B4C7;
+  --card-bg: rgba(26, 27, 58, 0.5);
+  --body-bg: #0A0B1E;
+  --border-color: rgba(0, 245, 160, 0.1);
 }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--body-bg);
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-family: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+} 
+/* Header Styles */
+.header {
+    background: rgba(18, 24, 38, 0.8);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .header a {
+    color: #ffffff;
+    opacity: 0.9;
+    transition: opacity 0.2s;
+  }
+  
+  .header a:hover {
+    opacity: 1;
+  }
+  
+  /* Membership Tiers */
+  .tier-card {
+    background: linear-gradient(145deg, rgba(18, 24, 38, 0.8), rgba(28, 34, 48, 0.8));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .tier-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 255, 128, 0.15);
+  }
+  
+  .tier-card h3 {
+    color: #00ff80;
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+  
+  .tier-card ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .tier-card li {
+    color: #ffffff;
+    opacity: 0.9;
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .tier-card li:before {
+    content: "✓";
+    color: #893ae4;
+    margin-right: 8px;
+  }
+  
+  /* Page Background */
+  body {
+    background: linear-gradient(135deg, #0a0f1a 0%, #1a1f2a 100%);
+    color: #ffffff;
+  }
+  
+  /* Accent Colors */
+  .accent-text {
+    color: #4e1cc4;
+  }
+  
+  .accent-bg {
+    background-color: #ae1ff0;
+    color: #0a0f1a;
+  }
+  
+  /* فونت‌های اصلی */
+  @font-face {
+    font-family: 'Roboto';
+    src: url('@/assets/fonts/Roboto-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Roboto';
+    src: url('@/assets/fonts/Roboto-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Roboto';
+    src: url('@/assets/fonts/Roboto-Regular.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Roboto';
+    src: url('@/assets/fonts/Roboto-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  /* تنظیمات فونت برای زبان‌های مختلف */
+  :root {
+    --font-primary: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    --font-arabic: 'Cairo', var(--font-primary);
+    --font-persian: var(--font-primary);
+  }
+  
+  /* تنظیمات زبان‌ها */
+  [lang="ar"] {
+    font-family: var(--font-arabic);
+    direction: rtl;
+  }
+  
+  [lang="fa"] {
+    font-family: var(--font-persian);
+    direction: rtl;
+  }
+  
+  /* اعمال فونت روی المان‌های خاص */
+  button,
+  input,
+  select,
+  textarea,
+  a,
+  h1, h2, h3, h4, h5, h6,
+  p,
+  span,
+  div {
+    font-family: inherit;
+  }
+  
+  /* تنظیمات اضافی برای RTL */
+  [dir="rtl"] {
+    text-align: right;
+  }
+  
+  [dir="rtl"] .buttonGroup {
+    flex-direction: row-reverse;
+  }
+  
+  [dir="rtl"] .benefitsList {
+    padding-right: 1.5rem;
+  }
+  
+  [dir="rtl"] .benefitItem::before {
+    right: -1.5rem;
+    left: auto;
+  } 
+  /* ریسپانسیو برای موبایل */
+  @media (max-width: 768px) {
+    .container {
+      padding: 10px;
+    }
+  
+    .headerContent {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .nav {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+  
+    .hero h1 {
+      font-size: 32px;
+    }
+  
+    .hero p {
+      font-size: 14px;
+    }
+  
+    .walletDashboard {
+      margin-top: 20px;
+    }
+  }

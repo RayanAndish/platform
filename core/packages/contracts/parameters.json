@@ -1,50 +1,126 @@
 {
-  "CustomHash": {
-    "address": "",
-    "constructorArguments": {}
-  },
-  "AccControl": {
-    "address": "",
-    "constructorArguments": {
-      "initialOwner": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+  "contracts": {
+    "CustomHash": {
+      "address": "",
+      "constructorArguments": {}
+    },
+    "AccControl": {
+      "address": "",
+      "constructorArguments": {
+        "initialOwner": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+      }
+    },
+    "PermissionManager": {
+      "address": "",
+      "constructorArguments": {
+        "initialOwner": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+      }
+    },
+    "Token": {
+      "constructorArguments": {
+        "initialSupply": "1000000000000000000000000",
+        "initialOwner": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+      },
+      "MainToken": {
+        "address": "0x7428697E1022412D49f079b19fbd845eBBd8d83A",
+        "initialSupply": "1000000000000000000000",
+        "owner": "0xc73a9048bf40235A1BACBB1Bd88670D3272469Dc"
+      }
+    },
+    "Voting": {
+      "constructorArguments": {
+        "initialOwner": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+      },
+      "MainVoting": {
+        "address": "0x1FEE29f0F8EfF4F681e031bFb58E589f6B6Fcf45",
+        "owner": "0xc73a9048bf40235A1BACBB1Bd88670D3272469Dc"
+      }
+    },
+    "ProjectMon": {
+      "constructorArguments": {
+        "initialOwner": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+      },
+      "MainProjectMon": {
+        "address": "0xe6Cc9C4d8052a7167FC1C3297F7b73B95DA6848a",
+        "owner": "0xc73a9048bf40235A1BACBB1Bd88670D3272469Dc"
+      }
     }
   },
-  "PermissionManager": {
-    "address": "",
-    "constructorArguments": {
-      "initialOwner": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
-    }
-  },
-  "Token": {
-    "constructorArguments": {
+  "parameters": {
+    "token": {
       "initialSupply": "1000000000000000000000000",
-      "initialOwner": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+      "maxSupply": "10000000000000000000000000",
+      "minTransferAmount": "100000000000000000",
+      "maxTransferAmount": "10000000000000000000000",
+      "transferFee": 1,
+      "burnRate": 5,
+      "transfersPaused": false
     },
-    "MainToken": {
-      "address": "0x7428697E1022412D49f079b19fbd845eBBd8d83A",
-      "initialSupply": "1000000000000000000000",
-      "owner": "0xc73a9048bf40235A1BACBB1Bd88670D3272469Dc"
-    }
-  },
-  "Voting": {
-    "constructorArguments": {
-      "initialOwner": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    "staking": {
+      "minStakeAmount": "100000000000000000000",
+      "maxStakeAmount": "10000000000000000000000",
+      "lockPeriod": 2592000,
+      "rewardRate": 10,
+      "tierThresholds": [
+        "100000000000000000000",
+        "500000000000000000000",
+        "1000000000000000000000",
+        "5000000000000000000000"
+      ],
+      "tierMultipliers": [10, 15, 20, 30],
+      "earlyUnstakePenalty": 50,
+      "maxStakersPerTier": 1000,
+      "stakingPaused": false
     },
-    "MainVoting": {
-      "address": "0x1FEE29f0F8EfF4F681e031bFb58E589f6B6Fcf45",
-      "owner": "0xc73a9048bf40235A1BACBB1Bd88670D3272469Dc"
-    }
-  },
-  "ProjectMon": {
-    "constructorArguments": {
-      "initialOwner": "0x70997970C51812dc3A010C7d01b50e0d17dc79C8"
+    "voting": {
+      "minVotingPeriod": 86400,
+      "maxVotingPeriod": 604800,
+      "quorumPercentage": 51,
+      "minProposalThreshold": "100000000000000000000",
+      "votingDelay": 86400,
+      "minVotingPower": "10000000000000000000",
+      "maxVotesPerUser": 100,
+      "votingPaused": false
     },
-    "MainProjectMon": {
-      "address": "0xe6Cc9C4d8052a7167FC1C3297F7b73B95DA6848a",
-      "owner": "0xc73a9048bf40235A1BACBB1Bd88670D3272469Dc"
+    "finance": {
+      "minInvestment": "1000000000000000000",
+      "maxInvestment": "1000000000000000000000",
+      "investmentFee": 1,
+      "withdrawalFee": 5,
+      "performanceFee": 20,
+      "minLockPeriod": 2592000,
+      "maxProjectBudget": "10000000000000000000000",
+      "minROI": 10,
+      "investmentsPaused": false
+    },
+    "dao": {
+      "executionDelay": 172800,
+      "guardianDelay": 86400,
+      "minMemberCount": 3,
+      "maxMemberCount": 100,
+      "proposalThreshold": "100000000000000000000",
+      "minVotingWeight": "10000000000000000000",
+      "maxProposalsPerMember": 5,
+      "proposalsPaused": false
+    },
+    "project": {
+      "minDuration": 604800,
+      "maxDuration": 31536000,
+      "minBudget": "10000000000000000000",
+      "maxBudget": "1000000000000000000000",
+      "minDevelopers": 1,
+      "maxDevelopers": 10,
+      "reviewPeriod": 604800,
+      "projectsPaused": false
+    },
+    "consensus": {
+      "minValidators": 3,
+      "maxValidators": 100,
+      "validatorStake": "1000000000000000000000",
+      "validationPeriod": 86400,
+      "validationThreshold": 66,
+      "slashingPenalty": 100,
+      "validationPaused": false
     }
-  },
-  "customHash": "0xc535d4049Dbe20176174144Ae44C358daCeCBA6E",
-  "accControl": "0x34076dA9F971D2cDa0950c26a42cFD139232BdE5",
-  "dao": "0xf76731766eD570a9Bd4504e5d99E8CbdA6AeF7Ea"
+  }
 }

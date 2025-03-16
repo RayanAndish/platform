@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useWeb3React } from '@web3-react/core';
-import apiService from '../../services/api.service';
-import styles from './StakingPage.module.css';
+import { Web3Provider } from '@ethersproject/providers';
+import { useTranslation } from 'react-i18next';
+import apiService from '@/services/api.service';
+import styles from '@/styles/components/StakingPage.module.css';
 
 interface StakingInfo {
   totalStaked: string;
@@ -11,7 +13,7 @@ interface StakingInfo {
 }
 
 export const StakingPage: React.FC = () => {
-  const { account, active } = useWeb3React();
+  const { account, active } = useWeb3React<Web3Provider>();
   const [stakingInfo, setStakingInfo] = useState<StakingInfo | null>(null);
   const [amount, setAmount] = useState('');
   const [loading, setLoading] = useState(false);

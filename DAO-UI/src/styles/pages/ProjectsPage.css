@@ -1,0 +1,245 @@
+.projects-page {
+  padding: 40px;
+  max-width: 1440px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: var(--body-bg);
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.page-title {
+  color: var(--text-primary);
+  font-size: var(--font-size-4xl);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.page-description {
+  color: var(--text-secondary);
+  font-size: var(--font-size-lg);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.platform-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin: 48px 0;
+}
+
+.stat-card {
+  background: var(--card-bg);
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+}
+
+.stat-value {
+  color: var(--primary-color);
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.filters-section {
+  background: var(--card-bg);
+  padding: 32px;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  margin-bottom: 40px;
+}
+
+.filters-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 24px;
+  align-items: end;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filter-label {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+
+.search-input {
+  height: 44px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  padding: 0 16px;
+  font-size: var(--font-size-base);
+}
+
+.select-filter {
+  height: 44px;
+  border-radius: var(--radius-md);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 32px;
+  margin-top: 32px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.section-title {
+  color: var(--text-primary);
+  font-size: var(--font-size-2xl);
+  font-weight: 600;
+}
+
+.view-options {
+  display: flex;
+  gap: 16px;
+}
+
+.view-button {
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--stats-bg);
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.view-button.active {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.no-projects {
+  text-align: center;
+  padding: 64px 32px;
+  background: var(--card-bg);
+  border-radius: var(--radius-xl);
+  margin-top: 32px;
+}
+
+.no-projects-icon {
+  font-size: 64px;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+.no-projects-title {
+  color: var(--text-primary);
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.no-projects-text {
+  color: var(--text-secondary);
+  font-size: var(--font-size-base);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.load-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+}
+
+.load-more-button {
+  height: 48px;
+  padding: 0 32px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  background: var(--stats-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.load-more-button:hover {
+  background: var(--analysis-bg);
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .platform-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .filters-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-page {
+    padding: 24px;
+  }
+  
+  .page-title {
+    font-size: var(--font-size-3xl);
+  }
+  
+  .platform-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .filters-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .projects-grid {
+    gap: 24px;
+  }
+  
+  .filters-section {
+    padding: 24px;
+  }
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  .stat-card,
+  .filters-section,
+  .no-projects {
+    background: var(--dark-card-bg);
+  }
+  
+  .view-button {
+    background: var(--dark-stats-bg);
+  }
+  
+  .load-more-button {
+    background: var(--dark-stats-bg);
+  }
+  
+  .load-more-button:hover {
+    background: var(--dark-analysis-bg);
+  }
+} 

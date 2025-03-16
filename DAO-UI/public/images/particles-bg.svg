@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500" height="500" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="particleGlow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" style="stop-color:rgba(0, 245, 160, 0.3)"/>
+      <stop offset="100%" style="stop-color:rgba(0, 245, 160, 0)"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Particles -->
+  <g fill="url(#particleGlow)">
+    <circle cx="100" cy="100" r="3">
+      <animate attributeName="r" values="3;5;3" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="200" cy="150" r="4">
+      <animate attributeName="r" values="4;6;4" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.6;0.2;0.6" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="300" cy="200" r="5">
+      <animate attributeName="r" values="5;7;5" dur="2.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.7;0.3;0.7" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="400" cy="250" r="3">
+      <animate attributeName="r" values="3;5;3" dur="2.2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.5;0.2;0.5" dur="2.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="150" cy="300" r="4">
+      <animate attributeName="r" values="4;6;4" dur="2.8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.6;0.3;0.6" dur="2.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="250" cy="350" r="5">
+      <animate attributeName="r" values="5;7;5" dur="2.3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.8;0.4;0.8" dur="2.3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="350" cy="400" r="3">
+      <animate attributeName="r" values="3;5;3" dur="2.6s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.7;0.3;0.7" dur="2.6s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Connecting Lines -->
+  <g stroke="rgba(0, 245, 160, 0.2)" stroke-width="1">
+    <line x1="100" y1="100" x2="200" y2="150">
+      <animate attributeName="opacity" values="0.3;0.1;0.3" dur="2s" repeatCount="indefinite"/>
+    </line>
+    <line x1="200" y1="150" x2="300" y2="200">
+      <animate attributeName="opacity" values="0.2;0.05;0.2" dur="2.5s" repeatCount="indefinite"/>
+    </line>
+    <line x1="300" y1="200" x2="400" y2="250">
+      <animate attributeName="opacity" values="0.25;0.08;0.25" dur="2.3s" repeatCount="indefinite"/>
+    </line>
+    <line x1="150" y1="300" x2="250" y2="350">
+      <animate attributeName="opacity" values="0.2;0.06;0.2" dur="2.7s" repeatCount="indefinite"/>
+    </line>
+    <line x1="250" y1="350" x2="350" y2="400">
+      <animate attributeName="opacity" values="0.3;0.1;0.3" dur="2.4s" repeatCount="indefinite"/>
+    </line>
+  </g>
+</svg> 

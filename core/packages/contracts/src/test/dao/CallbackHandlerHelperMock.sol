@@ -2,7 +2,7 @@
 
 pragma solidity ^0.8.28;
 
-import {CallbackHandler} from "../../core/utils/CallbackHandler.sol";
+import {CallbackHandler} from "@aragon/osx/core/utils/CallbackHandler.sol";
 
 contract CallbackHandlerMockHelper is CallbackHandler {
     address callbackHandlerMockAddr;

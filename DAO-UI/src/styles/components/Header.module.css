@@ -1,29 +1,159 @@
 .header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 50;
+}
+
+.headerContent {
+  background-color: #1a1f2a;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 5rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo img {
+  height: 2.5rem;
+  width: auto;
+}
+
+.logo span {
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .logo span {
+    display: none;
+  }
+}
+
+.navLinks {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .navLinks {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    gap: 2rem;
   }
-  
-  .logo {
-    display: flex;
-    align-items: center;
+}
+
+.navLink {
+  font-size: 1rem;
+  color: #d1d5db;
+  transition: color 0.2s;
+}
+
+.navLink:hover {
+  color: white;
+}
+
+.navLink.active {
+  color: #00ff80;
+  font-weight: 500;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.connectButton {
+  padding: 0.625rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.connectButton:not(:disabled) {
+  background-color: #00ff80;
+  color: #1a1f2a;
+}
+
+.connectButton:not(:disabled):hover {
+  background-color: rgba(0, 255, 128, 0.9);
+}
+
+.connectButton:disabled {
+  background-color: #4b5563;
+  cursor: not-allowed;
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .header {
+    background: rgba(18, 18, 18, 0.95);
   }
-  
-  .logo img {
-    height: 40px;
-    margin-right: 10px;
+
+  .logo h1 {
+    color: var(--text-primary-dark, #fff);
   }
-  
-  .nav a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: #007bff;
-    font-weight: bold;
+
+  .navLink {
+    color: var(--text-secondary-dark, #aaa);
   }
-  
-  .nav a:hover {
-    text-decoration: underline;
+
+  .navLink:hover {
+    background: rgba(26, 115, 232, 0.15);
   }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .headerContent {
+    gap: 1rem;
+  }
+
+  .nav {
+    gap: 1rem;
+  }
+
+  .navLink {
+    padding: 0.5rem;
+  }
+
+  .connectButton {
+    padding: 0.75rem 1rem;
+    min-width: 140px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem;
+  }
+
+  .logo h1 {
+    display: none;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .actions {
+    margin-left: auto;
+  }
+}

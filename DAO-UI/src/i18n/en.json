@@ -2,10 +2,12 @@
   "header": {
     "title": "DAO VC Funding Platform",
     "nav": {
+      "home": "Home",
       "projects": "Projects",
       "staking": "Staking",
       "voting": "Voting",
-      "about": "About"
+      "about": "About",
+      "discovery": "Discovery"
     },
     "connectWallet": "Connect Wallet"
   },
@@ -27,14 +29,58 @@
   },
 
   "projects": {
-    "title": "Explore Projects",
+    "title": "Discover Projects",
     "card": {
       "learnMore": "Learn More"
+    },
+    "details": {
+      "loading": "Loading project details...",
+      "error": "Error loading project details",
+      "budget": "Budget",
+      "progress": "Progress",
+      "status": "Status",
+      "investButton": "Invest in Project"
+    },
+    "define": {
+      "title": "Define New Project",
+      "fields": {
+        "name": "Project Name",
+        "description": "Description",
+        "budget": "Budget (USD)",
+        "duration": "Duration (Days)",
+        "category": "Category",
+        "selectCategory": "Select Category..."
+      },
+      "categories": {
+        "tech": "Technology",
+        "health": "Healthcare",
+        "education": "Education"
+      },
+      "validation": {
+        "name": "Project name is required",
+        "description": "Description is required",
+        "budget": "Budget is required",
+        "budgetPositive": "Budget must be a positive number",
+        "duration": "Duration is required",
+        "durationPositive": "Duration must be a positive number",
+        "category": "Category is required"
+      },
+      "submitButton": "Submit",
+      "success": "Project successfully defined!",
+      "error": "Error defining project. Please try again."
     }
   },
 
   "footer": {
-    "copyright": "© 2025 DAO VC Funding Platform. All rights reserved."
+    "aboutTitle": "About Us",
+    "aboutDescription": "At Rayan DAO, we aim to democratize access to funds and create a vibrant community of startups who are passionate about driving forward the frontiers of innovation.",
+    "linksTitle": "Useful Links",
+    "home": "Home",
+    "projects": "Projects",
+    "terms": "Terms of Use",
+    "socialsTitle": "Social Media",
+    "copyright": "All rights reserved.",
+    "privacy": "Privacy Policy"
   },
 
   "common": {
@@ -43,25 +89,32 @@
     "success": "Success",
     "submit": "Submit",
     "cancel": "Cancel",
+    "preview": "Preview",
+    "seeAll": "See All",
+    "explore": "Explore",
+    "connecting": "Connecting...",
     "connect": "Connect Wallet",
-    "disconnect": "Disconnect"
+    "disconnect": "Disconnect",
+    "connect_wallet": "Connect Wallet",
+    "explore_projects": "Explore Projects",
+    "stake_now": "Stake Now"
   },
 
   "wallet": {
     "connect": "Connect Wallet",
-    "connecting": "Connecting...",
     "disconnect": "Disconnect",
+    "network": {
+      "switch": "Switch Network"
+    },
     "balance": "Balance",
     "address": "Address",
-    "network": {
-      "switch": "Switch Network",
-      "switching": "Switching...",
-      "error": "Failed to switch network"
-    },
     "errors": {
       "connect": "Failed to connect wallet",
       "network": "Network not supported",
-      "balance": "Failed to load balance"
+      "balance": "Failed to load balance",
+      "connection_failed": "Wallet connection failed",
+      "wrong_network": "Please switch to the correct network",
+      "transaction_failed": "Transaction failed"
     }
   },
 
@@ -104,15 +157,16 @@
   },
 
   "staking": {
-    "title": "Staking",
+    "title": "Staking Dashboard",
     "totalStaked": "Total Staked",
     "yourStake": "Your Stake",
     "rewards": "Available Rewards",
     "apr": "Current APR",
     "enterAmount": "Enter amount to stake",
-    "stake": "Stake",
-    "unstake": "Unstake",
-    "claimRewards": "Claim Rewards"
+    "stakeButton": "Stake",
+    "unstakeButton": "Unstake",
+    "claimButton": "Claim Rewards",
+    "connectMessage": "Please connect your wallet to access staking features"
   },
 
   "voting": {
@@ -128,7 +182,6 @@
     "votesAgainst": "Votes Against",
     "voteFor": "Vote For",
     "voteAgainst": "Vote Against",
-    "status": "Status",
     "deadline": "Deadline",
     "creator": "Created by",
     "status": {
@@ -146,48 +199,166 @@
       "title": "Our Mission",
       "description": "We are dedicated to democratizing venture capital through blockchain technology, enabling transparent and inclusive investment opportunities for everyone."
     },
+    "whyChooseUs": {
+      "title": "Why Choose Us"
+    },
     "features": {
-      "title": "Why Choose Us",
-      "decentralized": {
-        "title": "Decentralized",
-        "description": "True decentralization with community-driven decision making and transparent governance."
-      },
-      "secure": {
-        "title": "Secure",
-        "description": "Built on battle-tested blockchain technology with multiple security layers and audits."
-      },
-      "efficient": {
-        "title": "Efficient",
-        "description": "Fast, low-cost transactions and automated processes through smart contracts."
-      },
       "community": {
         "title": "Community-Driven",
         "description": "Active community participation in project selection and governance decisions."
+      },
+      "security": {
+        "title": "Secure",
+        "description": "Built on battle-tested blockchain technology with multiple security layers and audits."
+      },
+      "growth": {
+        "title": "Efficient",
+        "description": "Fast, low-cost transactions and automated processes through smart contracts."
       }
     },
     "team": {
       "title": "Our Team",
-      "member1": {
-        "name": "Sarah Johnson",
-        "role": "Founder & CEO",
-        "bio": "Blockchain veteran with 10+ years in venture capital and decentralized systems."
-      },
-      "member2": {
-        "name": "Michael Chen",
-        "role": "CTO",
-        "bio": "Smart contract expert and former lead developer at major blockchain projects."
-      },
-      "member3": {
-        "name": "Elena Rodriguez",
-        "role": "Community Lead",
-        "bio": "Community building expert with extensive experience in DAOs and Web3."
+      "members": {
+        "sarah": {
+          "name": "Sarah Johnson",
+          "role": "Founder & CEO",
+          "description": "Blockchain veteran with 10+ years in venture capital and decentralized systems."
+        },
+        "michael": {
+          "name": "Michael Chen",
+          "role": "CTO",
+          "description": "Smart contract expert and former lead developer at major blockchain projects."
+        },
+        "elena": {
+          "name": "Elena Rodriguez",
+          "role": "Community Lead",
+          "description": "Community building expert with extensive experience in DAOs and Web3."
+        }
       }
     },
     "contact": {
       "title": "Get in Touch",
-      "email": "Email",
-      "telegram": "Telegram",
-      "twitter": "Twitter"
+      "email": {
+        "title": "Email",
+        "value": "contact@rayandao.io"
+      },
+      "location": {
+        "title": "Location",
+        "value": "London, UK"
+      }
     }
+  },
+
+  "home": {
+    "hero": {
+      "title": "Revolutionizing Decentralized Venture Capital",
+      "subtitle": "Discover and invest in the best blockchain and AI projects through our innovative DAO platform",
+      "exploreButton": "Explore Projects",
+      "connectButton": "Connect Wallet"
+    },
+    "stats": {
+      "tvl": "Total Value Locked",
+      "projects": "Active Projects",
+      "holders": "Token Holders",
+      "fundsRaised": "Funds Raised",
+      "communityMembers": "Community Members",
+      "numbers": {
+        "tvl": "$50M+",
+        "projects": "25+",
+        "holders": "10K+",
+        "funds": "$10M+",
+        "members": "50+"
+      }
+    },
+    "features": {
+      "title": "Why Choose Our Platform",
+      "security": {
+        "title": "Enterprise-Grade Security",
+        "description": "Multi-layered security architecture with regular audits and real-time monitoring"
+      },
+      "speed": {
+        "title": "Fast Transactions",
+        "description": "Optimized smart contracts and multi-chain infrastructure for instant settlements"
+      },
+      "rewards": {
+        "title": "Generous Rewards",
+        "description": "Earn substantial rewards through staking, governance participation, and early investments"
+      }
+    },
+    "how_it_works": {
+      "title": "How It Works",
+      "step1": {
+        "title": "Connect Wallet",
+        "description": "Start by connecting your Web3 wallet to the platform"
+      },
+      "step2": {
+        "title": "Stake & Earn",
+        "description": "Stake your tokens to unlock tiers and earn passive rewards"
+      },
+      "step3": {
+        "title": "Invest & Govern",
+        "description": "Participate in exclusive investment opportunities and governance decisions"
+      }
+    },
+    "cta": {
+      "title": "Ready to Start Your Journey?",
+      "description": "Join thousands of investors already benefiting from our platform",
+      "button": "Start Staking"
+    },
+    "tiers": {
+      "title": "Membership Tiers",
+      "subtitle": "Join the DAO Today",
+      "stake_amount": "{{amount}} Tokens",
+      "bronze": {
+        "name": "Bronze"
+      },
+      "silver": {
+        "name": "Silver"
+      },
+      "gold": {
+        "name": "Gold"
+      },
+      "diamond": {
+        "name": "Diamond"
+      },
+      "benefits": {
+        "allocation": "Guaranteed Allocation",
+        "early_access": "Early Access",
+        "voting": "Voting Power",
+        "rewards": "DAO Rewards",
+        "airdrops": "Exclusive Airdrops",
+        "refunds": "Gas Refunds"
+      }
+    }
+  },
+
+  "errors": {
+    "auth": {
+      "unauthorized": "Please sign in",
+      "forbidden": "You don't have permission"
+    },
+    "common": {
+      "not_found": "Not found",
+      "server_error": "Server error",
+      "unknown_error": "An unknown error occurred"
+    }
+  },
+
+  "app": {
+    "name": "Rayan DAO",
+    "title": "DAO Venture Capital Platform"
+  },
+
+  "discovery": "Discovery",
+  "documentation": "Documentation",
+  "connectWallet": "Connect Wallet",
+
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "staking": "Staking",
+    "voting": "Voting",
+    "discovery": "Discovery",
+    "about": "About"
   }
 }
