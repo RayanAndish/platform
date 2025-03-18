@@ -35,20 +35,27 @@ const config: HardhatUserConfig = {
       viaIR: true
     },
   },
+  typechain: {
+    outDir: 'typechain-types',
+    target: 'ethers-v5',
+    alwaysGenerateOverloads: true,
+    discriminateTypes: false,
+    dontOverrideCompile: false,
+    externalArtifacts: ['externalArtifacts/*.json'],
+  },
   defaultNetwork: 'DAO-VC',
   networks: {
     'DAO-VC': {
       url: 'http://172.16.22.120:9545', // آدرس RPC شبکه
       chainId: 1337, // Chain ID شبکه Ganache
       accounts: {
-        mnemonic: "test test test test test test test test test test test junk",
-        path: "m/44'/60'/0'/0",
+        mnemonic: "give tent scrub material major lounge comic dismiss ride cruise father shiver",
         initialIndex: 0,
-        count: 20
+        count: 10
       },
-      gas: 3000000, // تنظیم Gas Limit
-      gasPrice: 1000000000, // تنظیم Gas Price برای Ganache (1 Gwei)
-      hardfork: 'london', // تنظیم Hardfork به London
+      gas: 8000000, // تنظیم Gas Limit
+      gasPrice: 20000000000, // تنظیم Gas Price برای Ganache (1 Gwei)
+      hardfork: 'London', // تنظیم Hardfork به London
     },
     // Hardhat local network
     hardhat: {
@@ -60,12 +67,6 @@ const config: HardhatUserConfig = {
         interval: 5000
       }
     }
-  },
-  typechain: {
-    outDir: "typechain-types",
-    target: "ethers-v6",
-    alwaysGenerateOverloads: true,
-    discriminateTypes: true
   },
   paths: {
     sources: './src',

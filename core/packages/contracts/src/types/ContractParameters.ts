@@ -1,21 +1,21 @@
-import { BigNumber } from 'ethers';
+import { BigNumberish, parseUnits, formatUnits } from 'ethers';
 
 export interface TokenParams {
-  initialSupply: BigNumber;
-  maxSupply: BigNumber;
-  minTransferAmount: BigNumber;
-  maxTransferAmount: BigNumber;
+  initialSupply: BigNumberish;
+  maxSupply: BigNumberish;
+  minTransferAmount: BigNumberish;
+  maxTransferAmount: BigNumberish;
   transferFee: number;
   burnRate: number;
   transfersPaused: boolean;
 }
 
 export interface StakingParams {
-  minStakeAmount: BigNumber;
-  maxStakeAmount: BigNumber;
+  minStakeAmount: BigNumberish;
+  maxStakeAmount: BigNumberish;
   lockPeriod: number;
   rewardRate: number;
-  tierThresholds: BigNumber[];
+  tierThresholds: BigNumberish[];
   tierMultipliers: number[];
   earlyUnstakePenalty: number;
   maxStakersPerTier: number;
@@ -26,21 +26,21 @@ export interface VotingParams {
   minVotingPeriod: number;
   maxVotingPeriod: number;
   quorumPercentage: number;
-  minProposalThreshold: BigNumber;
+  minProposalThreshold: BigNumberish;
   votingDelay: number;
-  minVotingPower: BigNumber;
+  minVotingPower: BigNumberish;
   maxVotesPerUser: number;
   votingPaused: boolean;
 }
 
 export interface FinanceParams {
-  minInvestment: BigNumber;
-  maxInvestment: BigNumber;
+  minInvestment: BigNumberish;
+  maxInvestment: BigNumberish;
   investmentFee: number;
   withdrawalFee: number;
   performanceFee: number;
   minLockPeriod: number;
-  maxProjectBudget: BigNumber;
+  maxProjectBudget: BigNumberish;
   minROI: number;
   investmentsPaused: boolean;
 }
@@ -50,8 +50,8 @@ export interface DAOParams {
   guardianDelay: number;
   minMemberCount: number;
   maxMemberCount: number;
-  proposalThreshold: BigNumber;
-  minVotingWeight: BigNumber;
+  proposalThreshold: BigNumberish;
+  minVotingWeight: BigNumberish;
   maxProposalsPerMember: number;
   proposalsPaused: boolean;
 }
@@ -59,8 +59,8 @@ export interface DAOParams {
 export interface ProjectParams {
   minDuration: number;
   maxDuration: number;
-  minBudget: BigNumber;
-  maxBudget: BigNumber;
+  minBudget: BigNumberish;
+  maxBudget: BigNumberish;
   minDevelopers: number;
   maxDevelopers: number;
   reviewPeriod: number;
@@ -70,7 +70,7 @@ export interface ProjectParams {
 export interface ConsensusParams {
   minValidators: number;
   maxValidators: number;
-  validatorStake: BigNumber;
+  validatorStake: BigNumberish;
   validationPeriod: number;
   validationThreshold: number;
   slashingPenalty: number;
@@ -89,14 +89,14 @@ export interface ContractParameters {
 
 // تبدیل‌کننده‌های کمکی
 export const helpers = {
-  // تبدیل اعداد بزرگ به BigNumber
-  toBigNumber: (value: string): BigNumber => {
-    return BigNumber.from(value);
+  // تبدیل اعداد به BigNumberish
+  toBigNumber: (value: string, decimals: number = 18): BigNumberish => {
+    return parseUnits(value, decimals);
   },
 
-  // تبدیل BigNumber به رشته
-  fromBigNumber: (value: BigNumber): string => {
-    return value.toString();
+  // تبدیل BigNumberish به رشته
+  fromBigNumber: (value: BigNumberish, decimals: number = 18): string => {
+    return formatUnits(value, decimals);
   },
 
   // تبدیل ثانیه به میلی‌ثانیه

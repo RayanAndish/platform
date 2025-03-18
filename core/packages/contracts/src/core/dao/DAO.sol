@@ -216,14 +216,13 @@ contract DAO is IDAO, Ownable2Step, UUPSUpgradeable, Initializable {
      * @dev اعمال مجوزهای چند هدفه
      * @param _permissions آرایه‌ای از مجوزهای چند هدفه
      */
-    function applyMultiTargetPermissions(PermissionLib.MultiTargetPermission[] calldata _permissions) external {
+    function applyMultiTargetPermissions(PermissionLib.MultiTargetPermission[] calldata _permissions) external view {
         (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
-        require(role == AccControl.Role.Admin, "Not authorized");
-
+        require(msg.sender == address(this) || role == AccControl.Role.DAO, "Not authorized");
+        
         for (uint256 i = 0; i < _permissions.length; i++) {
-            PermissionLib.MultiTargetPermission memory permission = _permissions[i];
-            // اعمال مجوز برای هر هدف
-            // در اینجا می‌توانید منطق خاص خود را برای اعمال مجوزها پیاده‌سازی کنید
+            // اعمال مجوزها برای هر هدف
+            // این تابع باید با توجه به نیازهای پروژه پیاده‌سازی شود
         }
     }
 
@@ -257,14 +256,14 @@ contract DAO is IDAO, Ownable2Step, UUPSUpgradeable, Initializable {
         }
     }
 
-    function grant(address _where, address _who, bytes32 _permissionId) public {
+    function grant(address _where, address _who, bytes32 _permissionId) public view {
         (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
         require(msg.sender == address(this) || role == AccControl.Role.DAO, "Not authorized");
         // اعطای مجوز به آدرس مورد نظر
         // این تابع باید با توجه به نیازهای پروژه پیاده‌سازی شود
     }
 
-    function revoke(address _where, address _who, bytes32 _permissionId) public {
+    function revoke(address _where, address _who, bytes32 _permissionId) public view {
         (AccControl.Role role, , , , , , ) = accControl.members(msg.sender);
         require(msg.sender == address(this) || role == AccControl.Role.DAO, "Not authorized");
         // لغو مجوز از آدرس مورد نظر

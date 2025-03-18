@@ -4,16 +4,21 @@
 │   ├── Halborn_AragonOSx_2023-02-24.pdf
 │   ├── Halborn_AragonOSx_2023-06-13.pdf
 │   └── Halborn_AragonOSx_v1_4_Smart_Contract_Security_Assessment_Report_2025_01_03.pdf
+├── cache
+│   └── solidity-files-cache.json
 ├── CONTRIBUTION_GUIDE.md
 ├── core-content.txt
 ├── core-tree.txt
 ├── crowdin.yml
 ├── DEPLOYMENT_CHECKLIST.md
 ├── dummy_daos.json
+├── .env
 ├── funding.json
+├── .gitignore
 ├── images
 │   └── dao-plugin.svg
 ├── LICENSE
+├── .mythx.yml
 ├── package.json
 ├── packages
 │   ├── artifacts
@@ -27,6 +32,7 @@
 │   │   └── tsconfig.json
 │   ├── contracts
 │   │   ├── CHANGELOG.md
+│   │   ├── craco.config.js
 │   │   ├── deploy
 │   │   │   ├── env
 │   │   │   │   └── 00-env-check.ts
@@ -39,6 +45,7 @@
 │   │   │   │   │   ├── 02_management-dao_conclude.ts
 │   │   │   │   │   ├── 20_set-dao-permission.ts
 │   │   │   │   │   └── 99_verify_step.ts
+│   │   │   │   ├── 01_deploy_custom_contracts.ts
 │   │   │   │   ├── 10_framework
 │   │   │   │   │   ├── 00_ens_registry.ts
 │   │   │   │   │   ├── 01_ens_subdomains.ts
@@ -66,6 +73,7 @@
 │   │   │   │       ├── 20_register-management-dao-on-dao-registry.ts
 │   │   │   │       ├── 40_revoke-permissions.ts
 │   │   │   │       └── 99_verify_step.ts
+│   │   │   ├── parameters.json
 │   │   │   ├── update
 │   │   │   │   ├── to_v1.3.0
 │   │   │   │   │   ├── 10_DAOFactory.ts
@@ -158,41 +166,67 @@
 │   │   │               │   ├── manage-dao-plugins.adoc
 │   │   │               │   └── upgrade-dao.adoc
 │   │   │               └── index.adoc
+│   │   ├── .env.example
+│   │   ├── env.example
+│   │   ├── .eslintignore
+│   │   ├── .eslintrc.js
+│   │   ├── .gitignore
 │   │   ├── hardhat.config.ts
+│   │   ├── hardhat.config.ts.old
 │   │   ├── hardhat-zksync.config.ts
 │   │   ├── networks.ts
 │   │   ├── package.json
+│   │   ├── parameters.json
 │   │   ├── README.md
 │   │   ├── Releases.md
+│   │   ├── result.txt
 │   │   ├── scripts
+│   │   │   ├── check-balance.ts
+│   │   │   ├── check-network.ts
+│   │   │   ├── deploy.contract.platform.ts
+│   │   │   ├── deploy.contract.process.ts
+│   │   │   ├── deploy.staking.ts
+│   │   │   ├── deploy.ts
 │   │   │   ├── generate-typechain-osx.ts
 │   │   │   ├── generate-typechain-osx-versions.ts
+│   │   │   ├── generate-types.ts
 │   │   │   ├── gen-nav.js
 │   │   │   ├── osx-versions-aliases.ts
-│   │   │   └── prepare-docs.sh
+│   │   │   ├── prepare-docs.sh
+│   │   │   └── utils
+│   │   │       └── parameters.ts
+│   │   ├── .solcover.js
+│   │   ├── .solhintignore
+│   │   ├── .solhint.json
 │   │   ├── src
 │   │   │   ├── core
 │   │   │   │   ├── consensus
 │   │   │   │   │   └── Consensus.sol
+│   │   │   │   ├── constants
+│   │   │   │   │   └── ContractConstants.sol
 │   │   │   │   ├── dao
 │   │   │   │   │   ├── DAO.sol
+│   │   │   │   │   ├── IDAO.sol
 │   │   │   │   │   └── IEIP4824.sol
-│   │   │   │   ├── investment
-│   │   │   │   │   ├── Investment.sol
-│   │   │   │   │   └── Payments.sol
-│   │   │   │   ├── management
-│   │   │   │   │   ├── DAO.sol
-│   │   │   │   │   └── ProjectMon.sol
+│   │   │   │   ├── finance
+│   │   │   │   │   └── Finance.sol
+│   │   │   │   ├── parameters
+│   │   │   │   │   └── ContractParameters.sol
 │   │   │   │   ├── permission
 │   │   │   │   │   ├── AccControl.sol
 │   │   │   │   │   └── PermissionManager.sol
+│   │   │   │   ├── profile
+│   │   │   │   │   └── UserProfile.sol
+│   │   │   │   ├── project
+│   │   │   │   │   └── ProjectMon.sol
 │   │   │   │   ├── README.adoc
 │   │   │   │   ├── security
 │   │   │   │   │   └── CustomHash.sol
+│   │   │   │   ├── staking
+│   │   │   │   │   └── Staking.sol
 │   │   │   │   ├── token
 │   │   │   │   │   └── Token.sol
-│   │   │   │   └── utils
-│   │   │   │       ├── CallbackHandler.sol
+│   │   │   │   └── voting
 │   │   │   │       └── Voting.sol
 │   │   │   ├── framework
 │   │   │   │   ├── dao
@@ -217,35 +251,40 @@
 │   │   │   │       │   └── ENSSubdomainRegistrar.sol
 │   │   │   │       ├── InterfaceBasedRegistry.sol
 │   │   │   │       └── RegistryUtils.sol
+│   │   │   ├── index.ts
+│   │   │   ├── .npmignore
 │   │   │   ├── package.json
 │   │   │   ├── README.md
-│   │   │   └── test
-│   │   │       ├── dao
-│   │   │       │   ├── ActionExecute.sol
-│   │   │       │   ├── CallbackHandlerHelperMock.sol
-│   │   │       │   └── GasConsumerHelper.sol
-│   │   │       ├── Migration.sol
-│   │   │       ├── permission
-│   │   │       │   ├── PermissionConditionMock.sol
-│   │   │       │   └── PermissionManagerTest.sol
-│   │   │       ├── plugin
-│   │   │       │   ├── Cloneable
-│   │   │       │   │   ├── PluginCloneableMock.sol
-│   │   │       │   │   └── PluginCloneableSetupMock.sol
-│   │   │       │   ├── Constructable
-│   │   │       │   │   └── PluginMock.sol
-│   │   │       │   ├── PluginMockData.sol
-│   │   │       │   └── UUPSUpgradeable
-│   │   │       │       ├── PluginUUPSUpgradeableMock.sol
-│   │   │       │       └── PluginUUPSUpgradeableSetupMock.sol
-│   │   │       ├── ProtocolVersionMock.sol
-│   │   │       ├── token
-│   │   │       │   ├── ERC1155Mock.sol
-│   │   │       │   ├── ERC20Mock.sol
-│   │   │       │   └── ERC721Mock.sol
-│   │   │       └── utils
-│   │   │           ├── InterfaceBasedRegistryMock.sol
-│   │   │           └── RegistryUtilsTest.sol
+│   │   │   ├── test
+│   │   │   │   ├── dao
+│   │   │   │   │   ├── ActionExecute.sol
+│   │   │   │   │   ├── CallbackHandlerHelperMock.sol
+│   │   │   │   │   └── GasConsumerHelper.sol
+│   │   │   │   ├── Migration.sol
+│   │   │   │   ├── permission
+│   │   │   │   │   ├── PermissionConditionMock.sol
+│   │   │   │   │   └── PermissionManagerTest.sol
+│   │   │   │   ├── plugin
+│   │   │   │   │   ├── Cloneable
+│   │   │   │   │   │   ├── PluginCloneableMock.sol
+│   │   │   │   │   │   └── PluginCloneableSetupMock.sol
+│   │   │   │   │   ├── Constructable
+│   │   │   │   │   │   └── PluginMock.sol
+│   │   │   │   │   ├── PluginMockData.sol
+│   │   │   │   │   └── UUPSUpgradeable
+│   │   │   │   │       ├── PluginUUPSUpgradeableMock.sol
+│   │   │   │   │       └── PluginUUPSUpgradeableSetupMock.sol
+│   │   │   │   ├── ProtocolVersionMock.sol
+│   │   │   │   ├── TestToken.sol
+│   │   │   │   ├── token
+│   │   │   │   │   ├── ERC1155Mock.sol
+│   │   │   │   │   ├── ERC20Mock.sol
+│   │   │   │   │   └── ERC721Mock.sol
+│   │   │   │   └── utils
+│   │   │   │       ├── InterfaceBasedRegistryMock.sol
+│   │   │   │       └── RegistryUtilsTest.sol
+│   │   │   └── types
+│   │   │       └── ContractParameters.ts
 │   │   ├── test
 │   │   │   ├── chai-setup.ts
 │   │   │   ├── core
@@ -273,7 +312,9 @@
 │   │   │   │       │   └── ens-subdomain-registry.ts
 │   │   │   │       ├── interface-based-registry.ts
 │   │   │   │       └── registry-utils.ts
+│   │   │   ├── integration.test.ts
 │   │   │   ├── protocol-version.ts
+│   │   │   ├── Staking.test.ts
 │   │   │   ├── test-utils
 │   │   │   │   ├── dao.ts
 │   │   │   │   ├── ens.ts
@@ -299,6 +340,726 @@
 │   │   │   └── upgrade
 │   │   │       └── dao.ts
 │   │   ├── tsconfig.json
+│   │   ├── typechain-types
+│   │   │   ├── @aragon
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── osx
+│   │   │   │   │   ├── core
+│   │   │   │   │   │   ├── dao
+│   │   │   │   │   │   │   ├── DAO.ts
+│   │   │   │   │   │   │   ├── IEIP4824.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── permission
+│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   └── PermissionManager.ts
+│   │   │   │   │   │   └── utils
+│   │   │   │   │   │       ├── CallbackHandler.ts
+│   │   │   │   │   │       └── index.ts
+│   │   │   │   │   ├── framework
+│   │   │   │   │   │   ├── dao
+│   │   │   │   │   │   │   ├── DAORegistry.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── plugin
+│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   └── repo
+│   │   │   │   │   │   │       ├── index.ts
+│   │   │   │   │   │   │       ├── IPluginRepo.ts
+│   │   │   │   │   │   │       ├── PluginRepoRegistry.ts
+│   │   │   │   │   │   │       └── PluginRepo.ts
+│   │   │   │   │   │   └── utils
+│   │   │   │   │   │       ├── ens
+│   │   │   │   │   │       │   ├── ENSSubdomainRegistrar.ts
+│   │   │   │   │   │       │   └── index.ts
+│   │   │   │   │   │       ├── index.ts
+│   │   │   │   │   │       └── InterfaceBasedRegistry.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── osx-commons-contracts
+│   │   │   │       ├── index.ts
+│   │   │   │       └── src
+│   │   │   │           ├── dao
+│   │   │   │           │   ├── IDAO.ts
+│   │   │   │           │   └── index.ts
+│   │   │   │           ├── executors
+│   │   │   │           │   ├── Executor.ts
+│   │   │   │           │   ├── IExecutor.ts
+│   │   │   │           │   └── index.ts
+│   │   │   │           ├── index.ts
+│   │   │   │           ├── permission
+│   │   │   │           │   ├── auth
+│   │   │   │           │   │   ├── DaoAuthorizable.ts
+│   │   │   │           │   │   ├── DaoAuthorizableUpgradeable.ts
+│   │   │   │           │   │   └── index.ts
+│   │   │   │           │   ├── condition
+│   │   │   │           │   │   ├── index.ts
+│   │   │   │           │   │   ├── IPermissionCondition.ts
+│   │   │   │           │   │   └── PermissionCondition.ts
+│   │   │   │           │   ├── index.ts
+│   │   │   │           │   └── PermissionLib.ts
+│   │   │   │           ├── plugin
+│   │   │   │           │   ├── index.ts
+│   │   │   │           │   ├── IPlugin.ts
+│   │   │   │           │   ├── PluginCloneable.ts
+│   │   │   │           │   ├── Plugin.ts
+│   │   │   │           │   ├── PluginUUPSUpgradeable.ts
+│   │   │   │           │   └── setup
+│   │   │   │           │       ├── index.ts
+│   │   │   │           │       ├── IPluginSetup.ts
+│   │   │   │           │       ├── PluginSetup.ts
+│   │   │   │           │       └── PluginUpgradeableSetup.ts
+│   │   │   │           └── utils
+│   │   │   │               ├── deployment
+│   │   │   │               │   ├── index.ts
+│   │   │   │               │   └── ProxyFactory.ts
+│   │   │   │               ├── index.ts
+│   │   │   │               └── versioning
+│   │   │   │                   ├── index.ts
+│   │   │   │                   ├── IProtocolVersion.ts
+│   │   │   │                   └── ProtocolVersion.ts
+│   │   │   ├── common.ts
+│   │   │   ├── @ensdomains
+│   │   │   │   ├── ens-contracts
+│   │   │   │   │   ├── contracts
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── registry
+│   │   │   │   │   │   │   ├── ENSRegistry.ts
+│   │   │   │   │   │   │   ├── ENS.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   └── resolvers
+│   │   │   │   │   │       ├── IMulticallable.ts
+│   │   │   │   │   │       ├── index.ts
+│   │   │   │   │   │       ├── ISupportsInterface.ts
+│   │   │   │   │   │       ├── Multicallable.ts
+│   │   │   │   │   │       ├── profiles
+│   │   │   │   │   │       │   ├── ABIResolver.ts
+│   │   │   │   │   │       │   ├── AddrResolver.ts
+│   │   │   │   │   │       │   ├── ContentHashResolver.ts
+│   │   │   │   │   │       │   ├── DNSResolver.ts
+│   │   │   │   │   │       │   ├── IABIResolver.ts
+│   │   │   │   │   │       │   ├── IAddressResolver.ts
+│   │   │   │   │   │       │   ├── IAddrResolver.ts
+│   │   │   │   │   │       │   ├── IContentHashResolver.ts
+│   │   │   │   │   │       │   ├── IDNSRecordResolver.ts
+│   │   │   │   │   │       │   ├── IDNSZoneResolver.ts
+│   │   │   │   │   │       │   ├── IInterfaceResolver.ts
+│   │   │   │   │   │       │   ├── INameResolver.ts
+│   │   │   │   │   │       │   ├── index.ts
+│   │   │   │   │   │       │   ├── InterfaceResolver.ts
+│   │   │   │   │   │       │   ├── IPubkeyResolver.ts
+│   │   │   │   │   │       │   ├── ITextResolver.ts
+│   │   │   │   │   │       │   ├── NameResolver.ts
+│   │   │   │   │   │       │   ├── PubkeyResolver.ts
+│   │   │   │   │   │       │   └── TextResolver.ts
+│   │   │   │   │   │       ├── PublicResolver.sol
+│   │   │   │   │   │       │   ├── INameWrapper.ts
+│   │   │   │   │   │       │   ├── index.ts
+│   │   │   │   │   │       │   └── PublicResolver.ts
+│   │   │   │   │   │       ├── ResolverBase.ts
+│   │   │   │   │   │       ├── Resolver.ts
+│   │   │   │   │   │       └── SupportsInterface.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── index.ts
+│   │   │   ├── factories
+│   │   │   │   ├── @aragon
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── osx
+│   │   │   │   │   │   ├── core
+│   │   │   │   │   │   │   ├── dao
+│   │   │   │   │   │   │   │   ├── DAO__factory.ts
+│   │   │   │   │   │   │   │   ├── IEIP4824__factory.ts
+│   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   ├── permission
+│   │   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   │   └── PermissionManager__factory.ts
+│   │   │   │   │   │   │   └── utils
+│   │   │   │   │   │   │       ├── CallbackHandler__factory.ts
+│   │   │   │   │   │   │       └── index.ts
+│   │   │   │   │   │   ├── framework
+│   │   │   │   │   │   │   ├── dao
+│   │   │   │   │   │   │   │   ├── DAORegistry__factory.ts
+│   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   ├── plugin
+│   │   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   │   └── repo
+│   │   │   │   │   │   │   │       ├── index.ts
+│   │   │   │   │   │   │   │       ├── IPluginRepo__factory.ts
+│   │   │   │   │   │   │   │       ├── PluginRepo__factory.ts
+│   │   │   │   │   │   │   │       └── PluginRepoRegistry__factory.ts
+│   │   │   │   │   │   │   └── utils
+│   │   │   │   │   │   │       ├── ens
+│   │   │   │   │   │   │       │   ├── ENSSubdomainRegistrar__factory.ts
+│   │   │   │   │   │   │       │   └── index.ts
+│   │   │   │   │   │   │       ├── index.ts
+│   │   │   │   │   │   │       └── InterfaceBasedRegistry__factory.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   └── osx-commons-contracts
+│   │   │   │   │       ├── index.ts
+│   │   │   │   │       └── src
+│   │   │   │   │           ├── dao
+│   │   │   │   │           │   ├── IDAO__factory.ts
+│   │   │   │   │           │   └── index.ts
+│   │   │   │   │           ├── executors
+│   │   │   │   │           │   ├── Executor__factory.ts
+│   │   │   │   │           │   ├── IExecutor__factory.ts
+│   │   │   │   │           │   └── index.ts
+│   │   │   │   │           ├── index.ts
+│   │   │   │   │           ├── permission
+│   │   │   │   │           │   ├── auth
+│   │   │   │   │           │   │   ├── DaoAuthorizable__factory.ts
+│   │   │   │   │           │   │   ├── DaoAuthorizableUpgradeable__factory.ts
+│   │   │   │   │           │   │   └── index.ts
+│   │   │   │   │           │   ├── condition
+│   │   │   │   │           │   │   ├── index.ts
+│   │   │   │   │           │   │   ├── IPermissionCondition__factory.ts
+│   │   │   │   │           │   │   └── PermissionCondition__factory.ts
+│   │   │   │   │           │   ├── index.ts
+│   │   │   │   │           │   └── PermissionLib__factory.ts
+│   │   │   │   │           ├── plugin
+│   │   │   │   │           │   ├── index.ts
+│   │   │   │   │           │   ├── IPlugin__factory.ts
+│   │   │   │   │           │   ├── PluginCloneable__factory.ts
+│   │   │   │   │           │   ├── Plugin__factory.ts
+│   │   │   │   │           │   ├── PluginUUPSUpgradeable__factory.ts
+│   │   │   │   │           │   └── setup
+│   │   │   │   │           │       ├── index.ts
+│   │   │   │   │           │       ├── IPluginSetup__factory.ts
+│   │   │   │   │           │       ├── PluginSetup__factory.ts
+│   │   │   │   │           │       └── PluginUpgradeableSetup__factory.ts
+│   │   │   │   │           └── utils
+│   │   │   │   │               ├── deployment
+│   │   │   │   │               │   ├── index.ts
+│   │   │   │   │               │   └── ProxyFactory__factory.ts
+│   │   │   │   │               ├── index.ts
+│   │   │   │   │               └── versioning
+│   │   │   │   │                   ├── index.ts
+│   │   │   │   │                   ├── IProtocolVersion__factory.ts
+│   │   │   │   │                   └── ProtocolVersion__factory.ts
+│   │   │   │   ├── @ensdomains
+│   │   │   │   │   ├── ens-contracts
+│   │   │   │   │   │   ├── contracts
+│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   ├── registry
+│   │   │   │   │   │   │   │   ├── ENS__factory.ts
+│   │   │   │   │   │   │   │   ├── ENSRegistry__factory.ts
+│   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   └── resolvers
+│   │   │   │   │   │   │       ├── IMulticallable__factory.ts
+│   │   │   │   │   │   │       ├── index.ts
+│   │   │   │   │   │   │       ├── ISupportsInterface__factory.ts
+│   │   │   │   │   │   │       ├── Multicallable__factory.ts
+│   │   │   │   │   │   │       ├── profiles
+│   │   │   │   │   │   │       │   ├── ABIResolver__factory.ts
+│   │   │   │   │   │   │       │   ├── AddrResolver__factory.ts
+│   │   │   │   │   │   │       │   ├── ContentHashResolver__factory.ts
+│   │   │   │   │   │   │       │   ├── DNSResolver__factory.ts
+│   │   │   │   │   │   │       │   ├── IABIResolver__factory.ts
+│   │   │   │   │   │   │       │   ├── IAddressResolver__factory.ts
+│   │   │   │   │   │   │       │   ├── IAddrResolver__factory.ts
+│   │   │   │   │   │   │       │   ├── IContentHashResolver__factory.ts
+│   │   │   │   │   │   │       │   ├── IDNSRecordResolver__factory.ts
+│   │   │   │   │   │   │       │   ├── IDNSZoneResolver__factory.ts
+│   │   │   │   │   │   │       │   ├── IInterfaceResolver__factory.ts
+│   │   │   │   │   │   │       │   ├── INameResolver__factory.ts
+│   │   │   │   │   │   │       │   ├── index.ts
+│   │   │   │   │   │   │       │   ├── InterfaceResolver__factory.ts
+│   │   │   │   │   │   │       │   ├── IPubkeyResolver__factory.ts
+│   │   │   │   │   │   │       │   ├── ITextResolver__factory.ts
+│   │   │   │   │   │   │       │   ├── NameResolver__factory.ts
+│   │   │   │   │   │   │       │   ├── PubkeyResolver__factory.ts
+│   │   │   │   │   │   │       │   └── TextResolver__factory.ts
+│   │   │   │   │   │   │       ├── PublicResolver.sol
+│   │   │   │   │   │   │       │   ├── INameWrapper__factory.ts
+│   │   │   │   │   │   │       │   ├── index.ts
+│   │   │   │   │   │   │       │   └── PublicResolver__factory.ts
+│   │   │   │   │   │   │       ├── ResolverBase__factory.ts
+│   │   │   │   │   │   │       ├── Resolver__factory.ts
+│   │   │   │   │   │   │       └── SupportsInterface__factory.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   ├── @openzeppelin
+│   │   │   │   │   ├── contracts
+│   │   │   │   │   │   ├── access
+│   │   │   │   │   │   │   ├── AccessControl__factory.ts
+│   │   │   │   │   │   │   ├── IAccessControl__factory.ts
+│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   ├── Ownable2Step__factory.ts
+│   │   │   │   │   │   │   └── Ownable__factory.ts
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── interfaces
+│   │   │   │   │   │   │   ├── draft-IERC1822.sol
+│   │   │   │   │   │   │   │   ├── IERC1822Proxiable__factory.ts
+│   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   ├── IERC1271__factory.ts
+│   │   │   │   │   │   │   ├── IERC1967__factory.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── proxy
+│   │   │   │   │   │   │   ├── beacon
+│   │   │   │   │   │   │   │   ├── IBeacon__factory.ts
+│   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   ├── ERC1967
+│   │   │   │   │   │   │   │   ├── ERC1967Proxy__factory.ts
+│   │   │   │   │   │   │   │   ├── ERC1967Upgrade__factory.ts
+│   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   ├── Proxy__factory.ts
+│   │   │   │   │   │   │   └── utils
+│   │   │   │   │   │   │       ├── index.ts
+│   │   │   │   │   │   │       ├── Initializable__factory.ts
+│   │   │   │   │   │   │       └── UUPSUpgradeable__factory.ts
+│   │   │   │   │   │   ├── security
+│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   └── Pausable__factory.ts
+│   │   │   │   │   │   ├── token
+│   │   │   │   │   │   │   ├── ERC1155
+│   │   │   │   │   │   │   │   ├── ERC1155__factory.ts
+│   │   │   │   │   │   │   │   ├── extensions
+│   │   │   │   │   │   │   │   │   ├── IERC1155MetadataURI__factory.ts
+│   │   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   │   ├── IERC1155__factory.ts
+│   │   │   │   │   │   │   │   ├── IERC1155Receiver__factory.ts
+│   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   ├── ERC20
+│   │   │   │   │   │   │   │   ├── ERC20__factory.ts
+│   │   │   │   │   │   │   │   ├── extensions
+│   │   │   │   │   │   │   │   │   ├── IERC20Metadata__factory.ts
+│   │   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   │   ├── IERC20__factory.ts
+│   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   ├── ERC721
+│   │   │   │   │   │   │   │   ├── ERC721__factory.ts
+│   │   │   │   │   │   │   │   ├── extensions
+│   │   │   │   │   │   │   │   │   ├── IERC721Metadata__factory.ts
+│   │   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   │   ├── IERC721__factory.ts
+│   │   │   │   │   │   │   │   ├── IERC721Receiver__factory.ts
+│   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   └── utils
+│   │   │   │   │   │       ├── index.ts
+│   │   │   │   │   │       └── introspection
+│   │   │   │   │   │           ├── ERC165__factory.ts
+│   │   │   │   │   │           ├── IERC165__factory.ts
+│   │   │   │   │   │           └── index.ts
+│   │   │   │   │   ├── contracts-upgradeable
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── interfaces
+│   │   │   │   │   │   │   ├── draft-IERC1822Upgradeable.sol
+│   │   │   │   │   │   │   │   ├── IERC1822ProxiableUpgradeable__factory.ts
+│   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   ├── IERC1967Upgradeable__factory.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── proxy
+│   │   │   │   │   │   │   ├── beacon
+│   │   │   │   │   │   │   │   ├── IBeaconUpgradeable__factory.ts
+│   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   ├── ERC1967
+│   │   │   │   │   │   │   │   ├── ERC1967UpgradeUpgradeable__factory.ts
+│   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   │   └── utils
+│   │   │   │   │   │   │       ├── index.ts
+│   │   │   │   │   │   │       ├── Initializable__factory.ts
+│   │   │   │   │   │   │       └── UUPSUpgradeable__factory.ts
+│   │   │   │   │   │   ├── token
+│   │   │   │   │   │   │   ├── ERC1155
+│   │   │   │   │   │   │   │   ├── IERC1155ReceiverUpgradeable__factory.ts
+│   │   │   │   │   │   │   │   ├── IERC1155Upgradeable__factory.ts
+│   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   ├── ERC20
+│   │   │   │   │   │   │   │   ├── extensions
+│   │   │   │   │   │   │   │   │   ├── IERC20PermitUpgradeable__factory.ts
+│   │   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   │   ├── IERC20Upgradeable__factory.ts
+│   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   ├── ERC721
+│   │   │   │   │   │   │   │   ├── IERC721ReceiverUpgradeable__factory.ts
+│   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   └── utils
+│   │   │   │   │   │       ├── ContextUpgradeable__factory.ts
+│   │   │   │   │   │       ├── index.ts
+│   │   │   │   │   │       └── introspection
+│   │   │   │   │   │           ├── ERC165StorageUpgradeable__factory.ts
+│   │   │   │   │   │           ├── ERC165Upgradeable__factory.ts
+│   │   │   │   │   │           ├── IERC165Upgradeable__factory.ts
+│   │   │   │   │   │           └── index.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── src
+│   │   │   │       ├── core
+│   │   │   │       │   ├── consensus
+│   │   │   │       │   │   ├── Consensus__factory.ts
+│   │   │   │       │   │   └── index.ts
+│   │   │   │       │   ├── constants
+│   │   │   │       │   │   ├── ContractConstants__factory.ts
+│   │   │   │       │   │   └── index.ts
+│   │   │   │       │   ├── dao
+│   │   │   │       │   │   ├── DAO__factory.ts
+│   │   │   │       │   │   ├── IDAO__factory.ts
+│   │   │   │       │   │   ├── IEIP4824__factory.ts
+│   │   │   │       │   │   └── index.ts
+│   │   │   │       │   ├── finance
+│   │   │   │       │   │   ├── Finance__factory.ts
+│   │   │   │       │   │   └── index.ts
+│   │   │   │       │   ├── index.ts
+│   │   │   │       │   ├── parameters
+│   │   │   │       │   │   ├── ContractParameters__factory.ts
+│   │   │   │       │   │   └── index.ts
+│   │   │   │       │   ├── permission
+│   │   │   │       │   │   ├── AccControl__factory.ts
+│   │   │   │       │   │   ├── index.ts
+│   │   │   │       │   │   └── PermissionManager__factory.ts
+│   │   │   │       │   ├── profile
+│   │   │   │       │   │   ├── index.ts
+│   │   │   │       │   │   └── UserProfile__factory.ts
+│   │   │   │       │   ├── project
+│   │   │   │       │   │   ├── index.ts
+│   │   │   │       │   │   └── ProjectMon__factory.ts
+│   │   │   │       │   ├── security
+│   │   │   │       │   │   ├── CustomHash__factory.ts
+│   │   │   │       │   │   └── index.ts
+│   │   │   │       │   ├── staking
+│   │   │   │       │   │   ├── index.ts
+│   │   │   │       │   │   └── Staking__factory.ts
+│   │   │   │       │   ├── token
+│   │   │   │       │   │   ├── index.ts
+│   │   │   │       │   │   └── Token__factory.ts
+│   │   │   │       │   └── voting
+│   │   │   │       │       ├── index.ts
+│   │   │   │       │       └── Voting__factory.ts
+│   │   │   │       ├── framework
+│   │   │   │       │   ├── dao
+│   │   │   │       │   │   ├── DAOFactory__factory.ts
+│   │   │   │       │   │   ├── DAORegistry__factory.ts
+│   │   │   │       │   │   └── index.ts
+│   │   │   │       │   ├── index.ts
+│   │   │   │       │   ├── plugin
+│   │   │   │       │   │   ├── index.ts
+│   │   │   │       │   │   ├── repo
+│   │   │   │       │   │   │   ├── index.ts
+│   │   │   │       │   │   │   ├── IPluginRepo__factory.ts
+│   │   │   │       │   │   │   ├── placeholder
+│   │   │   │       │   │   │   │   ├── index.ts
+│   │   │   │       │   │   │   │   └── PlaceholderSetup__factory.ts
+│   │   │   │       │   │   │   ├── PluginRepoFactory__factory.ts
+│   │   │   │       │   │   │   ├── PluginRepo__factory.ts
+│   │   │   │       │   │   │   └── PluginRepoRegistry__factory.ts
+│   │   │   │       │   │   └── setup
+│   │   │   │       │   │       ├── index.ts
+│   │   │   │       │   │       └── PluginSetupProcessor__factory.ts
+│   │   │   │       │   └── utils
+│   │   │   │       │       ├── ens
+│   │   │   │       │       │   ├── ENSSubdomainRegistrar__factory.ts
+│   │   │   │       │       │   └── index.ts
+│   │   │   │       │       ├── index.ts
+│   │   │   │       │       └── InterfaceBasedRegistry__factory.ts
+│   │   │   │       ├── index.ts
+│   │   │   │       └── test
+│   │   │   │           ├── dao
+│   │   │   │           │   ├── ActionExecute__factory.ts
+│   │   │   │           │   ├── CallbackHandlerHelperMock.sol
+│   │   │   │           │   │   ├── CallbackHandlerMockHelper__factory.ts
+│   │   │   │           │   │   └── index.ts
+│   │   │   │           │   ├── GasConsumerHelper.sol
+│   │   │   │           │   │   ├── GasConsumer__factory.ts
+│   │   │   │           │   │   └── index.ts
+│   │   │   │           │   └── index.ts
+│   │   │   │           ├── index.ts
+│   │   │   │           ├── permission
+│   │   │   │           │   ├── index.ts
+│   │   │   │           │   ├── PermissionConditionMock__factory.ts
+│   │   │   │           │   └── PermissionManagerTest__factory.ts
+│   │   │   │           ├── plugin
+│   │   │   │           │   ├── Cloneable
+│   │   │   │           │   │   ├── index.ts
+│   │   │   │           │   │   ├── PluginCloneableMock.sol
+│   │   │   │           │   │   │   ├── index.ts
+│   │   │   │           │   │   │   ├── PluginCloneableV1MockBad__factory.ts
+│   │   │   │           │   │   │   ├── PluginCloneableV1Mock__factory.ts
+│   │   │   │           │   │   │   └── PluginCloneableV2Mock__factory.ts
+│   │   │   │           │   │   └── PluginCloneableSetupMock.sol
+│   │   │   │           │   │       ├── index.ts
+│   │   │   │           │   │       ├── PluginCloneableSetupV1MockBad__factory.ts
+│   │   │   │           │   │       ├── PluginCloneableSetupV1Mock__factory.ts
+│   │   │   │           │   │       └── PluginCloneableSetupV2Mock__factory.ts
+│   │   │   │           │   ├── Constructable
+│   │   │   │           │   │   ├── index.ts
+│   │   │   │           │   │   └── PluginMock.sol
+│   │   │   │           │   │       ├── index.ts
+│   │   │   │           │   │       └── PluginV1Mock__factory.ts
+│   │   │   │           │   ├── index.ts
+│   │   │   │           │   └── UUPSUpgradeable
+│   │   │   │           │       ├── index.ts
+│   │   │   │           │       ├── PluginUUPSUpgradeableMock.sol
+│   │   │   │           │       │   ├── index.ts
+│   │   │   │           │       │   ├── PluginUUPSUpgradeableV1Mock__factory.ts
+│   │   │   │           │       │   ├── PluginUUPSUpgradeableV2Mock__factory.ts
+│   │   │   │           │       │   └── PluginUUPSUpgradeableV3Mock__factory.ts
+│   │   │   │           │       └── PluginUUPSUpgradeableSetupMock.sol
+│   │   │   │           │           ├── index.ts
+│   │   │   │           │           ├── MockedHelper__factory.ts
+│   │   │   │           │           ├── PluginUUPSUpgradeableSetupV1MockBad__factory.ts
+│   │   │   │           │           ├── PluginUUPSUpgradeableSetupV1Mock__factory.ts
+│   │   │   │           │           ├── PluginUUPSUpgradeableSetupV2Mock__factory.ts
+│   │   │   │           │           ├── PluginUUPSUpgradeableSetupV3Mock__factory.ts
+│   │   │   │           │           └── PluginUUPSUpgradeableSetupV4Mock__factory.ts
+│   │   │   │           ├── ProtocolVersionMock__factory.ts
+│   │   │   │           ├── TestToken__factory.ts
+│   │   │   │           ├── token
+│   │   │   │           │   ├── ERC1155Mock__factory.ts
+│   │   │   │           │   ├── ERC20Mock__factory.ts
+│   │   │   │           │   ├── ERC721Mock__factory.ts
+│   │   │   │           │   └── index.ts
+│   │   │   │           └── utils
+│   │   │   │               ├── index.ts
+│   │   │   │               ├── InterfaceBasedRegistryMock__factory.ts
+│   │   │   │               └── RegistryUtilsTest.sol
+│   │   │   │                   ├── index.ts
+│   │   │   │                   └── RegistryUtils__factory.ts
+│   │   │   ├── hardhat.d.ts
+│   │   │   ├── index.ts
+│   │   │   ├── @openzeppelin
+│   │   │   │   ├── contracts
+│   │   │   │   │   ├── access
+│   │   │   │   │   │   ├── AccessControl.ts
+│   │   │   │   │   │   ├── IAccessControl.ts
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── Ownable2Step.ts
+│   │   │   │   │   │   └── Ownable.ts
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── interfaces
+│   │   │   │   │   │   ├── draft-IERC1822.sol
+│   │   │   │   │   │   │   ├── IERC1822Proxiable.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── IERC1271.ts
+│   │   │   │   │   │   ├── IERC1967.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── proxy
+│   │   │   │   │   │   ├── beacon
+│   │   │   │   │   │   │   ├── IBeacon.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── ERC1967
+│   │   │   │   │   │   │   ├── ERC1967Proxy.ts
+│   │   │   │   │   │   │   ├── ERC1967Upgrade.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   ├── Proxy.ts
+│   │   │   │   │   │   └── utils
+│   │   │   │   │   │       ├── index.ts
+│   │   │   │   │   │       ├── Initializable.ts
+│   │   │   │   │   │       └── UUPSUpgradeable.ts
+│   │   │   │   │   ├── security
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   └── Pausable.ts
+│   │   │   │   │   ├── token
+│   │   │   │   │   │   ├── ERC1155
+│   │   │   │   │   │   │   ├── ERC1155.ts
+│   │   │   │   │   │   │   ├── extensions
+│   │   │   │   │   │   │   │   ├── IERC1155MetadataURI.ts
+│   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   ├── IERC1155Receiver.ts
+│   │   │   │   │   │   │   ├── IERC1155.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── ERC20
+│   │   │   │   │   │   │   ├── ERC20.ts
+│   │   │   │   │   │   │   ├── extensions
+│   │   │   │   │   │   │   │   ├── IERC20Metadata.ts
+│   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   ├── IERC20.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── ERC721
+│   │   │   │   │   │   │   ├── ERC721.ts
+│   │   │   │   │   │   │   ├── extensions
+│   │   │   │   │   │   │   │   ├── IERC721Metadata.ts
+│   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   ├── IERC721Receiver.ts
+│   │   │   │   │   │   │   ├── IERC721.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   └── utils
+│   │   │   │   │       ├── index.ts
+│   │   │   │   │       └── introspection
+│   │   │   │   │           ├── ERC165.ts
+│   │   │   │   │           ├── IERC165.ts
+│   │   │   │   │           └── index.ts
+│   │   │   │   ├── contracts-upgradeable
+│   │   │   │   │   ├── index.ts
+│   │   │   │   │   ├── interfaces
+│   │   │   │   │   │   ├── draft-IERC1822Upgradeable.sol
+│   │   │   │   │   │   │   ├── IERC1822ProxiableUpgradeable.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── IERC1967Upgradeable.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   ├── proxy
+│   │   │   │   │   │   ├── beacon
+│   │   │   │   │   │   │   ├── IBeaconUpgradeable.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── ERC1967
+│   │   │   │   │   │   │   ├── ERC1967UpgradeUpgradeable.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── index.ts
+│   │   │   │   │   │   └── utils
+│   │   │   │   │   │       ├── index.ts
+│   │   │   │   │   │       ├── Initializable.ts
+│   │   │   │   │   │       └── UUPSUpgradeable.ts
+│   │   │   │   │   ├── token
+│   │   │   │   │   │   ├── ERC1155
+│   │   │   │   │   │   │   ├── IERC1155ReceiverUpgradeable.ts
+│   │   │   │   │   │   │   ├── IERC1155Upgradeable.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── ERC20
+│   │   │   │   │   │   │   ├── extensions
+│   │   │   │   │   │   │   │   ├── IERC20PermitUpgradeable.ts
+│   │   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   │   ├── IERC20Upgradeable.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   ├── ERC721
+│   │   │   │   │   │   │   ├── IERC721ReceiverUpgradeable.ts
+│   │   │   │   │   │   │   └── index.ts
+│   │   │   │   │   │   └── index.ts
+│   │   │   │   │   └── utils
+│   │   │   │   │       ├── ContextUpgradeable.ts
+│   │   │   │   │       ├── index.ts
+│   │   │   │   │       └── introspection
+│   │   │   │   │           ├── ERC165StorageUpgradeable.ts
+│   │   │   │   │           ├── ERC165Upgradeable.ts
+│   │   │   │   │           ├── IERC165Upgradeable.ts
+│   │   │   │   │           └── index.ts
+│   │   │   │   └── index.ts
+│   │   │   └── src
+│   │   │       ├── core
+│   │   │       │   ├── consensus
+│   │   │       │   │   ├── Consensus.ts
+│   │   │       │   │   └── index.ts
+│   │   │       │   ├── constants
+│   │   │       │   │   ├── ContractConstants.ts
+│   │   │       │   │   └── index.ts
+│   │   │       │   ├── dao
+│   │   │       │   │   ├── DAO.ts
+│   │   │       │   │   ├── IDAO.ts
+│   │   │       │   │   ├── IEIP4824.ts
+│   │   │       │   │   └── index.ts
+│   │   │       │   ├── finance
+│   │   │       │   │   ├── Finance.ts
+│   │   │       │   │   └── index.ts
+│   │   │       │   ├── index.ts
+│   │   │       │   ├── parameters
+│   │   │       │   │   ├── ContractParameters.ts
+│   │   │       │   │   └── index.ts
+│   │   │       │   ├── permission
+│   │   │       │   │   ├── AccControl.ts
+│   │   │       │   │   ├── index.ts
+│   │   │       │   │   └── PermissionManager.ts
+│   │   │       │   ├── profile
+│   │   │       │   │   ├── index.ts
+│   │   │       │   │   └── UserProfile.ts
+│   │   │       │   ├── project
+│   │   │       │   │   ├── index.ts
+│   │   │       │   │   └── ProjectMon.ts
+│   │   │       │   ├── security
+│   │   │       │   │   ├── CustomHash.ts
+│   │   │       │   │   └── index.ts
+│   │   │       │   ├── staking
+│   │   │       │   │   ├── index.ts
+│   │   │       │   │   └── Staking.ts
+│   │   │       │   ├── token
+│   │   │       │   │   ├── index.ts
+│   │   │       │   │   └── Token.ts
+│   │   │       │   └── voting
+│   │   │       │       ├── index.ts
+│   │   │       │       └── Voting.ts
+│   │   │       ├── framework
+│   │   │       │   ├── dao
+│   │   │       │   │   ├── DAOFactory.ts
+│   │   │       │   │   ├── DAORegistry.ts
+│   │   │       │   │   └── index.ts
+│   │   │       │   ├── index.ts
+│   │   │       │   ├── plugin
+│   │   │       │   │   ├── index.ts
+│   │   │       │   │   ├── repo
+│   │   │       │   │   │   ├── index.ts
+│   │   │       │   │   │   ├── IPluginRepo.ts
+│   │   │       │   │   │   ├── placeholder
+│   │   │       │   │   │   │   ├── index.ts
+│   │   │       │   │   │   │   └── PlaceholderSetup.ts
+│   │   │       │   │   │   ├── PluginRepoFactory.ts
+│   │   │       │   │   │   ├── PluginRepoRegistry.ts
+│   │   │       │   │   │   └── PluginRepo.ts
+│   │   │       │   │   └── setup
+│   │   │       │   │       ├── index.ts
+│   │   │       │   │       └── PluginSetupProcessor.ts
+│   │   │       │   └── utils
+│   │   │       │       ├── ens
+│   │   │       │       │   ├── ENSSubdomainRegistrar.ts
+│   │   │       │       │   └── index.ts
+│   │   │       │       ├── index.ts
+│   │   │       │       └── InterfaceBasedRegistry.ts
+│   │   │       ├── index.ts
+│   │   │       └── test
+│   │   │           ├── dao
+│   │   │           │   ├── ActionExecute.ts
+│   │   │           │   ├── CallbackHandlerHelperMock.sol
+│   │   │           │   │   ├── CallbackHandlerMockHelper.ts
+│   │   │           │   │   └── index.ts
+│   │   │           │   ├── GasConsumerHelper.sol
+│   │   │           │   │   ├── GasConsumer.ts
+│   │   │           │   │   └── index.ts
+│   │   │           │   └── index.ts
+│   │   │           ├── index.ts
+│   │   │           ├── permission
+│   │   │           │   ├── index.ts
+│   │   │           │   ├── PermissionConditionMock.ts
+│   │   │           │   └── PermissionManagerTest.ts
+│   │   │           ├── plugin
+│   │   │           │   ├── Cloneable
+│   │   │           │   │   ├── index.ts
+│   │   │           │   │   ├── PluginCloneableMock.sol
+│   │   │           │   │   │   ├── index.ts
+│   │   │           │   │   │   ├── PluginCloneableV1MockBad.ts
+│   │   │           │   │   │   ├── PluginCloneableV1Mock.ts
+│   │   │           │   │   │   └── PluginCloneableV2Mock.ts
+│   │   │           │   │   └── PluginCloneableSetupMock.sol
+│   │   │           │   │       ├── index.ts
+│   │   │           │   │       ├── PluginCloneableSetupV1MockBad.ts
+│   │   │           │   │       ├── PluginCloneableSetupV1Mock.ts
+│   │   │           │   │       └── PluginCloneableSetupV2Mock.ts
+│   │   │           │   ├── Constructable
+│   │   │           │   │   ├── index.ts
+│   │   │           │   │   └── PluginMock.sol
+│   │   │           │   │       ├── index.ts
+│   │   │           │   │       └── PluginV1Mock.ts
+│   │   │           │   ├── index.ts
+│   │   │           │   └── UUPSUpgradeable
+│   │   │           │       ├── index.ts
+│   │   │           │       ├── PluginUUPSUpgradeableMock.sol
+│   │   │           │       │   ├── index.ts
+│   │   │           │       │   ├── PluginUUPSUpgradeableV1Mock.ts
+│   │   │           │       │   ├── PluginUUPSUpgradeableV2Mock.ts
+│   │   │           │       │   └── PluginUUPSUpgradeableV3Mock.ts
+│   │   │           │       └── PluginUUPSUpgradeableSetupMock.sol
+│   │   │           │           ├── index.ts
+│   │   │           │           ├── MockedHelper.ts
+│   │   │           │           ├── PluginUUPSUpgradeableSetupV1MockBad.ts
+│   │   │           │           ├── PluginUUPSUpgradeableSetupV1Mock.ts
+│   │   │           │           ├── PluginUUPSUpgradeableSetupV2Mock.ts
+│   │   │           │           ├── PluginUUPSUpgradeableSetupV3Mock.ts
+│   │   │           │           └── PluginUUPSUpgradeableSetupV4Mock.ts
+│   │   │           ├── ProtocolVersionMock.ts
+│   │   │           ├── TestToken.ts
+│   │   │           ├── token
+│   │   │           │   ├── ERC1155Mock.ts
+│   │   │           │   ├── ERC20Mock.ts
+│   │   │           │   ├── ERC721Mock.ts
+│   │   │           │   └── index.ts
+│   │   │           └── utils
+│   │   │               ├── index.ts
+│   │   │               ├── InterfaceBasedRegistryMock.ts
+│   │   │               └── RegistryUtilsTest.sol
+│   │   │                   ├── index.ts
+│   │   │                   └── RegistryUtils.ts
 │   │   ├── types
 │   │   │   └── hardhat.d.ts
 │   │   └── utils
@@ -311,6 +1072,7 @@
 │   │       └── zksync.ts
 │   ├── contracts-ethers
 │   │   ├── CHANGELOG.md
+│   │   ├── .gitignore
 │   │   ├── npm
 │   │   │   ├── events
 │   │   │   │   ├── DAORegistry.ts
@@ -337,12 +1099,17 @@
 │   │   ├── codegen.yml
 │   │   ├── docker
 │   │   │   ├── docker-compose.yml
+│   │   │   ├── .env.example
 │   │   │   ├── hardhat
 │   │   │   │   ├── hardhat.config.js
 │   │   │   │   └── package.json
 │   │   │   └── hardhat.Dockerfile
 │   │   ├── docs
 │   │   │   └── Subgraph-ERD.jpg
+│   │   ├── .env-example
+│   │   ├── .eslintignore
+│   │   ├── .eslintrc.json
+│   │   ├── .gitignore
 │   │   ├── manifest
 │   │   │   ├── data
 │   │   │   │   ├── arbitrumGoerli.json
@@ -438,9 +1205,14 @@
 │       │   └── languages
 │       │       └── en.json
 │       └── tsconfig.json
+├── .prettierignore
+├── .prettierrc
 ├── README.md
+├── replace.py
+├── scripts
+│   └── update-solc-version.sh
 ├── tree.txt
 ├── UPDATE_CHECKLIST.md
 └── yarn.lock
 
-110 directories, 334 files
+326 directories, 890 files

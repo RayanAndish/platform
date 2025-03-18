@@ -7,6 +7,9 @@ import {PluginCloneable} from "@aragon/osx-commons-contracts/src/plugin/PluginCl
 import {IDAO} from "@aragon/osx-commons-contracts/src/dao/IDAO.sol";
 
 contract PluginCloneableV1Mock is PluginCloneable {
+    // رویداد مورد نیاز
+    event TargetSet(address indexed target, uint8 operation);
+
     uint256 public state1;
 
     function initialize(IDAO _dao) external initializer {
@@ -26,6 +29,9 @@ contract PluginCloneableV1MockBad {
 }
 
 contract PluginCloneableV2Mock is PluginCloneable {
+    // رویداد مورد نیاز
+    event TargetSet(address indexed target, uint8 operation);
+
     uint256 public state1;
     uint256 public state2;
 
